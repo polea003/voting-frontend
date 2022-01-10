@@ -1,4 +1,11 @@
-# web-app
+1. docker build -t voting-frontend .
+
+2. docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm voting-frontend
+
+
+
+
+<!-- # web-app
 
 ## Project setup
 ```
@@ -21,4 +28,4 @@ npm run lint
 ```
 
 ### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/). -->
