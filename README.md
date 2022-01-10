@@ -1,7 +1,11 @@
+First time, 
 1. docker build -t voting-frontend .
 
+After building, only need this command from now on, until adding a file or modifying configuration files.
 2. docker run -v ${PWD}:/app -v /app/node_modules -p 8080:8080 --rm voting-frontend
 
+Access at:
+http://localhost:8080/ 
 
 
 
