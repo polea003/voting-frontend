@@ -3,6 +3,7 @@
     <div id="nav">
       <div class='text-xl font-bold'>Panther Votes</div>
       <router-link to="/">Election Dashboard</router-link> |
+      <router-link to="/Club-Elections">Club Elections</router-link> |
       <router-link to="/about">Voting History</router-link> |
       <router-link to="/how">How It Works</router-link>
     </div>
