@@ -1,6 +1,7 @@
   <template>
   <!-- <div class='bg-gray-100'> -->
-    <div id="nav">
+    <div id="nav" style="Mystyle" >
+      
       <div class='text-xl font-bold'>Panther Votes</div>
       <router-link to="/">Election Dashboard</router-link> |
       <router-link to="/Club-Elections">Club Elections</router-link> |
@@ -22,6 +23,7 @@
 
 #nav {
   padding: 30px;
+  background-color: rgb(110, 111, 141);
 }
 
 #nav a {
@@ -32,4 +34,16 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+   
+
+    
+    footer {
+      text-align: center;
+      height: 50px;
+      background-color: #ccc;
+      padding: 10px;
+      margin-top: 10px;
+      bottom: 0px;
+    }
 </style>
+
