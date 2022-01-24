@@ -1,5 +1,5 @@
   <template>
-  <!-- <div class='bg-gray-100'> -->
+  <div>
     <div id="nav" style="Mystyle" >
       
       <div class='text-xl font-bold'>Panther Votes</div>
@@ -9,7 +9,7 @@
       <router-link to="/how">How It Works</router-link>
     </div>
     <router-view/>
-  <!-- </div> -->
+  </div>
 </template>
 
 <style>
