@@ -23,10 +23,25 @@
       <div class='flex w-full justify-between border-b py-1'>
         <div>11/02/21</div>
         <div>Class Survey</div>
-        <div class='border-2 border-green-500 rounded px-1'> View Results</div>
+        <button class='border-2 border-green-500 rounded px-1' @click="sayhello"> View Results</button>
       </div>
 
 
     </div>
   </div>
 </template>
+<script>
+    export default {
+        data() {
+            return {
+
+            }
+        },
+         methods: {
+           sayhello(){
+              alert('Go away');
+              
+           }
+         }
+    }
+</script>

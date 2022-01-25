@@ -5,13 +5,15 @@
       <div class='flex flex-col text-small font-bold flex-1'>
         <div>{{ election.createdAt }}</div>
       </div>
-      <div class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>More Info</div>
-      <router-link to="/election" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>Vote</router-link>
+      <div @click="createElection(election._id)" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>create new</div>
+      <div @click="deleteElection(election._id)" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>delete</div>
     </div>
   </div>
 </template>
 
 <script>
+
+import ElectionService from '../services/ElectionService'
 
 export default {
   name: 'ElectionComponent',
@@ -27,7 +29,16 @@ export default {
       error: '',
       text: ''
     }
+  },
+  methods:{
+    deleteElection(id){
+      ElectionService.deletePost(id)
+    },
+    createElection(id){
+      ElectionService.createElection(id)
+    }
   }
+
 }
 </script>
 
