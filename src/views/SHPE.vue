@@ -8,7 +8,7 @@
      
     </div>
     <v-row align="center" justify="center">
-     <div class='w-auto border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
+     <div class='w- border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
           <div class="flex h-full justify-center">
             
             <router-link to="/NewElection"
