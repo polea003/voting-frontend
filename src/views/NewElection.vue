@@ -1,18 +1,24 @@
 <template>
 <form v-on:submit="addProduct">
         <input type="name" v-model="name" placeholder="Product Name" >
-       
-        <button @click="goback(name)">Add</button>
+<input v-model="club" placeholder= />
+<!-- <p>Message is: {{ club }}</p>         -->
+<button @click="goback(name, club)">Add</button>
       </form>
+    
 </template>
 <script>
 
 import ElectionService from '../services/ElectionService'
+import router from '../router'
+
     export default {
+      name: "NewElection",
        data: function(){
      return {
        name: "",
-       price: "",
+       stupid: "0",
+       
    }
 },
  methods: {
@@ -21,10 +27,14 @@ import ElectionService from '../services/ElectionService'
       // console.log(this.name, this.price);
     },
 
-    goback(name){
-        ElectionService.createElection(name)
-        this.$router.push("/SHPE");
+    goback(name, club){
+        ElectionService.createElection(name, this.club)
+        this.$router.push("/"+ club);
     }
-  }
+  },
+ created(){
+    this.club = router.currentRoute.value.params.club
+
+ }
     }
 </script>

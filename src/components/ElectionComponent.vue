@@ -1,4 +1,6 @@
 <template>
+
+
   <div class="w-48 h-64 border-green-500 border-4 rounded m-5">
     <div class='flex flex-col h-full items-center'>
       <div class='font-bold my-2'>{{ election.text }}</div>
@@ -9,6 +11,7 @@
       <div @click="deleteElection(election._id)" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>delete</div>
     </div>
   </div>
+  
 </template>
 
 <script>

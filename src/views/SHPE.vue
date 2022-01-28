@@ -2,19 +2,18 @@
 <template>
 
   <div class="about">
- 
     <div class='flex flex-col mx-64'>
       <div class="text-xl font-bold my-5">Society of Hispanic Professional Engineers</div>
      
     </div>
-    <v-row align="center" justify="center">
-     <div class='w- border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
+      <div class="flex justify-center">
+     <div class='w-64 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
           <div class="flex h-full justify-center">
             
-            <router-link to="/NewElection"
+            <router-link :to="{ name: 'NewElection', params: {club: 'SHPE'}}"
               >New Election</router-link>
               
-          </div></div></v-row>
+          </div></div></div>
         <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
@@ -23,11 +22,14 @@
         <div class="text-xl font-bold">Active Elections</div>
         <div class="flex justify-center">
 
-          <div v-for="election in elections" :key="election._id">
+         
+     <div class = "flex flex-wrap">
+          <div v-for="election in elections" :key="election.club">
+            <div v-if="election.club === 'SHPE'">
             <ElectionComponent :election="election" />
+            </div>
           </div>
-
-
+     </div>
         </div>
       </div>
     </div>
@@ -64,7 +66,9 @@ export default {
   data () {
     return {
       elections: undefined,
-      error: undefined
+      error: undefined,
+    
+     
     }
   },
   async created() {
