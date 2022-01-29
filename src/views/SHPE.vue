@@ -1,6 +1,6 @@
 
 <template>
-
+  
   <div class="about">
     <div class='flex flex-col mx-64'>
       <div class="text-xl font-bold my-5">Society of Hispanic Professional Engineers</div>
@@ -10,7 +10,7 @@
      <div class='w-64 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
           <div class="flex h-full justify-center">
             
-            <router-link :to="{ name: 'NewElection', params: {club: 'SHPE'}}"
+            <router-link :to="{ name: 'NewElection', params: {club: Name}}"
               >New Election</router-link>
               
           </div></div></div>
@@ -25,8 +25,8 @@
          
      <div class = "flex flex-wrap">
           <div v-for="election in elections" :key="election.club">
-            <div v-if="election.club === 'SHPE'">
-            <ElectionComponent :election="election" />
+            <div v-if="election.club === Name">
+            <ElectionComponent @delete="refresh()" :election="election" />
             </div>
           </div>
      </div>
@@ -67,7 +67,7 @@ export default {
     return {
       elections: undefined,
       error: undefined,
-    
+      Name: 'SHPE' 
      
     }
   },
@@ -76,6 +76,17 @@ export default {
       this.elections = await ElectionService.getElections()
     } catch(err) {
       this.error = err.message
+    }
+  },
+  methods: {
+    async refresh(){
+        try {
+      this.elections = await ElectionService.getElections()
+      window.location.reload()
+    } catch(err) {
+      this.error = err.message
+      
+    }
     }
   }
 }

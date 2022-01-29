@@ -8,7 +8,7 @@
         <div>{{ election.createdAt }}</div>
       </div>
       <div @click="createElection(election._id)" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>create new</div>
-      <div @click="deleteElection(election._id)" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>delete</div>
+      <div @click="deleteElection(election._id); $emit('delete')" class='w-32 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>delete</div>
     </div>
   </div>
   
