@@ -26,7 +26,7 @@
      <div class = "flex flex-wrap">
           <div v-for="election in elections" :key="election.club">
             <div v-if="election.club === Name">
-            <ElectionComponent @delete="refresh()" :election="election" />
+            <ElectionComponent @Update="refresh()" :election="election" />
             </div>
           </div>
      </div>

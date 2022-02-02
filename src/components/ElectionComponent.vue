@@ -7,14 +7,14 @@
     <div class='flex w-40 flex-col h-full items-center'>
       <div class='font-bold my-2'>{{ election.Candidate1FirstName }}</div>
       <div class='font-bold my-5'>{{ election.Candidate1LastName }}</div>
-      <button @click="ProcessVote(election._id)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
+      <button @click="ProcessVote(election._id, 1)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
     </div>
   </div>
   <div>
    <div class='flex flex-col h-full items-center'>
       <div class='font-bold my-2'>{{ election.Candidate2FirstName }}</div>
       <div class='font-bold my-5'>{{ election.Candidate2LastName }}</div>
-      <button @click="createElection(election._id)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
+      <button @click="ProcessVote(election._id,2)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
     </div>
   </div>
  </div>
@@ -46,20 +46,21 @@ export default {
     return {
       // elections: [],
       error: '',
-      text: ''
+      text: '',
+     
     }
   },
   methods:{
     deleteElection(id){
-      this.$emit("delete")
+      this.$emit("Update")
       ElectionService.deletePost(id)
     },
     createElection(id){
       ElectionService.createElection(id)
     },
-    ProcessVote(id){
-      
-      ElectionService.UpdateElection(id)
+    ProcessVote(id, Canadent_number){
+      this.$emit("Update")
+      ElectionService.UpdateElection(id, Canadent_number)
     },
   }
 
