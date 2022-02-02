@@ -7,7 +7,7 @@
 <span>{{ club }}</span>
 
 <!-- <p>Message is: {{ club }}</p>         -->
-<button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position)" class="w-16">Add</button>
+<button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2)" class="w-16">Add</button>
       </form>
   
 <!-- <navbar />  -->
@@ -70,15 +70,17 @@ import router from '../router'
        Candidate2FirstName: "",
        Candidate2LastName: "",
        Position: "",
+       Vote1: 0,
+       Vote2: 0,
        
          
         
      }},
  methods: {
    
-    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position ){
+    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2){
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
-        ,Candidate2FirstName,Candidate2LastName, Position)
+        ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2)
         this.$router.push("/"+ club);
         
 

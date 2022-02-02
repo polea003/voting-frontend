@@ -26,7 +26,7 @@ class ElectionsService {
   }
 
     //create election
-    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition) {
+    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition, Vote1, Vote2) {
         return axios.post(url, {
             text,
             club,
@@ -35,12 +35,17 @@ class ElectionsService {
             Candidate2FirstName,
             Candidate2LastName,
             Poisition,
+            Vote1,
+            Vote2,
         })
     }
 
     //delete
     static deletePost(id) {
         return axios.delete(`${url}${id}`)
+    }
+    static UpdateElection(id){
+        return axios.put(`${url}${id}`)
     }
 }
 
