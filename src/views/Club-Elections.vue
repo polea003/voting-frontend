@@ -1,15 +1,20 @@
 
 <template>
-  <div class="w-full h-full">
+  <div   class="w-full h-full">
     <div class="flex flex-col">
       <div class="flex items-center">
-        <div class="w-64 h-64 border-blue-500 border-4 rounded m-5">
+        
+        <div id = "shpe" class=" w-64 h-64 border-blue-500 border-4 rounded m-5">
+          <div class=" shadow hover:shadow-2xl">
           <router-link to="/SHPE"
-            ><img :src="require('../assets/SHPE.png')"
+            >
+            <img :src="require('../assets/SHPE.png')"
+            
           /></router-link>
         </div>
+        </div>
+        <div class="w-64 h-64 border-blue-500 border-4 rounded m-5" >
 
-        <div class="w-64 h-64 border-blue-500 border-4 rounded m-5">
           <div class="flex h-full items-center">
             <router-link to="/SWE"
               ><img :src="require('../assets/swe.png')"
@@ -53,5 +58,6 @@
     </div>
       </div>
     </div>
+   
   </div>
 </template>

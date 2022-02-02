@@ -7,7 +7,7 @@
 <span>{{ club }}</span>
 
 <!-- <p>Message is: {{ club }}</p>         -->
-<button @click="goback(name, club)" class="w-16">Add</button>
+<button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position)" class="w-16">Add</button>
       </form>
   
 <!-- <navbar />  -->
@@ -21,32 +21,26 @@
   </select>
 </div>
 <form @submit.prevent="submitForm">
-     <span>Canadents 1:      </span>    
+     <span>Candidate 1:      </span>    
     <!-- username input -->
-    <input type="text" v-model="username" placeholder="First Name">
+    <input type="Candidate1FirstName" v-model="Candidate1FirstName" placeholder="First Name">
 
     <!-- email input -->
-    <input type="text" v-model="email" placeholder="Last Name">
+    <input type="Candidate1LastName" v-model="Candidate1LastName" placeholder="Last Name">
 
-    <!-- password input -->
-    <input type="password" v-model="password" placeholder="PID">
-
-    <!-- submit button -->
+    
     
 
   </form>
   <form @submit.prevent="submitForm">
-     <span>Canadents 2:      </span>    
+     <span>Candidate 2:      </span>    
     <!-- username input -->
-    <input type="text" v-model="username" placeholder="First Name">
+    <input type="Candidate2FirstName" v-model="Candidate2FirstName" placeholder="First Name">
 
     <!-- email input -->
-    <input type="text" v-model="email" placeholder="Last Name">
+    <input type="Candidate2LastName" v-model="Candidate2LastName" placeholder="Last Name">
 
-    <!-- password input -->
-    <input type="password" v-model="password" placeholder="PID">
-
-    <!-- submit button -->
+    
     
 
   </form>
@@ -71,19 +65,27 @@ import router from '../router'
        data: function(){
      return {
        name: "",
-         onChange(e) {
-                console.log(e.target.value);          }
-     
+       Candidate1FirstName: "",
+       Candidate1LastName: "",
+       Candidate2FirstName: "",
+       Candidate2LastName: "",
+       Position: "",
+       
+         
         
      }},
  methods: {
    
-    goback(name, club){
-        ElectionService.createElection(name, this.club)
+    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position ){
+        ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
+        ,Candidate2FirstName,Candidate2LastName, Position)
         this.$router.push("/"+ club);
         
 
-    }
+    },
+    onChange(e) {
+                console.log(e.target.value);         
+                this.Position  =  e.target.value; }
   },
  created(){
     this.club = router.currentRoute.value.params.club

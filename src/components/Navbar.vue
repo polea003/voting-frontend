@@ -1,8 +1,10 @@
 <template>
   <nav>
-  
-    <Dropdown title="Poisitions" :items="services" />
-   
+    <div class="menu-item"><a href="#">Home</a></div>
+    <router-link to="./views/Club-Elections">Club Elections</router-link> 
+    <div class="menu-item"><a href="">About</a></div>
+    <Dropdown title="Services" :items="services" />
+    <div class="menu-item"><a href="#">Contact</a></div>
   </nav>
 </template>
 
@@ -17,20 +19,16 @@ export default {
     return {
       services: [
         {
-          title: 'President',
-          
+          title: 'Web',
+          link: '#'
         },
         {
-          title: 'Vice President',
-          
+          title: 'Design',
+          link:'#'
         },
         {
-          title: 'Secretary',
-          
-        },
-        {
-          title: 'Treasurer',
-          
+          title: 'Videos',
+          link: '#'
         }
       ]
     }
@@ -45,18 +43,17 @@ nav {
   justify-content: center;
 }
 nav .menu-item {
-  color: rgb(36, 0, 240);
+  color: #FFF;
   padding: 10px 20px;
   position: relative;
   text-align: center;
   border-bottom: 3px solid transparent;
   display: flex;
   transition: 0.4s;
-  background-color: #444;
-
 }
 nav .menu-item.active,
 nav .menu-item:hover {
+  background-color: #444;
   border-bottom-color: #FF5858;
 }
 nav .menu-item a {

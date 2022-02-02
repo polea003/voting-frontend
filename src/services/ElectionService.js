@@ -26,10 +26,15 @@ class ElectionsService {
   }
 
     //create election
-    static createElection(text, club) {
+    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition) {
         return axios.post(url, {
             text,
-            club
+            club,
+            Candidate1FirstName,
+            Candidate1LastName,
+            Candidate2FirstName,
+            Candidate2LastName,
+            Poisition,
         })
     }
 
