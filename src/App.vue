@@ -3,8 +3,9 @@
     <div id="nav" style="Mystyle" >
       
       <div class='text-7xl font-bold text-white'>Panther Votes</div>
-      <router-link to="/">Election Dashboard</router-link> |
-      <router-link to="/Club-Elections">Club Elections</router-link> |
+      <router-link to="/">Home</router-link> |
+      <router-link to="/election-Dashboard">Election Dashboard</router-link> |
+      <router-link to="/club-Elections">Club Elections</router-link> |
       <router-link to="/about">Voting History</router-link> |
       <router-link to="/how">How It Works</router-link>
     </div>
