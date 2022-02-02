@@ -10,6 +10,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <div class="home">
           <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
           <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
@@ -25,6 +26,13 @@
                   </div>
                 </div>
               </div>
+=======
+         
+     <div class = "flex flex-wrap">
+          <div v-for="election in elections" :key="election.club">
+            <div v-if="election.club === Name">
+            <ElectionComponent @Update="refresh()" :election="election" />
+>>>>>>> Tyler
             </div>
           </div>
         </div>
