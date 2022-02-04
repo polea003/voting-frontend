@@ -44,6 +44,12 @@
     
 
   </form>
+  <button type="button" @click="add()">Add</button>
+
+<!-- <component v-bind:is="NewElectionForm"></component> -->
+<div v-for="counter in counter" v-bind:key=counter>
+<new-election-form></new-election-form>
+</div>
 </div>
 
 
@@ -53,13 +59,14 @@
 
 import ElectionService from '../services/ElectionService'
 import router from '../router'
+import NewElectionForm from '../components/NewElectionForm.vue'
 // import Navbar from '../components/Navbar.vue';
-
+//const Comp = {template: '<div>Hello world</div>'}
     export default {
       name: "NewElection",
       components: {
-        // Navbar
-            
+        'NewElectionForm' : NewElectionForm
+       
       },
       
        data: function(){
@@ -72,17 +79,27 @@ import router from '../router'
        Position: "",
        Vote1: 0,
        Vote2: 0,
+       counter: 1,
+      //components: [Comp]
+    
+
        
          
         
      }},
  methods: {
-   
+   add(){
+  
+      //console.log(this.components)
+      //this.components.push(Comp)
+      this.counter++
+    
+    },
     goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2){
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
         ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2)
         this.$router.push("/"+ club);
-        
+    
 
     },
     onChange(e) {
@@ -91,6 +108,8 @@ import router from '../router'
   },
  created(){
     this.club = router.currentRoute.value.params.club
- }
+ },
+ 
     }
 </script>
+
