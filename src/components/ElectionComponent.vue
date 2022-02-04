@@ -1,5 +1,43 @@
 <template>
+<div id= "Election" class = 'flex-row  border-blue-500 border-4 rounded-lg m-5'>
+  <span class='font-bold'>{{election.Poisition}}</span>
 
+  <div class="flex">
+<div v-for="DivNumber in DivNumber" v-bind:key=DivNumber >
+<div v-if="DivNumber === 1" >
+<div v-for="FirstName in election.FirstName" v-bind:key=FirstName>
+   <div class='font-bold my-5 text-left'>{{ FirstName.value }}</div>
+</div >
+</div>
+<div v-if="DivNumber === 2" >
+<div v-for="LastName in election.LastName" v-bind:key=LastName>
+   <div class='font-bold my-5 text-center'>{{ LastName.value }}</div>
+</div></div>
+<div v-if="DivNumber === 3">
+
+<div v-for="NumberOfCandidates in election.NumberOfCandidates" v-bind:key=NumberOfCandidates>
+   <div class='font-bold m-2 px-8'>{{ FirstName }}
+    <button @click="ProcessVote(election._id, NumberOfCandidates)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
+
+   </div></div>
+   
+</div>
+<div v-if="DivNumber === 4">
+
+<div v-for="Vote in election.Vote" v-bind:key=Vote>
+   <div class='font-bold m-2 py-2'>{{ Vote.value }}
+
+   </div></div>
+   
+</div>
+</div>
+  </div>
+  <div>
+       <button @click="deleteElection(election._id)" class=' w-72 h-10 m-2 bg-gradient-to-r from-red-400 to-red-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Delete</button>
+  </div>
+</div>
+
+<!--
 <div> <div class='font-bold'> {{election.Poisition}}</div>
   <div  id= "Election" class="w-80 h-52 border-blue-500 border-4 rounded-lg m-5">
  <div class="flex">
@@ -25,16 +63,20 @@
       <div class="px-16"> {{election.Candidate1FirstName}} : {{election.Vote1}} </div>
       <div class="px-16">{{election.Candidate2FirstName}} : {{election.Vote2}}
         </div></div>
+        <div v-for="FirstName in election.FirstName" v-bind:key=FirstName>{{FirstName.value}}</div>
  </div>
- 
+ -->
   
 </template>
 
 <script>
 
 import ElectionService from '../services/ElectionService'
+//import About from '../views/About.vue'
 
 export default {
+  components: { //About 
+  },
   name: 'ElectionComponent',
   props: {
     election: {
@@ -47,6 +89,7 @@ export default {
       // elections: [],
       error: '',
       text: '',
+      DivNumber: 4,
      
     }
   },
@@ -61,6 +104,9 @@ export default {
     ProcessVote(id, Canadent_number){
       this.$emit("Update")
       ElectionService.UpdateElection(id, Canadent_number)
+    },
+    DivCoutner(){
+      this.DivNumber++
     },
   }
 
