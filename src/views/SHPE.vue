@@ -10,29 +10,10 @@
           </div>
         </div>
 
-<<<<<<< HEAD
-        <div class="home">
-          <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-          <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
-          <div class="w-full h-full">
-            <div class="flex flex-col">
-              <div class="text-xl font-bold m-6">Active Elections</div>
-              <div class="flex justify-center m-2">    
-                <div class = "flex flex-wrap justify-center">
-                  <div v-for="election in elections" :key="election.club">
-                    <div v-if="election.club === Name">
-                    <ElectionComponent @delete="refresh()" :election="election" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-=======
-         
-     <div class = "flex flex-wrap">
+     <div class="flex flex-wrap">
           <div v-for="election in elections" :key="election.club">
             <div v-if="election.club === Name">
             <ElectionComponent @Update="refresh()" :election="election" />
->>>>>>> Tyler
             </div>
           </div>
         </div>
