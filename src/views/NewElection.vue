@@ -104,7 +104,7 @@ import router from '../router'
        Vote: []
      }},
  methods: {
-   add(){
+   add(){2
   
       //console.log(this.components)
       //this.components.push(Comp)
