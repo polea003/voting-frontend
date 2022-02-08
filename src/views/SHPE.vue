@@ -23,7 +23,7 @@
         <div class="flex justify-center m-2">
 
          
-     <div class = "flex flex-wrap">
+     <div class = "flex flex-wrap justify-center">
           <div v-for="election in elections" :key="election.club">
             <div v-if="election.club === Name">
             <ElectionComponent @Update="refresh()" :election="election" />
