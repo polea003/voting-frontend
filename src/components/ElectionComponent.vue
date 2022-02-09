@@ -6,14 +6,8 @@
       }}</span>
     </div>
     <table width="500">
-      <!-- <tr>
-          <td class="border border-green-600">First</td>
-          <td class="border border-green-600">Last</td>
-          <td class="border border-green-600">Slection</td>
-          <td class="border border-green-600">Vote Count</td>
-        </tr>
-      
-
+     
+     <!--
       <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
         
           <tr class="border border-green-600" v-if="DivNumber === 1">-->
@@ -97,9 +91,9 @@
                 w-32
                 h-7
                 bg-gradient-to-r
-                from-green-400
-                to-blue-500
-                hover:from-pink-500 hover:to-yellow-500
+                from-blue-200
+                to-blue-600
+                hover:from-yellow-200 hover:to-yellow-600
                 font-bold
                 rounded-full
               "
@@ -141,9 +135,9 @@
             h-12
             m-5
             bg-gradient-to-r
-            from-red-400
+            from-red-300
             to-red-500
-            hover:from-pink-500 hover:to-yellow-500
+            hover:from-red-500 hover:to-red-800
             font-bold
             rounded-full
             border-4 border-current
@@ -230,7 +224,8 @@ export default {
 
 <style scoped>
 #Election {
-  background: rgba(189, 189, 189, 0.425);
+  /*background: rgb(255,255,255);*/
+background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(221,221,221,1) 50%, rgb(201, 201, 201) 100%);
 }
 
 /* Changes Format from building Table from Rows to Columns*/
