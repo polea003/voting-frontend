@@ -72,12 +72,15 @@ export default {
     async refresh(){
         try {
       this.elections = await ElectionService.getElections()
-      window.location.reload()
+      //window.location.reload()
+     // this.$forceUpdate()
+      this.$mount();
+      return this.ElectionComponent.elections
     } catch(err) {
       this.error = err.message
       
     }
     }
-  }
+  },
 }
 </script>
