@@ -4,7 +4,7 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <div class="w-full h-full">
       <div class="flex flex-col">
-        <div class="text-xl font-bold">Active Elections</div>
+        <div class="flex flex-col text-3xl font-bold mt-4">Active Elections</div>
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in elections" :key="election._id">

@@ -43,7 +43,7 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #dbff10;
+  color: #FFD700;
 }
 #nav a.active,
 #nav a:hover {
@@ -51,7 +51,7 @@ export default {
   border-bottom-color: #FF5858;
 }
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #5bd4e9;
   
 }
    
