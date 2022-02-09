@@ -2,7 +2,7 @@
 <template>
   <div id="shpe">
     <div class="about">
-      <div class="wrap-auto text-xl text-center font-bold my-5">
+      <div class="wrap-auto text-2xl text-center font-bold my-5">
         Society of Hispanic Professional Engineers
       </div>
       <div class="flex justify-center">
@@ -10,15 +10,16 @@
           <div
             class="
               flex
+              text-white
               items-center
               justify-center
               w-64
               h-16
               m-4
               bg-gradient-to-r
-              from-green-400
-              to-green-500
-              hover:from-blue-500 hover:to-green-600
+              from-blue-400
+              to-blue-800
+              hover:from-yellow-300 hover:to-yellow-600
               font-bold
               cursor-pointer
               rounded-full
