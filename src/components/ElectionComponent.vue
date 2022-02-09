@@ -18,7 +18,14 @@
         
           <tr class="border border-green-600" v-if="DivNumber === 1">-->
       <tr>
-        <td>First</td>
+        <td class="
+        font-serif
+              text-lg
+              font-bold
+              ml-4
+              mb-3
+              text-left
+              underline">First</td>
         <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
           
           <td
@@ -26,7 +33,7 @@
             class="
               font-serif
               text-lg
-              font-bold
+              
               ml-4
               text-left
               overflow-hidden
@@ -41,14 +48,21 @@
 
       <tr>
         <!--<div v-if="DivNumber === 2">-->
-          <td>Last</td>
+          <td class="
+        font-serif
+              text-lg
+              font-bold
+              ml-4
+              mb-3
+              text-left
+              underline">Last</td>
         <div v-for="LastName in election.LastName" v-bind:key="LastName">
           <td
             height="50"
             class="
               font-serif
               text-lg
-              font-bold
+              
               ml-4
               text-left
               overflow-hidden
@@ -62,7 +76,14 @@
       </tr>
       <tr>
         <!--<div v-if="DivNumber === 3">-->
-          <td>Selection</td>
+          <td class="
+        font-serif
+              text-lg
+              font-bold
+              
+              mb-3
+              text-center
+              underline">Selection</td>
         <div
           v-for="NumberOfCandidates in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
@@ -91,10 +112,17 @@
       <tr>
         <div>
           <!--<div v-if="DivNumber === 4">-->
-            <td>Vote Count</td>
+            <td class="
+        font-serif
+              text-lg
+              font-bold
+              ml-4
+              mb-3
+              text-left
+              underline">Vote Count</td>
           <div v-for="Vote in election.Vote" v-bind:key="Vote">
             <td height="50">
-              <div class="font-serif text-lg text-left w-15 font-bold ml-5">
+              <div class="font-serif text-lg text-left w-15 ml-5">
                 Votes: {{ Vote.value }}
               </div>
             </td>
