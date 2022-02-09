@@ -1,88 +1,128 @@
 <template>
   <div id="Election" class="border-blue-400 border-8 rounded-lg m-5">
-    <div class="mt-3">
+    <div class="mt-3 mb-7">
       <span class="font-serif font-bold text-2xl underline">{{
         election.Poisition
       }}</span>
     </div>
-    <div class="flex">
+    <table width="500">
+      <!-- <tr>
+          <td class="border border-green-600">First</td>
+          <td class="border border-green-600">Last</td>
+          <td class="border border-green-600">Slection</td>
+          <td class="border border-green-600">Vote Count</td>
+        </tr>
+      
+
       <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
-        <div v-if="DivNumber === 1">
-          <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
-            <div
-              class="font-serif text-lg font-bold my-7 ml-4 text-left overflow-hidden truncate w-15"
-            >
-              {{ FirstName.value }}
-            </div>
-          </div>
-        </div>
-        <div v-if="DivNumber === 2">
-          <div v-for="LastName in election.LastName" v-bind:key="LastName">
-            <div
-              class="font-serif text-lg font-bold my-7 ml-4 text-left overflow-hidden truncate w-15"
-            >
-              {{ LastName.value }}
-            </div>
-          </div>
-        </div>
-        <div v-if="DivNumber === 3">
-          <div
-            v-for="NumberOfCandidates in election.NumberOfCandidates"
-            v-bind:key="NumberOfCandidates"
+        
+          <tr class="border border-green-600" v-if="DivNumber === 1">-->
+      <tr>
+        <td>First</td>
+        <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
+          
+          <td
+            height="50"
+            class="
+              font-serif
+              text-lg
+              font-bold
+              ml-4
+              text-left
+              overflow-hidden
+              truncate
+              w-15
+            "
           >
-            <div class="font-serif font-bold m-7">
-              {{ FirstName }}
-              
-              <button
-                @click="ProcessVote(election._id, NumberOfCandidates)"
-                class="
-                  text-lg
-                  w-32
-                  h-7
-                  bg-gradient-to-r
-                  from-green-400
-                  to-blue-500
-                  hover:from-pink-500 hover:to-yellow-500
-                  font-bold
-                  rounded-full
-                "
-              >
-                Vote
-              </button>
-              
-            </div>
-          </div>
+            {{ FirstName.value }}
+          </td>
         </div>
-        <div v-if="DivNumber === 4">
+      </tr>
+
+      <tr>
+        <!--<div v-if="DivNumber === 2">-->
+          <td>Last</td>
+        <div v-for="LastName in election.LastName" v-bind:key="LastName">
+          <td
+            height="50"
+            class="
+              font-serif
+              text-lg
+              font-bold
+              ml-4
+              text-left
+              overflow-hidden
+              truncate
+              w-15
+            "
+          >
+            {{ LastName.value }}
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <!--<div v-if="DivNumber === 3">-->
+          <td>Selection</td>
+        <div
+          v-for="NumberOfCandidates in election.NumberOfCandidates"
+          v-bind:key="NumberOfCandidates"
+        >
+          <td height="50">
+            <button
+              @click="ProcessVote(election._id, NumberOfCandidates)"
+              class="
+                font-serif font-bold
+                text-lg
+                w-32
+                h-7
+                bg-gradient-to-r
+                from-green-400
+                to-blue-500
+                hover:from-pink-500 hover:to-yellow-500
+                font-bold
+                rounded-full
+              "
+            >
+              Vote
+            </button>
+          </td>
+        </div>
+      </tr>
+      <tr>
+        <div>
+          <!--<div v-if="DivNumber === 4">-->
+            <td>Vote Count</td>
           <div v-for="Vote in election.Vote" v-bind:key="Vote">
-            <div class="font-serif text-lg text-left font-bold m-7">
-              Votes: {{ Vote.value }}
-            </div>
+            <td height="50">
+              <div class="font-serif text-lg text-left w-15 font-bold ml-5">
+                Votes: {{ Vote.value }}
+              </div>
+            </td>
           </div>
         </div>
-      </div>
-    </div>
+      </tr>
+    </table>
     <div>
       <div class="shadow hover:shadow-2xl">
-      <button
-        @click="deleteElection(election._id)"
-        class="
-          font-serif
-          text-lg
-          w-60
-          h-12
-          mb-5
-          bg-gradient-to-r
-          from-red-400
-          to-red-500
-          hover:from-pink-500 hover:to-yellow-500
-          font-bold
-          rounded-full
-          border-4 border-current
-        "
-      >
-        Delete
-      </button>
+        <button
+          @click="deleteElection(election._id)"
+          class="
+            font-serif
+            text-lg
+            w-60
+            h-12
+            m-5
+            bg-gradient-to-r
+            from-red-400
+            to-red-500
+            hover:from-pink-500 hover:to-yellow-500
+            font-bold
+            rounded-full
+            border-4 border-current
+          "
+        >
+          Delete
+        </button>
       </div>
     </div>
   </div>
@@ -163,5 +203,16 @@ export default {
 <style scoped>
 #Election {
   background: rgba(189, 189, 189, 0.425);
+}
+
+/* Changes Format from building Table from Rows to Columns*/
+table {
+  display: table;
+}
+table tr {
+  display: table-cell;
+}
+table tr td {
+  display: block;
 }
 </style>
