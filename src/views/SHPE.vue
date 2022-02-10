@@ -83,8 +83,10 @@ export default {
     async refresh() {
       try {
         this.elections = await ElectionService.getElections();
-        window.location.reload();
-        //this.$mount
+       // window.location.reload();
+        this.$mount
+        //this.$forceUpdate
+
       } catch (err) {
         this.error = err.message;
       }

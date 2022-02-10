@@ -20,7 +20,7 @@
             class="
               font-serif
               text-lg
-              
+             
               overflow-hidden
               truncate
              
@@ -75,7 +75,7 @@
                 hover:from-yellow-200 hover:to-yellow-600
                 font-bold
                 rounded-md
-                border-4 border-inherit
+                border-4 border-black
               "
             >
               Vote
@@ -189,9 +189,10 @@ export default {
     createElection(id) {
       ElectionService.createElection(id);
     },
-    ProcessVote(id, Canadent_number) {
-      this.$emit("Update");
-      ElectionService.UpdateElection(id, Canadent_number);
+    async ProcessVote(id, Canadent_number) {
+       await ElectionService.UpdateElection(id, Canadent_number);
+            this.$emit("Update");
+
     },
     /*DivCoutner() {
       this.DivNumber++;
@@ -205,8 +206,8 @@ export default {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(221, 221, 221, 1) 50%,
+    rgb(194, 191, 191) 0%,
+    rgb(235, 225, 225) 50%,
     rgb(201, 201, 201) 100%
   );
 }
