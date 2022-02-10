@@ -1,5 +1,5 @@
 <template>
-  <div id="Election" class="border-gray border-8 rounded-xl m-5">
+  <div id="Election" class="border-gray-500 border-8 rounded-xl m-7">
     <div class="mt-5 mb-5">
       <span class="font-serif font-bold text-3xl">{{
         election.Poisition
@@ -67,15 +67,20 @@
               class="
                 font-serif font-bold
                 text-lg
+                text-white
+                
                 w-full
                 h-full
                 bg-gradient-to-r
-                from-blue-200
-                to-blue-600
-                hover:from-yellow-200 hover:to-yellow-600
+                from-blue-400 to-blue-800
                 font-bold
                 rounded-md
-                border-4 border-inherit
+                border-4 
+                
+                hover:from-yellow-400 hover:to-yellow-700
+                hover:text-black
+                hover:border-current
+                
               "
             >
               Vote
@@ -107,7 +112,7 @@
           @click="deleteElection(election._id)"
           class="
             font-serif
-            text-lg
+            text-xl
             w-full
             h-16
             
@@ -115,6 +120,7 @@
             from-red-300
             to-red-500
             hover:from-red-500 hover:to-red-800
+            hover:text-white
             font-bold
             
             border-8 
