@@ -54,7 +54,6 @@
                   bg-gradient-to-r
                   from-blue-400
                   to-blue-800
-                  font-bold
                   rounded-md
                   border-4
                   hover:from-yellow-400
