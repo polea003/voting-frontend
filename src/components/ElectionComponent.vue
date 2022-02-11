@@ -1,138 +1,109 @@
 <template>
-  <div id="Election" class="border-gray-500 border-8 rounded-xl m-7">
-    <div class="mt-5 mb-5">
-      <span class="font-serif font-bold text-3xl">{{
-        election.Poisition
-      }}</span>
-    </div>
-    <table width="560">
-      <!--
-      <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
-        
-          <tr class="border border-green-600" v-if="DivNumber === 1">-->
-      <tr>
-        <td class="font-serif text-xl font-bold">
-          First Name
-        </td>
-        <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
-          <td
-            height="60"
-            class="
-              font-serif
-              text-lg
-              
-              overflow-hidden
-              truncate
-             
-            "
-          >
-            {{ FirstName.value }}
-          </td>
-        </div>
-      </tr>
+  <div class="m-5">
+    <div id="Election" class="my-5 border-gray-500 border-4 rounded-xl">
+      <div class="mt-5 mb-5">
+        <span class="font-serif font-bold text-3xl">{{
+          election.Poisition
+        }}</span>
+      </div>
 
-      <tr>
-        <!--<div v-if="DivNumber === 2">-->
-        <td class="font-serif text-xl font-bold">
-          Last Name
-        </td>
-        <div v-for="LastName in election.LastName" v-bind:key="LastName">
-          <td
-            height="60"
-            class="
-              font-serif
-              text-lg
-              
-              overflow-hidden
-              truncate
-             
-            "
-          >
-            {{ LastName.value }}
-          </td>
-        </div>
-      </tr>
-      <tr>
-        <!--<div v-if="DivNumber === 3">-->
-        <td class="font-serif text-xl font-bold">
-          Selection
-        </td>
-        <div
-          v-for="NumberOfCandidates in election.NumberOfCandidates"
-          v-bind:key="NumberOfCandidates"
-        >
-          <td height="60">
-            <button
-              @click="ProcessVote(election._id, NumberOfCandidates)"
-              class="
-                font-serif font-bold
-                text-lg
-                text-white
-                
-                w-full
-                h-full
-                bg-gradient-to-r
-                from-blue-400 to-blue-800
-                font-bold
-                rounded-md
-                border-4 
-                
-                hover:from-yellow-400 hover:to-yellow-700
-                hover:text-black
-                hover:border-current
-                
-              "
+      <table width="370">
+        <!--
+      <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
+      <tr class="border border-green-600" v-if="DivNumber === 1">-->
+        <tr>
+          <td class="font-serif text-xl font-bold">First</td>
+          <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
+            <td
+              height="60"
+              class="py-3 font-serif text-lg overflow-hidden truncate"
             >
-              Vote
-            </button>
-          </td>
-        </div>
-      </tr>
-      <tr>
-        <div>
-          <!--<div v-if="DivNumber === 4">-->
-          <td
-            class="font-serif text-xl font-bold"
-          >
-            Vote Count
-          </td>
-          <div v-for="Vote in election.Vote" v-bind:key="Vote">
-            <td height="60">
-              <div class="font-serif text-lg">
-                Votes: {{ Vote.value }}
-              </div>
+              {{ FirstName.value }}
             </td>
           </div>
+        </tr>
+
+        <tr>
+          <!--<div v-if="DivNumber === 2">-->
+          <td class="font-serif text-xl font-bold">Last</td>
+          <div v-for="LastName in election.LastName" v-bind:key="LastName">
+            <td
+              height="60"
+              class="py-3 font-serif text-lg overflow-hidden truncate"
+            >
+              {{ LastName.value }}
+            </td>
+          </div>
+        </tr>
+
+        <tr>
+          <!--<div v-if="DivNumber === 3">-->
+          <td class="font-serif text-xl font-bold">&nbsp;</td>
+          <div
+            v-for="NumberOfCandidates in election.NumberOfCandidates"
+            v-bind:key="NumberOfCandidates"
+          >
+            <td height="60">
+              <button
+                @click="ProcessVote(election._id, NumberOfCandidates)"
+                class="
+                  font-serif font-bold
+                  text-lg text-white
+                  w-full
+                  h-full
+                  bg-gradient-to-r
+                  from-blue-400
+                  to-blue-800
+                  font-bold
+                  rounded-md
+                  border-4
+                  hover:from-yellow-400
+                  hover:to-yellow-700
+                  hover:text-black
+                  hover:border-current
+                "
+              >
+                Vote
+              </button>
+            </td>
+          </div>
+        </tr>
+
+        <tr>
+          <div>
+            <!--<div v-if="DivNumber === 4">-->
+            <td class="font-serif text-xl font-bold">Votes</td>
+            <div v-for="Vote in election.Vote" v-bind:key="Vote">
+              <td height="60">
+                <div class="py-3 font-serif text-lg">{{ Vote.value }}</div>
+              </td>
+            </div>
+          </div>
+        </tr>
+      </table>
+
+      <div>
+        <div class="shadow hover:shadow-2xl border-8 border-gray-400">
+          <button
+            @click="deleteElection(election._id)"
+            class="
+              font-serif font-bold
+              text-xl
+              w-full
+              h-16
+              bg-gradient-to-r
+              from-red-300
+              to-red-500
+              hover:from-red-500 hover:to-red-800 hover:text-white
+              border-8 border-current
+            "
+          >
+            Delete
+          </button>
         </div>
-      </tr>
-    </table>
-    <div>
-      <div class="shadow hover:shadow-2xl border-8 border-gray-400">
-        <button
-          @click="deleteElection(election._id)"
-          class="
-            font-serif
-            text-xl
-            w-full
-            h-16
-            
-            bg-gradient-to-r
-            from-red-300
-            to-red-500
-            hover:from-red-500 hover:to-red-800
-            hover:text-white
-            font-bold
-            
-            border-8 
-            border-current
-          "
-        >
-          Delete
-        </button>
       </div>
     </div>
   </div>
-
   <!--
 <div> <div class='font-bold'> {{election.Poisition}}</div>
   <div  id= "Election" class="w-80 h-52 border-blue-500 border-4 rounded-lg m-5">
@@ -206,9 +177,9 @@ export default {
 };
 </script>
 
+
 <style scoped>
 #Election {
-  /*background: rgb(255,255,255);*/
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 1) 0%,
@@ -222,30 +193,15 @@ table {
   display: table;
   border: none;
   border-collapse: collapse;
-  /*border: 1px solid black;*/
 }
 table tr {
   display: table-cell;
-  
-  /*border: 1px solid black;*/
 }
 table td {
-    border-bottom: 3px solid #000;
-      padding:10px;
-    /*border-right: 1px solid #000;*/
+  white-space: pre;
+  border-bottom: 3px solid #000;
 }
-/*
-table td:first-child {
-    border-left: none;
-}
-
-table td:last-child {
-    border-right: none;
-}
-*/
 table tr td {
   display: block;
-  /*border: 1px solid black;*/
-
 }
 </style>
