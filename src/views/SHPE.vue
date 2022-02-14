@@ -30,6 +30,7 @@
               <router-link :to="{ name: 'NewElection', params: { club: Name } }"
                 >New Election</router-link
               >
+            
             </div>
           </div>
         </div>
@@ -63,6 +64,7 @@ export default {
   name: "SHPE",
   components: {
     ElectionComponent,
+
   },
   data() {
     return {

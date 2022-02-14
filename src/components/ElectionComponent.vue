@@ -37,6 +37,7 @@
         </tr>
 
         <tr>
+          <!--Vote Button-->
           <!--<div v-if="DivNumber === 3">-->
           <td class="font-serif text-xl font-bold">&nbsp;</td>
           <div
@@ -44,8 +45,16 @@
             v-bind:key="NumberOfCandidates"
           >
             <td height="60">
+              <!--:disabled="disableBtnFlag==true" -->
               <button
-                @click="ProcessVote(election._id, NumberOfCandidates)"
+                @click="
+                  isOpen = true;
+                  canident = NumberOfCandidates;
+                  fullName =
+                    election.FirstName[canident - 1].value +
+                    ' ' +
+                    election.LastName[canident - 1].value;
+                "
                 class="
                   font-serif font-bold
                   text-lg text-white
@@ -61,9 +70,51 @@
                   hover:text-black
                   hover:border-current
                 "
+                type="button"
               >
                 Vote
               </button>
+              <div
+                v-show="isOpen"
+                class="
+                  absolute
+                  inset-0
+                  flex
+                  items-center
+                  justify-center
+                  bg-gray-700 bg-opacity-50
+                "
+              >
+                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
+                  <div class="flex justify-center">
+                    <h3 class="text-2xl">Please Confrim</h3>
+                  </div>
+                  <div class="mt-4">
+                    <div class="mb-5">
+                      Are you sure you want to vote for: {{ fullName }}?
+                    </div>
+                    <button
+                      @click="isOpen = false"
+                      class="
+                        px-6
+                        py-2
+                        text-blue-800
+                        border border-blue-600
+                        rounded
+                      "
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded"
+                      @click="ProcessVote(election._id, canident)"
+                    >
+                      Vote
+                    </button>
+                  </div>
+                </div>
+              </div>
             </td>
           </div>
         </tr>
@@ -136,6 +187,7 @@
 
 <script>
 import ElectionService from "../services/ElectionService";
+import { ref } from "vue";
 //import About from '../views/About.vue'
 
 export default {
@@ -154,7 +206,13 @@ export default {
       // elections: [],
       error: "",
       text: "",
-      DivNumber: 4,
+      //DivNumber: 4,
+      disableBtnFlag: false,
+
+      // passed to ProcessVote() for correct element position for CanidateNumber when incrementing vote count
+      canidate: "",
+      // string displayed to user in popup when voting, uses canidate for element postion
+      fullName: "",
     };
   },
   methods: {
@@ -166,12 +224,23 @@ export default {
       ElectionService.createElection(id);
     },
     ProcessVote(id, Canadent_number) {
+      //added flag rise and cnt increment to signal to disable Vote button
+      //if (!this.disableBtnFlag) {
+      //this.disableBtnFlag = true;
+
       this.$emit("Update");
       ElectionService.UpdateElection(id, Canadent_number);
+      this.isOpen = false; // closes popup window
+      //}
     },
+
     /*DivCoutner() {
       this.DivNumber++;
     },*/
+  },
+  setup() {
+    let isOpen = ref(false);
+    return { isOpen };
   },
 };
 </script>

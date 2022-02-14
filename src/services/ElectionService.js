@@ -48,6 +48,7 @@ class ElectionsService {
     static deletePost(id) {
         return axios.delete(`${url}${id}`)
     }
+    //update
     static UpdateElection(id, Canadent_Number){
         return axios.put(`${url}${id}/${Canadent_Number}`)
     }
