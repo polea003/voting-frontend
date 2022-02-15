@@ -8,7 +8,7 @@
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in elections" :key="election._id">
-            <ElectionComponent :election="election" />
+            <ElectionComponent :election="election" @update="fetchElections()"/>
           </div>
 
 
@@ -36,10 +36,15 @@ export default {
     }
   },
   async created() {
-    try {
-      this.elections = await ElectionService.getElections()
-    } catch(err) {
-      this.error = err.message
+    this.fetchElections()
+  },
+  methods: {
+    async fetchElections () {
+      try {
+        this.elections = await ElectionService.getElections()
+      } catch(err) {
+        this.error = err.message
+      }
     }
   }
 }

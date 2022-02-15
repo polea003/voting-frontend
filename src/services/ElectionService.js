@@ -51,6 +51,10 @@ class ElectionsService {
     static UpdateElection(id, Canadent_Number){
         return axios.put(`${url}${id}/${Canadent_Number}`)
     }
+    //get votes from blockchain
+    static getBlockchainVotes(){
+        return axios.get(`${url}solana`)
+    }
 }
 
 export default ElectionsService

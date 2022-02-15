@@ -5,7 +5,7 @@
         election.Poisition
       }}</span>
     </div>
-    <table width="560">
+    <table width="760">
       <!--
       <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
         
@@ -89,12 +89,29 @@
           <td
             class="font-serif text-xl font-bold"
           >
-            Vote Count
+            {{`Vote Count`}}
           </td>
           <div v-for="Vote in election.Vote" v-bind:key="Vote">
             <td height="60">
               <div class="font-serif text-lg">
                 Votes: {{ Vote.value }}
+              </div>
+            </td>
+          </div>
+        </div>
+      </tr>
+      <tr>
+        <div>
+          <!--<div v-if="DivNumber === 4">-->
+          <td
+            class="font-serif text-xl font-bold"
+          >
+            {{`Blockchain`}}
+          </td>
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
+            <td height="60">
+              <div class="font-serif text-lg">
+                Votes: {{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
               </div>
             </td>
           </div>
@@ -163,6 +180,9 @@ import ElectionService from "../services/ElectionService";
 //import About from '../views/About.vue'
 
 export default {
+  async mounted () {
+    await this.getBlockchainVotes()
+  },
   components: {
     //About
   },
@@ -179,19 +199,26 @@ export default {
       error: "",
       text: "",
       DivNumber: 4,
+      blockchainVotes: [],
     };
   },
   methods: {
+    async getBlockchainVotes() {
+      let votes = await ElectionService.getBlockchainVotes()
+      votes = votes.data.filter(vote => vote.electionId == this.election._id)
+      this.blockchainVotes = votes
+    },
     deleteElection(id) {
-      this.$emit("Update");
+      this.$emit("update");
       ElectionService.deletePost(id);
     },
     createElection(id) {
       ElectionService.createElection(id);
     },
     async ProcessVote(id, Canadent_number) {
-       await ElectionService.UpdateElection(id, Canadent_number);
-            this.$emit("Update");
+      await ElectionService.UpdateElection(id, Canadent_number);
+      this.$emit("update");
+      await this.getBlockchainVotes();
 
     },
     /*DivCoutner() {
