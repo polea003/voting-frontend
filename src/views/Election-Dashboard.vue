@@ -4,10 +4,11 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <div class="w-full h-full">
       <div class="flex flex-col">
+        <div v-if="clubName" class="text-3xl font-bold mt-2">{{clubName}}</div>
         <div class="flex flex-col text-3xl font-bold mt-4">Active Elections</div>
         <div class="flex flex-wrap justify-center">
 
-          <div v-for="election in elections" :key="election._id">
+          <div v-for="election in !clubName ? elections : elections.filter( election => election.club === clubName)" :key="election._id">
             <ElectionComponent :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
           </div>
 
@@ -25,13 +26,19 @@ import ElectionComponent from '@/components/ElectionComponent.vue'
 import ElectionService from '../services/ElectionService'
 
 export default {
-  name: 'Election-Dashboard',
+  // name: 'Election-Dashboard',
   components: {
     ElectionComponent
   },
+  props: {
+    clubName: {
+      type: String,
+      required: false
+    }
+  },
   data () {
     return {
-      elections: undefined,
+      elections: [],
       error: undefined,
       blockchainVotes: []
     }

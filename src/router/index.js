@@ -11,10 +11,13 @@ const routes = [
   {
     path: '/election-Dashboard',
     name: 'Election-Dashboard',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Election-Dashboard.vue')
+  },
+  {
+    path: '/election-Dashboard/:club',
+    name: 'Club-Election-Dashboard',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Election-Dashboard.vue'),
+    props: (route) => ({ clubName: route.params.club })
   },
   {
     path: '/about',
