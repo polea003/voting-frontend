@@ -4,11 +4,11 @@
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <div class="w-full h-full">
       <div class="flex flex-col">
-        <div class="text-xl font-bold">Active Elections</div>
+        <div class="flex flex-col text-3xl font-bold mt-4">Active Elections</div>
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in elections" :key="election._id">
-            <ElectionComponent :election="election" />
+            <ElectionComponent :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
           </div>
 
 
@@ -32,15 +32,30 @@ export default {
   data () {
     return {
       elections: undefined,
-      error: undefined
+      error: undefined,
+      blockchainVotes: []
     }
   },
   async created() {
-    try {
-      this.elections = await ElectionService.getElections()
-    } catch(err) {
-      this.error = err.message
-    }
+    await this.fetchElectionsAndBlockchainVotes()
+  },
+  methods: {
+    async fetchElectionsAndBlockchainVotes () {
+      await this.fetchElections()
+      await this.getBlockchainVotes()
+    },
+    async fetchElections () {
+      try {
+        this.elections = await ElectionService.getElections()
+      } catch(err) {
+        this.error = err.message
+      }
+    },
+    async getBlockchainVotes() {
+      let votes = await ElectionService.getBlockchainVotes()
+      votes = votes.data
+      this.blockchainVotes = votes
+    },
   }
 }
 </script>
