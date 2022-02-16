@@ -44,7 +44,7 @@
           <div class="flex flex-wrap justify-center">
             <div v-for="election in elections" :key="election.club">
               <div v-if="election.club === Name">
-                <ElectionComponent @Update="refresh()" :election="election" />
+                <ElectionComponent @Update="refresh()" :election="election" /> <!-- NO LONGER DOES ANYTHING-->
               </div>
             </div>
           </div>
@@ -59,6 +59,7 @@
 // @ is an alias to /src
 import ElectionComponent from "@/components/ElectionComponent.vue";
 import ElectionService from "../services/ElectionService";
+
 
 export default {
   name: "SHPE",

@@ -1,30 +1,28 @@
   <template>
   <div>
-    <div id="nav" style="Mystyle" >
-      
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white '>Panther Votes</div>
+    <div id="nav" style="Mystyle">
+      <div class="flex flex-wrap justify-center text-7xl font-bold text-white mb-2">
+        Panther Votes
+      </div>
       <div class="flex flex-wrap justify-center">
-      <router-link to="/">Home</router-link>
-      <router-link to="/election-Dashboard">Election Dashboard</router-link>
-      <router-link to="/club-Elections">Club Elections</router-link>
-      <router-link to="/about">Voting History</router-link>
-      <router-link to="/how">How It Works</router-link>
+        <router-link to="/">Home</router-link>
+        <router-link to="/election-Dashboard">Election Dashboard</router-link>
+        <router-link to="/club-Elections">Club Elections</router-link>
+        <router-link to="/about">Voting History</router-link>
+        <router-link to="/how">How It Works</router-link>
+      </div>
     </div>
-    </div>
-    <router-view/>
+    <router-view />
   </div>
 </template>
 
 
 
 <script>
-
 export default {
-  name: 'app',
-  components: {
-    
-  }
-}
+  name: "app",
+  components: {},
+};
 </script>
 
 <style>
@@ -35,8 +33,7 @@ export default {
   text-align: center;
 
   /* color: #eff303; */
-     /* color: #15e1f0;  */
-
+  /* color: #15e1f0;  */
 }
 
 #nav {
@@ -47,7 +44,7 @@ export default {
 #nav a {
   font-size: 20px;
   text-decoration: underline;
-  color: #FFD800;
+  color: #ffd800;
   margin-top: 4px;
   margin-bottom: 0px;
   margin-right: 8px;
@@ -59,22 +56,18 @@ export default {
   /*border-bottom-color: #FF5858;*/
 }
 #nav a.router-link-exact-active {
-    font-weight: bold;
-  color: #ffffff;
-  background-color:#0022d2;
-
+  font-weight: bold;
+  color: #ebefff;
+  background-color: #2f89ff91;
 }
-   
 
-    
-    footer {
-      text-align: center;
-      height: 50px;
-      background-color: #ccc;
-      padding: 10px;
-      /* margin-top: 10px; */
-      bottom: 0px;
-      
-    }
+footer {
+  text-align: center;
+  height: 50px;
+  background-color: #ccc;
+  padding: 10px;
+  /* margin-top: 10px; */
+  bottom: 0px;
+}
 </style>
 
