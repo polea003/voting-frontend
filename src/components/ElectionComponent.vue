@@ -76,7 +76,7 @@
               
             </div>
             <div v-else
-              @click="!selectedVote ? ProcessVote(election._id, NumberOfCandidates) : {}"
+              @click="!selectedVote ? confirmVote(index) : {}"
               class=" 
                 w-full
                 h-full
@@ -89,6 +89,49 @@
             >
               {{'Vote'}}
             </div>
+            <div
+                v-show="confirmationOpen && voteToConfirm === index"
+                class="
+                  fixed
+                  inset-0
+                  w-screen
+                  h-screen
+                  flex
+                  items-center
+                  justify-center
+                  bg-gray-700 bg-opacity-50
+                "
+              >
+                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
+                  <div class="flex justify-center">
+                    <h3 class="text-2xl">Please Confrim</h3>
+                  </div>
+                  <div class="mt-4">
+                    <div class="mb-5">
+                      Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
+                    </div>
+                    <button
+                      @click="confirmationOpen = false"
+                      class="
+                        px-6
+                        py-2
+                        text-blue-800
+                        border border-blue-600
+                        rounded
+                      "
+                    >
+                      Cancel
+                    </button>
+
+                    <button
+                      class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded"
+                      @click="ProcessVote(election._id, NumberOfCandidates)"
+                    >
+                      Vote
+                    </button>
+                  </div>
+                </div>
+              </div>
           </td>
         </div>
       </tr>
@@ -220,9 +263,10 @@ export default {
       error: "",
       text: "",
       DivNumber: 4,
-      selectedVote: undefined,
+      voteToConfirm: undefined,
       loadingDatabaseVotes: true,
-      loadingBlockchainVotes: true
+      loadingBlockchainVotes: true,
+      confirmationOpen: false,
     };
   },
   methods: {
@@ -233,7 +277,12 @@ export default {
     createElection(id) {
       ElectionService.createElection(id);
     },
+    confirmVote(index) {
+      this.voteToConfirm = index
+      this.confirmationOpen = true
+    },
     async ProcessVote(id, Canadent_number) {
+      this.confirmationOpen = false
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
       this.selectedVote = Canadent_number
