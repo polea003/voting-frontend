@@ -5,6 +5,7 @@
       <button
         @click="isOpen = true"
         class="
+          mt-2
           font-serif font-bold
           text-lg text-white
           w-full
