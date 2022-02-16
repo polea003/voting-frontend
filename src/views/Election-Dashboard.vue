@@ -3,8 +3,33 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <div class="w-full h-full">
-      <div class="flex flex-col">
+      <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-3xl font-bold mt-2">{{clubName}}</div>
+        <div v-if="clubName"
+            class="
+              flex
+              text-white
+              items-center
+              justify-center
+              w-64
+              h-16
+              m-4
+              bg-gradient-to-r
+              from-blue-400
+              to-blue-800
+              hover:from-yellow-300 hover:to-yellow-600
+              font-bold
+              cursor-pointer
+              rounded-full
+              border-8 border-inherit
+            "
+          >
+            <div class="font-bold text-xl">
+              <router-link :to="{ name: 'NewElection', params: { club: clubName } }"
+                >New Election</router-link
+              >
+            </div>
+          </div>
         <div class="flex flex-col text-3xl font-bold mt-4">Active Elections</div>
         <div class="flex flex-wrap justify-center">
 

@@ -2,7 +2,7 @@
   <div id="Election" class="border-gray border-8 rounded-xl m-5">
     <div class="mt-5 mb-5">
       <span class="font-serif font-bold text-3xl">{{
-        election.Poisition
+        `${election.club} ${election.Poisition}`
       }}</span>
     </div>
     <table width="760">
