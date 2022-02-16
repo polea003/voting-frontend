@@ -58,28 +58,37 @@
           Selection
         </td>
         <div
-          v-for="NumberOfCandidates in election.NumberOfCandidates"
+          v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
         >
-          <td height="60">
-            <button
-              @click="ProcessVote(election._id, NumberOfCandidates)"
-              class="
-                font-serif font-bold
-                text-lg
+          <td height="60" class="font-serif font-bold text-lg">
+            <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
-                bg-gradient-to-r
-                from-blue-200
-                to-blue-600
-                hover:from-yellow-200 hover:to-yellow-600
                 font-bold
                 rounded-md
+                bg-gradient-to-r 
+                border-4 border-black
+                text-base
+              "
+              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
+              >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
+              
+            </div>
+            <div v-else
+              @click="!selectedVote ? ProcessVote(election._id, NumberOfCandidates) : {}"
+              class=" 
+                w-full
+                h-full
+                font-bold
+                rounded-md
+                bg-gradient-to-r from-blue-200 to-blue-600
                 border-4 border-black
               "
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600': !selectedVote  }"
             >
-              Vote
-            </button>
+              {{'Vote'}}
+            </div>
           </td>
         </div>
       </tr>
@@ -91,9 +100,12 @@
           >
             {{`Vote Count`}}
           </td>
-          <div v-for="Vote in election.Vote" v-bind:key="Vote">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
             <td height="60">
-              <div class="font-serif text-lg">
+              <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
+                <Preloader class="-mt-11" color="red" scale="0.2" />
+              </div>
+              <div v-else class="font-serif text-lg">
                 Votes: {{ Vote.value }}
               </div>
             </td>
@@ -110,7 +122,10 @@
           </td>
           <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
             <td height="60">
-              <div class="font-serif text-lg">
+              <div v-if="loadingBlockchainVotes && index === selectedVote - 1">
+                <Preloader class="-mt-11" color="red" scale="0.2" />
+              </div>
+              <div v-else class="font-serif text-lg">
                 Votes: {{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
               </div>
             </td>
@@ -177,14 +192,15 @@
 
 <script>
 import ElectionService from "../services/ElectionService";
+import Preloader from './Preloader.vue'
 //import About from '../views/About.vue'
 
 export default {
   async mounted () {
-    await this.getBlockchainVotes()
   },
   components: {
     //About
+    Preloader
   },
   name: "ElectionComponent",
   props: {
@@ -192,6 +208,11 @@ export default {
       type: Object,
       required: true,
     },
+    blockchainVotes: {
+      type: Array,
+      required: true,
+      default: new Array,
+    }
   },
   data() {
     return {
@@ -199,15 +220,12 @@ export default {
       error: "",
       text: "",
       DivNumber: 4,
-      blockchainVotes: [],
+      selectedVote: undefined,
+      loadingDatabaseVotes: true,
+      loadingBlockchainVotes: true
     };
   },
   methods: {
-    async getBlockchainVotes() {
-      let votes = await ElectionService.getBlockchainVotes()
-      votes = votes.data.filter(vote => vote.electionId == this.election._id)
-      this.blockchainVotes = votes
-    },
     deleteElection(id) {
       this.$emit("update");
       ElectionService.deletePost(id);
@@ -216,15 +234,20 @@ export default {
       ElectionService.createElection(id);
     },
     async ProcessVote(id, Canadent_number) {
+      this.loadingDatabaseVotes = true
+      this.loadingBlockchainVotes = true
+      this.selectedVote = Canadent_number
       await ElectionService.UpdateElection(id, Canadent_number);
       this.$emit("update");
-      await this.getBlockchainVotes();
-
     },
     /*DivCoutner() {
       this.DivNumber++;
     },*/
   },
+  watch: {
+    blockchainVotes: function () { this.loadingBlockchainVotes = false },
+    election: function () { this.loadingDatabaseVotes = false }
+  }
 };
 </script>
 
