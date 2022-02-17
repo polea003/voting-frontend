@@ -3,51 +3,62 @@
 
 
 <form v-on:submit="addProduct">
-        <input type="name" v-model="name" placeholder="Election Name" >
-<span class = 'font-bold'> Club: {{ club }}</span>
+  <div class="flex flex-col items-center">
+    <span class = 'font-bold'> Club: {{ club }}</span>
+    <div class="pt-2 font-bold">Election Name</div>
+    <input type="name" v-model="name" placeholder="Election Name" class="w-72 h-10 border-2 border-blue-800 rounded px-2">
+    <div class="pt-2 font-bold">Position</div>
+    <div id="Drop">
+      <select v-model="Position" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 rounded">
+        <option value="undefined" disabled>Positions</option>
+        <option value="President">President</option>
+        <option value="Vice president">Vice president</option>
+        <option value="Secretary">Secretary</option>
+        <option value="Treasurer">Treasurer</option>
+      </select>
+    </div>
+  </div>
+  <div class="pt-2 font-bold">Candidates</div>
+  <div class="flex wrap justify-center">
+  <!-- <component v-bind:is="NewElectionForm"></component> -->
+    <div>
+      <div v-for="FirstName in FirstName" v-bind:key="FirstName" class="my-2">
+        <form @submit.prevent="submitForm">
+          <input type="FirstName" v-model="FirstName.value" placeholder="First Name">
+        </form>
+      </div>
+    </div>
+
+    <div>
+    <div v-for="LastName in LastName" v-bind:key="LastName" class="my-2">
+      <form @submit.prevent="submitForm">
+        <input type="LastName" v-model="LastName.value" placeholder="Last Name">
+      </form>
+    </div></div>
+    <!-- <Form></Form> -->
+  </div>
+  <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" @click="add()">Add Candidate</button>
+  <div class="pt-2 font-bold">Date/Time Voting Starts:</div>
+  <div class="flex justify-center"><datepicker class="w-72" v-model="startTime"/></div>
+  <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
+  <div class="flex justify-center"><datepicker class="w-72" v-model="endTime"/></div>
+   
+  <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mx-2">Create Election</button>
+</form>  
+
 
 <!-- <p>Message is: {{ club }}</p>         -->
-<button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3 mx-2">Add Election</button>
-      </form>
+
+      
   
 <!-- <navbar />  -->
-<div id="Drop">
-  <select v-model="age" @change="onChange($event)" class="form-select form-control border-2 border-green-300 my-3">
-    <option value="undefined" disabled>Positions</option>
-    <option value="President">President</option>
-    <option value="Vice president">Vice president</option>
-    <option value="Secretary">Secretary</option>
-    <option value="Treasurer">Treasurer</option>
-  </select>
+
 </div>
-
-  <div>
-  <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" @click="add()">Add Candidate</button>
-  </div>
-<div class="flex wrap justify-center">
-<!-- <component v-bind:is="NewElectionForm"></component> -->
-<div>
-<div v-for="FirstName in FirstName" v-bind:key=FirstName>
-  <form @submit.prevent="submitForm">
-     <span class = "font-bold">Candidate:      </span>    
-    <input type="FirstName" v-model="FirstName.value" placeholder="First Name">
-  </form>
-  
-</div></div>
-
-<div>
-<div v-for="LastName in LastName" v-bind:key=LastName>
-  <form @submit.prevent="submitForm">
-    <input type="LastName" v-model="LastName.value" placeholder="Last Name">
-  </form>
-</div></div>
-  <!-- <Form></Form> -->
-
-</div></div>
 
 </template>
 <script>
-
+import Datepicker from 'vue3-date-time-picker';
+import 'vue3-date-time-picker/dist/main.css'
 import ElectionService from '../services/ElectionService'
 import router from '../router'
 // import Navbar from '../components/Navbar.vue';
@@ -64,7 +75,7 @@ import router from '../router'
       name: "NewElection",
       components: {
             // Form
-       
+            Datepicker
       },
       el: '#app',
        data: function(){
@@ -80,7 +91,9 @@ import router from '../router'
        NumberOfCandidates: 0,
        FirstName : [],
        LastName : [],
-       Vote: []
+       Vote: [],
+       startTime: new Date(),
+       endTime: null,
      }},
  methods: {
    add(){
@@ -93,16 +106,13 @@ import router from '../router'
       this.LastName.push({value: ''});
     
     },
-    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote){
+    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime){
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
-        ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote)
-        this.$router.push("/"+ club);
+        ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime)
+        this.$router.push({ name:'Club-Election-Dashboard', params:{club: club} });
     
 
-    },
-    onChange(e) {
-                console.log(e.target.value);         
-                this.Position  =  e.target.value; }
+    }
   },
  created(){
     this.club = router.currentRoute.value.params.club

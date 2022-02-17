@@ -5,6 +5,8 @@
         `${election.club} ${election.Poisition}`
       }}</span>
     </div>
+    <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
+    <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
     <table width="760">
       <!--
       <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
@@ -267,12 +269,13 @@ export default {
       loadingDatabaseVotes: true,
       loadingBlockchainVotes: true,
       confirmationOpen: false,
+      selectedVote: null,
     };
   },
   methods: {
-    deleteElection(id) {
+    async deleteElection(id) {
+      await ElectionService.deletePost(id);
       this.$emit("update");
-      ElectionService.deletePost(id);
     },
     createElection(id) {
       ElectionService.createElection(id);

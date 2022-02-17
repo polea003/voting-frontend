@@ -26,7 +26,7 @@ class ElectionsService {
   }
 
     //create election
-    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote) {
+    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime) {
         return axios.post(url, {
             text,
             club,
@@ -41,6 +41,8 @@ class ElectionsService {
             LastName,
             NumberOfCandidates,
             Vote,
+            startTime,
+            endTime,
         })
     }
 
