@@ -44,6 +44,7 @@ export default {
 #nav {
   padding: 30px;
   background-color: rgb(4, 6, 56);
+  
 }
 
 #nav a {
@@ -54,16 +55,21 @@ export default {
   margin-bottom: 0px;
   margin-right: 8px;
   margin-left: 8px;
+  border: solid 0.2em rgb(4, 6, 56);
+  
+
 }
 #nav a.active,
 #nav a:hover {
-  background-color: #444;
-  /*border-bottom-color: #FF5858;*/
+  background-color: rgb(1, 4, 39);
+  border: groove 0.2em rgb(4, 6, 56);
+  border-bottom-color: #FF5858;
+  width: auto;
 }
 #nav a.router-link-exact-active {
-    font-weight: bold;
+  font-weight: bold;
   color: #ffffff;
-  background-color:#0022d2;
+
 
 }
    
