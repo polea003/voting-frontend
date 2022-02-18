@@ -1,8 +1,8 @@
 <template>
-  <div class="container mt-5 text-2xl font-bold">
+  <div class="flex flex-col justify-center items-center mt-5 text-2xl font-bold">
     <h1 class="text-5xl underline mb-3">Login</h1>
 
-    <div class="flex flex-wrap justify-center">
+    <div class="justify-center">
       <div class="card">
         <div class="card-body">
           <!-- Makes POST request to /login route -->
@@ -55,7 +55,7 @@
         </div>
       </div>
 
-      <div class="py-5 flex flex-wrap justify-center">
+      <div class="py-5">
         <div class="flex flex-wrap justify-center">
           <div
             class="
@@ -73,6 +73,7 @@
               items-center
               cursor-pointer
               w-64
+              h-14
               my-2
               mx-2
             "
@@ -106,6 +107,7 @@
               items-center
               cursor-pointer
               w-64
+              h-14
               my-2
               mx-2
             "
@@ -139,6 +141,7 @@
               items-center
               cursor-pointer
               w-64
+              h-14
               my-2
               mx-2
             "
