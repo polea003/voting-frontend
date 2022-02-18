@@ -4,6 +4,7 @@
       
       <div class='flex flex-wrap justify-center text-7xl font-bold text-white '>Panther Votes</div>
       <div class="flex flex-wrap justify-center">
+      <router-link to="/Login">Login</router-link>
       <router-link to="/">Home</router-link>
       <router-link to="/election-Dashboard">Election Dashboard</router-link>
       <router-link to="/club-Elections">Club Elections</router-link>

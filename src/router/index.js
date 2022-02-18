@@ -119,7 +119,13 @@ const routes = [
     name: 'NewElection',
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/NewElection.vue')
-  }
+  },
+  {
+    path: '/Login',
+      name: 'Login',
+      props: true,
+      component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    },
   ]
 
 const router = createRouter({
