@@ -1,16 +1,17 @@
   <template>
   <div>
     <div id="nav" style="Mystyle" >
-      <!-- TITLE -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white '>Panther Votes</div>
+      <!-- TITLE of Webpage -->
+      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes</div>
       <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
         <router-link to="/">Home</router-link>
         <router-link to="/Login">Login</router-link>
         <router-link to="/election-Dashboard">Election Dashboard</router-link>
         <router-link to="/club-Elections">Club Elections</router-link>
-        <router-link to="/about">Voting History</router-link>
+        <router-link to="/voting-History">Voting History</router-link>
         <router-link to="/how">How It Works</router-link>
+        <router-link to="/about">About</router-link>
       </div>
     </div>
     <router-view/>
@@ -63,7 +64,7 @@ export default {
 #nav a:hover {
   background-color: rgb(1, 4, 39);
   border: groove 0.2em rgb(4, 6, 56);
-  border-bottom-color: #FF5858;
+  border-color: #00c3ff8c;
   width: auto;
 
 }

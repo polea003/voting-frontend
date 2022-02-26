@@ -1,17 +1,22 @@
 <template>
   <div id="Election" class="border-gray border-8 rounded-xl m-5">
+    <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
-      <span class="font-serif font-bold text-3xl">{{
-        `${election.club} ${election.Poisition}`
+      <span class="flex flex-col font-serif font-bold text-4xl mb-2">{{
+        `${election.club}`
+      }}</span>
+            <span class="flex flex-col font-serif font-bold text-3xl">{{
+        `${election.Poisition}`
       }}</span>
     </div>
+
+    <!-- DISPLAY 'Start time' and 'End time' of Election -->
     <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
     <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
-    <table width="760">
-      <!--
-      <div v-for="DivNumber in DivNumber" v-bind:key="DivNumber">
-        
-          <tr class="border border-green-600" v-if="DivNumber === 1">-->
+
+    <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) -->
+    <table width="760"> 
+      <!-- Column First Names -->
       <tr>
         <td class="font-serif text-xl font-bold">
           First Name
@@ -33,8 +38,8 @@
         </div>
       </tr>
 
+      <!-- Column Last Names -->
       <tr>
-        <!--<div v-if="DivNumber === 2">-->
         <td class="font-serif text-xl font-bold">
           Last Name
         </td>
@@ -54,8 +59,9 @@
           </td>
         </div>
       </tr>
+
+      <!-- Column for Vote Button -->
       <tr>
-        <!--<div v-if="DivNumber === 3">-->
         <td class="font-serif text-xl font-bold">
           Selection
         </td>
@@ -137,9 +143,10 @@
           </td>
         </div>
       </tr>
+
+      <!-- Column DISPLAYing mongoDB Vote Count -->
       <tr>
         <div>
-          <!--<div v-if="DivNumber === 4">-->
           <td
             class="font-serif text-xl font-bold"
           >
@@ -157,9 +164,10 @@
           </div>
         </div>
       </tr>
+
+      <!-- Column DISPLAYing BlockChain Vote Count -->
       <tr>
         <div>
-          <!--<div v-if="DivNumber === 4">-->
           <td
             class="font-serif text-xl font-bold"
           >
@@ -178,6 +186,8 @@
         </div>
       </tr>
     </table>
+    
+    <!-- DELETE Election BUTTON -->
     <div>
       <div class="shadow hover:shadow-2xl border-8 border-gray-400">
         <button

@@ -1,9 +1,14 @@
 <template>
   <div class="election-Dashboard">
+    <!-- Local Title Header-->
+    <h1 class="text-5xl font-bold m-5">Home Page</h1>
+    <!-- Welcome Message -->
     <div class="text-3xl font-bold m-6">Welcome to Panther Votes!</div>
+    <!-- Action Message -->
     <div class="text-lg font-bold mb-6">
       Please login to vote or create elections.
     </div>
+    <!-- Login Button -->
     <div class="flex justify-center">
       <div class="flex h-full justify-center">
         <div

@@ -1,7 +1,10 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-    <h1 class="text-5xl underline mb-3">Login</h1>
-
+  <div
+    class="login"
+  >
+    <!-- Local Title Header-->
+    <h1 class="text-5xl font-bold m-5">Login Page</h1>
+    <!-- Email Input, Password Input, Login Button -->
     <div class="justify-center">
       <div class="card">
         <div class="card-body">
@@ -10,52 +13,67 @@
             <div class="py-6 form-group">
               <label
                 for="email"
-                class="flex flex-wrap justify-center font-bold px-6 mb-2"
+                class="flex flex-wrap justify-center text-3xl font-bold px-6 mb-2"
                 >Email</label
               >
               <input
                 type="name"
                 v-model="name"
                 placeholder="JohnDoe@fiu.edu"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
+                class="w-80 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
             <div class="form-group">
               <label
                 for="password"
-                class="flex flex-wrap justify-center px-2 font-bold mb-2"
+                class="flex flex-wrap justify-center text-3xl px-2 font-bold mb-2"
                 >Password</label
               >
               <input
                 type="name"
                 v-model="name"
                 placeholder="Password123"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
+                class="w-80 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
-            <button
-              type="submit"
-              class="
-              mt-9
-                my-5
-                bg-blue-500
-                hover:bg-blue-800
-                text-white
-                hover:text-yellow-300
-                font-bold
-                py-2
-                px-4
-                border border-blue-700
-                rounded
-              "
-            >
-              Login
-            </button>
+    <!-- Login Button -->
+    <div class="flex justify-center">
+      <div class="flex h-full justify-center">
+        <div
+          class="
+            flex
+            items-center
+            justify-center
+            font-bold
+            text-white
+            w-80
+            h-16
+            m-10
+            cursor-pointer
+            rounded-full
+            border-8 border-inherit
+            bg-gradient-to-r
+            from-blue-400
+            to-blue-800
+            hover:from-yellow-300 hover:to-yellow-600
+            hover:border-black 
+            hover:text-black
+          "
+        >
+<!------------- ROUTER LINK IS NOT ACTIVE YET, TODO ---------------------------------->
+          <div class="font-bold text-3xl">
+            <router-link :to="{ name: 'Login' }">Login</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
           </form>
         </div>
       </div>
 
-      <div class="py-5">
+      <!-- SIGN IN BUTTONS: Google, Github, and Facebook (Gross)-->
+      <div class="mb-7">
+        <!--Google Button -->
         <div class="flex flex-wrap justify-center">
           <div
             class="
@@ -91,6 +109,7 @@
             <span class="pl-3">Sign up with Google</span>
           </div>
 
+          <!--Github Button -->
           <div
             class="
               bg-gray-900
@@ -125,6 +144,7 @@
             <span class="pl-3">Sign up with Github</span>
           </div>
 
+          <!--Facebook Button -->
           <div
             class="
               bg-indigo-600
@@ -163,6 +183,7 @@
     </div>
   </div>
 </template>
+
 <script>
 /* <div class=" col-sm-4">
         <div class=" border border-red-500 card">
