@@ -1,3 +1,4 @@
+<!-- CURRENTLY NOT IMPLEMENTED, TODO (maybe) GET WORKING IN ELECTION COMPONENT-->
 <!-- Button used in Election Component when clicking "Vote" button-->
 <template>
   <div class="container mx-auto">

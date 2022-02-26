@@ -1,3 +1,4 @@
+<!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
 <template>
   <div id="Election" class="border-gray border-8 rounded-xl m-5">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
@@ -15,6 +16,7 @@
     <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) -->
+    <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
     <table width="760"> 
       <!-- Column First Names -->
       <tr>
@@ -48,11 +50,9 @@
             height="60"
             class="
               font-serif
-              text-lg
-              
+              text-lg 
               overflow-hidden
               truncate
-             
             "
           >
             {{ LastName.value }}
@@ -97,6 +97,7 @@
             >
               {{'Vote'}}
             </div>
+
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
@@ -110,29 +111,41 @@
                   bg-gray-700 bg-opacity-50
                 "
               >
+                <!-- Confirmation PopUp -->
                 <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
+                  <!--Header for Popup-->
                   <div class="flex justify-center">
                     <h3 class="text-2xl">Please Confrim</h3>
                   </div>
+                  <!-- Body for Popup-->
                   <div class="mt-4">
+                    <!-- Display Name of Selection with message -->
                     <div class="mb-5">
                       Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                     </div>
+                    <!-- Cancel vote selection button -->
                     <button
                       @click="confirmationOpen = false"
                       class="
+                        font-bold
+                        w-32
                         px-6
                         py-2
-                        text-blue-800
-                        border border-blue-600
-                        rounded
+                        mr-6
+                        text-black
+                        bg-white
+                        border-4 border-red-600
+                        rounded-md
+                        hover:bg-red-500 hover:text-black hover:border-black
+                        hover:underline
+                        
                       "
                     >
                       Cancel
                     </button>
-
+                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                     <button
-                      class="px-6 py-2 ml-2 text-blue-100 bg-blue-600 rounded"
+                      class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
                       @click="ProcessVote(election._id, NumberOfCandidates)"
                     >
                       Vote
