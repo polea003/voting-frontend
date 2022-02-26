@@ -1,18 +1,20 @@
   <template>
   <div>
     <div id="nav" style="Mystyle" >
-      
+      <!-- TITLE -->
       <div class='flex flex-wrap justify-center text-7xl font-bold text-white '>Panther Votes</div>
+      <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
-      <router-link to="/Login">Login</router-link>
-      <router-link to="/">Home</router-link>
-      <router-link to="/election-Dashboard">Election Dashboard</router-link>
-      <router-link to="/club-Elections">Club Elections</router-link>
-      <router-link to="/about">Voting History</router-link>
-      <router-link to="/how">How It Works</router-link>
-    </div>
+        <router-link to="/">Home</router-link>
+        <router-link to="/Login">Login</router-link>
+        <router-link to="/election-Dashboard">Election Dashboard</router-link>
+        <router-link to="/club-Elections">Club Elections</router-link>
+        <router-link to="/about">Voting History</router-link>
+        <router-link to="/how">How It Works</router-link>
+      </div>
     </div>
     <router-view/>
+    <!-- FOOTER -->
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
 </template>
@@ -20,7 +22,6 @@
 
 
 <script>
-
 export default {
   name: 'app',
   components: {
@@ -55,8 +56,7 @@ export default {
   margin-bottom: 0px;
   margin-right: 8px;
   margin-left: 8px;
-  border: solid 0.2em rgb(4, 6, 56);
-  
+  border: solid 0.2em rgb(4, 6, 56); 
 
 }
 #nav a.active,
@@ -65,24 +65,22 @@ export default {
   border: groove 0.2em rgb(4, 6, 56);
   border-bottom-color: #FF5858;
   width: auto;
+
 }
 #nav a.router-link-exact-active {
   font-weight: bold;
   color: #ffffff;
 
-
 }
-   
-
-    
-    footer {
-      text-align: center;
-      height: 50px;
-      background-color: #ccc;
-      padding: 10px;
-      /* margin-top: 10px; */
-      bottom: 0px;
       
-    }
+footer {
+  text-align: center;
+  height: 50px;
+  background-color: #ccc;
+  padding: 10px;
+  /* margin-top: 10px; */
+  bottom: 0px;
+      
+}
 </style>
 
