@@ -85,5 +85,9 @@ footer {
   bottom: 0px;
       
 }
+
+h1 {
+color:gray;
+}
 </style>
 

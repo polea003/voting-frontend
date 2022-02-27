@@ -2,11 +2,11 @@
 <template>
   <div class="club-Elections">
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-bold m-5">Club Elections</h1>
+    <h1 class="text-5xl font-bold m-5 text-gray-500">Club Elections</h1>
     <!-- DISPLAY Club's Images -->
     <div class="flex flex-wrap justify-center">
       <div v-for="club in clubs" :key="club">
-        <div class="w-64 h-64 border-blue-500 border-4 rounded m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
+        <div class="p-3 w-72 h-72 border-gray-300 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
           <div @click="$router.push({ name:'Club-Election-Dashboard', params:{club: club} })">
               <img :src="require(`../assets/${club}.png`)"/>
           </div>
