@@ -16,7 +16,9 @@
     </div>
     <router-view/>
     <!-- FOOTER -->
+    <div class="pt-8">
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    </div>
   </div>
 </template>
 

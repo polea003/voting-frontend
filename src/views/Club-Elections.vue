@@ -1,6 +1,6 @@
 <!-- Page Displays Images of Clubs, images are paths to club pages -->
 <template>
-  <div>
+  <div class="club-Elections">
     <!-- Local Title Header-->
     <h1 class="text-5xl font-bold m-5">Club Elections</h1>
     <!-- DISPLAY Club's Images -->

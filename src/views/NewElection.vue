@@ -4,10 +4,11 @@
 
 <form v-on:submit="addProduct">
   <div class="flex flex-col items-center">
-    <span class = 'font-bold'> Club: {{ club }}</span>
-    <div class="pt-2 font-bold">Election Name</div>
+    <h1 class="text-5xl font-bold m-5">New Election</h1>
+    <span class = 'font-bold text-3xl m-2'> Club: {{ club }}</span>
+    <div class="pt-2 text-lg font-bold">Election Name</div>
     <input type="name" v-model="name" placeholder="Election Name" class="w-72 h-10 border-2 border-blue-800 rounded px-2">
-    <div class="pt-2 font-bold">Position</div>
+    <div class="pt-2 text-lg font-bold">Position</div>
     <div id="Drop">
       <select v-model="Position" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 rounded">
         <option value="undefined" disabled>Positions</option>
@@ -18,7 +19,7 @@
       </select>
     </div>
   </div>
-  <div class="pt-2 font-bold">Candidates</div>
+  <div class="pt-2 text-lg font-bold">Candidates</div>
   <div class="flex wrap justify-center">
   <!-- <component v-bind:is="NewElectionForm"></component> -->
     <div>
