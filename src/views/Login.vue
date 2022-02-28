@@ -58,10 +58,12 @@
                     id="accept"
                     class="form-check-input"
                   />
-                  <label class="form-check-label text-lg underline pl-3" for="accept"
+                  <label
+                    class="form-check-label text-lg underline pl-3"
+                    for="accept"
                     >Check Box for Admin Access</label
                   >
-                  <div>{{user.accept}} {{adminFlag}}</div>
+                  <div>{{ user.accept }} {{ adminFlag }}</div>
                 </div>
               </form>
             </div>
@@ -93,7 +95,16 @@
                 >
                   <!------------- ROUTER LINK IS NOT ACTIVE YET, TODO ---------------------------------->
                   <div class="font-bold text-3xl">
-                    <button @click="adminAccess(user.accept)">Login</button>
+                    <div v-if="user.accept">
+                      <router-link to="/Election-Dashboard"
+                        >Admin Login</router-link
+                      >
+                    </div>
+                    <div v-else>
+                      <router-link to="/Election-DashUser"
+                        >Voter Login</router-link
+                      >
+                    </div>
                   </div>
                 </div>
               </div>
@@ -217,34 +228,29 @@
 
 <style>
 input.form-check-input {
-  width: 25px/*preferred width*/;
-  height: 25px/*preferred height*/;
+  width: 25px /*preferred width*/;
+  height: 25px /*preferred height*/;
 }
-
 </style>
 
 <script>
-
 export default {
-
-
   data() {
     return {
-
       user: {
         accept: false,
-
       },
     };
   },
   methods: {
     adminAccess(flag) {
       this.adminFlag = flag;
-     /* if (accept){
-
+      //this.app.config.globalProperties.adminFlag = flag
+      /*if (flag){
+       this.router.push({ path: '../components/ElectionComponent' })
       }
       else{
-        
+        this.router.push({ path: '../components/ElectionCompUser' })
       }*/
     },
   },

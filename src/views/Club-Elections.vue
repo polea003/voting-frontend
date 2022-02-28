@@ -2,7 +2,7 @@
 <template>
   <div class="club-Elections">
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-bold m-5 text-gray-500">Club Elections</h1>
+    <h1 class="text-5xl font-bold m-5">Club Elections</h1>
     <!-- DISPLAY Club's Images -->
     <div class="flex flex-wrap justify-center">
       <div v-for="club in clubs" :key="club">
