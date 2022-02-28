@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="login"
-  >
+  <div class="login">
     <!-- Local Title Header-->
     <h1 class="text-5xl font-bold m-5">Login Page</h1>
     <!-- Email Input, Password Input, Login Button -->
@@ -13,7 +11,14 @@
             <div class="py-6 form-group">
               <label
                 for="email"
-                class="flex flex-wrap justify-center text-3xl font-bold px-6 mb-2"
+                class="
+                  flex flex-wrap
+                  justify-center
+                  text-3xl
+                  font-bold
+                  px-6
+                  mb-2
+                "
                 >Email</label
               >
               <input
@@ -26,7 +31,14 @@
             <div class="form-group">
               <label
                 for="password"
-                class="flex flex-wrap justify-center text-3xl px-2 font-bold mb-2"
+                class="
+                  flex flex-wrap
+                  justify-center
+                  text-3xl
+                  px-2
+                  font-bold
+                  mb-2
+                "
                 >Password</label
               >
               <input
@@ -36,43 +48,62 @@
                 class="w-80 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
-    <!-- Login Button -->
-    <div class="flex justify-center">
-      <div class="flex h-full justify-center">
-        <div
-          class="
-            flex
-            items-center
-            justify-center
-            font-bold
-            text-white
-            w-80
-            h-16
-            m-10
-            cursor-pointer
-            rounded-full
-            border-8 border-inherit
-            bg-gradient-to-r
-            from-blue-400
-            to-blue-800
-            hover:from-yellow-300 hover:to-yellow-600
-            hover:border-black 
-            hover:text-black
-          "
-        >
-<!------------- ROUTER LINK IS NOT ACTIVE YET, TODO ---------------------------------->
-          <div class="font-bold text-3xl">
-            <router-link :to="{ name: 'Login' }">Login</router-link>
-          </div>
-        </div>
-      </div>
-    </div>
+            <!-- Admin CheckBox -->
+            <div class="flex justify-center pt-10 pb-3">
+              <form @submit.prevent="handleSubmit">
+                <div class="form-group form-check">
+                  <input
+                    type="checkbox"
+                    v-model="user.accept"
+                    id="accept"
+                    class="form-check-input"
+                  />
+                  <label class="form-check-label text-lg underline pl-3" for="accept"
+                    >Check Box for Admin Access</label
+                  >
+                  <div>{{user.accept}} {{adminFlag}}</div>
+                </div>
+              </form>
+            </div>
+            <!-- Login Button -->
+            <div class="flex justify-center">
+              <div class="flex h-full justify-center">
+                <div
+                  class="
+                    flex
+                    items-center
+                    justify-center
+                    font-bold
+                    text-white
+                    w-80
+                    h-16
+                    mt-2
+                    mb-10
+                    cursor-pointer
+                    rounded-full
+                    border-8 border-inherit
+                    bg-gradient-to-r
+                    from-blue-400
+                    to-blue-800
+                    hover:from-yellow-300
+                    hover:to-yellow-600
+                    hover:border-black
+                    hover:text-black
+                  "
+                >
+                  <!------------- ROUTER LINK IS NOT ACTIVE YET, TODO ---------------------------------->
+                  <div class="font-bold text-3xl">
+                    <button @click="adminAccess(user.accept)">Login</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
 
       <!-- SIGN IN BUTTONS: Google, Github, and Facebook (Gross)-->
-      <div class="mb-7">
+      <div class="mb-6">
         <!--Google Button -->
         <div class="flex flex-wrap justify-center">
           <div
@@ -92,8 +123,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
             <svg
@@ -127,8 +158,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
             <svg
@@ -162,8 +193,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
             <svg
@@ -184,7 +215,40 @@
   </div>
 </template>
 
+<style>
+input.form-check-input {
+  width: 25px/*preferred width*/;
+  height: 25px/*preferred height*/;
+}
+
+</style>
+
 <script>
+
+export default {
+
+
+  data() {
+    return {
+
+      user: {
+        accept: false,
+
+      },
+    };
+  },
+  methods: {
+    adminAccess(flag) {
+      this.adminFlag = flag;
+     /* if (accept){
+
+      }
+      else{
+        
+      }*/
+    },
+  },
+};
 /* <div class=" col-sm-4">
         <div class=" border border-red-500 card">
         <div class="card-body">

@@ -7,4 +7,14 @@ import router from './router'
 //import 'bootstrap/dist/js/bootstrap.min.js'
 //import 'bootstrap'; import 'bootstrap/dist/css/bootstrap.min.css';
 
-createApp(App).use(router).mount('#app')
+//Global Variables
+// 1. Assign app to a variable
+let app = createApp(App)
+
+// 2. Assign the global variable before mounting
+app.config.globalProperties.adminFlag = false
+
+// 3. Use router and mount app
+app.use(router).mount('#app')
+
+//createApp(App).use(router).mount('#app')

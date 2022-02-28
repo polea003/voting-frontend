@@ -29,6 +29,7 @@
             class="
               font-serif
               text-lg
+             
               overflow-hidden
               truncate
              
@@ -198,64 +199,7 @@
         </div>
       </tr>
     </table>
-    
-    <!-- DELETE Election BUTTON -->
-    <div>
-      <div class=" border-8 m-2  rounded-md border-gray-400">
-        <button
-          @click="deleteElection(election._id)"
-          class="
-            font-serif
-            text-xl
-            font-bold
-            w-full
-            h-16
-            rounded
-            bg-gradient-to-r
-            from-red-300
-            to-red-500
-            hover:from-red-600 hover:to-red-900
-            border-8 
-            border-current
-            hover:border-white
-            hover:text-white
-          "
-        >
-          Delete
-        </button>
-      </div>
-    </div>
   </div>
-
-  <!--
-<div> <div class='font-bold'> {{election.Poisition}}</div>
-  <div  id= "Election" class="w-80 h-52 border-blue-500 border-4 rounded-lg m-5">
- <div class="flex">
-  <div>
-    <div class='flex w-40 flex-col h-full items-center'>
-      <div class='font-bold my-2'>{{ election.Candidate1FirstName }}</div>
-      <div class='font-bold my-5'>{{ election.Candidate1LastName }}</div>
-      <button @click="ProcessVote(election._id, 1)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
-    </div>
-  </div>
-  <div>
-   <div class='flex flex-col h-full items-center'>
-      <div class='font-bold my-2'>{{ election.Candidate2FirstName }}</div>
-      <div class='font-bold my-5'>{{ election.Candidate2LastName }}</div>
-      <button @click="ProcessVote(election._id,2)" class=' w-32 h-10 bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Vote</button>
-    </div>
-  </div>
- </div>
-       <button @click="deleteElection(election._id)" class=' w-72 h-10 m-2 bg-gradient-to-r from-red-400 to-red-500 hover:from-pink-500 hover:to-yellow-500 font-bold'>Delete</button>
-
-</div> 
-    <div class="flex flex-row justify-center border-blue-500 border-4 rounded-lg m-5"> 
-      <div class="px-16"> {{election.Candidate1FirstName}} : {{election.Vote1}} </div>
-      <div class="px-16">{{election.Candidate2FirstName}} : {{election.Vote2}}
-        </div></div>
-        <div v-for="FirstName in election.FirstName" v-bind:key=FirstName>{{FirstName.value}}</div>
- </div>
- -->
 </template>
 
 <script>

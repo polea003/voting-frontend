@@ -53,11 +53,14 @@
 // @ is an alias to /src
 import ElectionComponent from '@/components/ElectionComponent.vue'
 import ElectionService from '../services/ElectionService'
+//import ElectionCompUser from '../components/ElectionCompUser.vue'
 
 export default {
   // name: 'Election-Dashboard',
+  inject:['adminFlag'],
   components: {
-    ElectionComponent
+    ElectionComponent,
+    //ElectionCompUser,
   },
   props: {
     clubName: {
