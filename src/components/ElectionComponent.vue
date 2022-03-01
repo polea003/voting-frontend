@@ -327,6 +327,7 @@ export default {
 </script>
 
 <style scoped>
+
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(

@@ -1,8 +1,13 @@
   <template>
   <div>
     <div id="nav" style="Mystyle" >
+        <div :style="{'background-image':`url(https://vuejs.org/images/logo.png)`}"></div>
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes</div>
+      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes
+        <div id="img">
+          <img :src="require(`./assets/pantherPawHand.png`)"/>
+        </div>
+      </div> 
       <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
         <router-link to="/">Home</router-link>
@@ -14,7 +19,7 @@
         <router-link to="/about">About</router-link>
       </div>
     </div>
-    <router-view/>
+    <router-view></router-view>
     <!-- FOOTER -->
     <div class="pt-8">
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
@@ -29,16 +34,18 @@ export default {
   name: 'app',
   components: {
     
-  }
+  },
 }
 </script>
 
 <style>
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
      /* color: #15e1f0;  */
@@ -48,6 +55,7 @@ export default {
 #nav {
   padding: 30px;
   background-color: rgb(4, 6, 56);
+  width:auto;
   
 }
 
@@ -81,7 +89,7 @@ footer {
   height: 50px;
   background-color: #ccc;
   padding: 10px;
-  /* margin-top: 10px; */
+  /*margin-top: 10px;*/
   bottom: 0px;
       
 }
@@ -89,5 +97,12 @@ footer {
 h1 {
 color:gray;
 }
-</style>
 
+img{
+  width:85px;
+  height:85px;
+  margin-left: 10px;
+  margin-right: 10px;
+
+}
+</style>

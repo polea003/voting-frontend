@@ -1,3 +1,4 @@
+<!-- TODO: Delete Candiate Button. Logic to make sure First and Last Name Entered in Input -->
 <template>
 <div id="app">
 
@@ -23,7 +24,7 @@
   <div class="flex wrap justify-center">
   <!-- <component v-bind:is="NewElectionForm"></component> -->
     <div>
-      <div v-for="FirstName in FirstName" v-bind:key="FirstName" class="my-2">
+      <div v-for="FirstName in FirstName" v-bind:key="FirstName" class="my-3 mr-2">
         <form @submit.prevent="submitForm">
           <input type="FirstName" v-model="FirstName.value" placeholder="First Name">
         </form>
@@ -31,7 +32,7 @@
     </div>
 
     <div>
-    <div v-for="LastName in LastName" v-bind:key="LastName" class="my-2">
+    <div v-for="LastName in LastName" v-bind:key="LastName" class="my-3 ml-2">
       <form @submit.prevent="submitForm">
         <input type="LastName" v-model="LastName.value" placeholder="Last Name">
       </form>
@@ -39,12 +40,13 @@
     <!-- <Form></Form> -->
   </div>
   <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3" @click="add()">Add Candidate</button>
+
   <div class="pt-2 font-bold">Date/Time Voting Starts:</div>
   <div class="flex justify-center"><datepicker class="w-72" v-model="startTime"/></div>
   <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
   <div class="flex justify-center"><datepicker class="w-72" v-model="endTime"/></div>
    
-  <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mx-2">Create Election</button>
+  <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mb-5 mx-2">Create Election</button>
 </form>  
 
 
@@ -57,6 +59,13 @@
 </div>
 
 </template>
+
+<style>
+input {
+  text-align: center;
+}
+</style>
+
 <script>
 import Datepicker from 'vue3-date-time-picker';
 import 'vue3-date-time-picker/dist/main.css'
@@ -107,6 +116,12 @@ import router from '../router'
       this.LastName.push({value: ''});
     
     },
+   /* sub(){
+      this.NumberOfCandidates--
+      this.Vote.pull({value: 0})
+      this.FirstName.pull({ value: '' });
+      this.LastName.pull({value: ''});
+    },*/
     goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime){
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
         ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime)
