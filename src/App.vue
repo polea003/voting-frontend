@@ -1,11 +1,10 @@
   <template>
   <div>
     <div id="nav" style="Mystyle" >
-        <div :style="{'background-image':`url(https://vuejs.org/images/logo.png)`}"></div>
       <!-- TITLE of Webpage -->
       <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes
         <div id="img">
-          <img :src="require(`./assets/pantherPawHand.png`)"/>
+          <img :src="require(`./assets/pantherPawHand.png`)" width="85" height="85" margin-left="10"/>
         </div>
       </div> 
       <!-- TOP NAV BAR -->
@@ -23,8 +22,8 @@
     <!-- FOOTER -->
     <div class="pt-8">
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
-    </div>
   </div>
+</div>
 </template>
 
 
@@ -39,7 +38,14 @@ export default {
 </script>
 
 <style>
-
+div.wallpaper {
+  background: url("./assets/FIU_Panthers_logo.png") no-repeat center center fixed;
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;*/
+  background-size: 120%;
+  opacity: 50%
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
