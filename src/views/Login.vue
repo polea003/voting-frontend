@@ -14,8 +14,8 @@
                 >Email</label
               >
               <input
-                type="name"
-                v-model="name"
+                type="Email"
+                v-model="Eamil"
                 placeholder="JohnDoe@fiu.edu"
                 class="w-96 h-10 border-2 border-blue-800 rounded px-2"
               />
@@ -27,13 +27,13 @@
                 >Password</label
               >
               <input
-                type="name"
-                v-model="name"
+                type="Password"
+                v-model="Password"
                 placeholder="Password123"
                 class="w-96 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
-            <button
+            <button @click="Submit(Eamil,Password)"
               type="submit"
               class="
               mt-9
@@ -173,18 +173,16 @@
   </div>
 </template>
 <script>
-/* <div class=" col-sm-4">
-        <div class=" border border-red-500 card">
-        <div class="card-body">
-            <a class=" btn btn-block btn-social btn-google " href="/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign In with Google
-            </a>
-        </div>
-        </div>
-    </div> */
-//min-h-screen
+import UserService from '../services/UserService'
 
+
+export default {
+  methods: {
+  async Submit(Username, password) {
+    UserService.Login(Username,password)
+  }
+  }
+}
 </script>
 
  
