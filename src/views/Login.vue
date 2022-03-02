@@ -3,10 +3,12 @@
     <h1 class="text-5xl underline mb-3">Login</h1>
 
     <div class="justify-center">
+      <div v-show="loginError" class="text-base font-bold text-red-500">* invalid credentials *</div>
       <div class="card">
         <div class="card-body">
           <!-- Makes POST request to /login route -->
-          <form action="/login" method="POST">
+          <!-- <form action="/login" method="POST"> -->
+          <form @submit.prevent="attemptLogin">
             <div class="py-6 form-group"> 
               <label
                 for="email"
@@ -15,7 +17,7 @@
               >
               <input
                 type="name"
-                v-model="name"
+                v-model="email"
                 placeholder="JohnDoe@fiu.edu"
                 class="w-96 h-10 border-2 border-blue-800 rounded px-2"
               />
@@ -28,7 +30,7 @@
               >
               <input
                 type="name"
-                v-model="name"
+                v-model="password"
                 placeholder="Password123"
                 class="w-96 h-10 border-2 border-blue-800 rounded px-2"
               />
@@ -184,6 +186,33 @@
         </div>
     </div> */
 //min-h-screen
+
+import UserService from '../services/UserService'
+
+export default {
+  data () {
+    return {
+      email: '',
+      password: '',
+      loginError: false
+    }
+  },
+  methods: {
+    async attemptLogin () {
+      console.log('attempting login')
+      const loginSuccess = await UserService.login(this.email, this.password)
+      if (loginSuccess) {
+        this.$router.push({ name:'Election-Dashboard' })
+      } else {
+        // login error
+        this.loginError = true
+        setTimeout(() => {
+          this.loginError = false
+        }, 2000)
+      }
+    }
+  }
+}
 
 </script>
 
