@@ -1,41 +1,22 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-    <h1 class="text-5xl underline mb-3">Login</h1>
-
-    <div class="justify-center">
-      <div v-show="loginError" class="text-base font-bold text-red-500">* invalid credentials *</div>
-      <div class="card">
-        <div class="card-body">
-          <!-- Makes POST request to /login route -->
-          <!-- <form action="/login" method="POST"> -->
-          <form @submit.prevent="attemptLogin">
-            <div class="py-6 form-group"> 
-              <label
-                for="email"
-                class="flex flex-wrap justify-center font-bold px-6 mb-2"
-                >Email {{User}}</label
-              >
-              <input
-                type="name"
-                v-model="email"
-                placeholder="JohnDoe@fiu.edu"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
-              />
-            </div>
-            <div class="form-group">
-              <label
-                for="password"
-                class="flex flex-wrap justify-center px-2 font-bold mb-2"
-                >Password</label
-              >
-              <input
-                type="name"
-                v-model="password"
-                placeholder="Password123"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
-              />
-            </div>
-            <button 
+  <div class="col-md-12 flex flex-col justify-center items-center mt-5 text-2xl font-bold">
+      <h1 class="text-5xl underline mb-3">Login</h1>
+    <div class="card card-container">
+    
+      <Form @submit="handleLogin" :validation-schema="schema">
+        <div class=" py-6 form-group">
+          <label for="email" class="flex flex-wrap justify-center font-bold px-6 mb-2">Email</label>
+          <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <ErrorMessage name="email" class="error-feedback " />
+        </div>
+        <div class="form-group">
+          <label for="password" class="flex flex-wrap justify-center font-bold px-5 mb-2">Password</label>
+          <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <ErrorMessage name="password" class="error-feedback" />
+        </div>
+        <div class="form-group">
+        
+           <button 
               type="submit"
               class="
               mt-9
@@ -53,11 +34,15 @@
             >
               Login
             </button>
-          </form>
         </div>
-      </div>
-
-      <div class="py-5">
+        <div class="form-group">
+          <div v-if="message" class="alert alert-danger" role="alert">
+            {{ message }}
+          </div>
+        </div>
+      </Form>
+    </div>
+    <div class="py-5">
         <div class="flex flex-wrap justify-center">
           <div
             class="
@@ -171,40 +156,63 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </template>
 <script>
-import UserService from '../services/UserService'
-
-
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
 export default {
-  data () {
+  name: "Login",
+  components: {
+    Form,
+    Field,
+    ErrorMessage,
+  },
+  data() {
+    const schema = yup.object().shape({
+      email: yup.string().required("email is required!"),
+      password: yup.string().required("Password is required!"),
+    });
     return {
-      email: '',
-      password: '',
-      loginError: false
+      loading: false,
+      message: "",
+      schema,
+    };
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.state.auth.status.loggedIn;
+      
+    },
+  },
+  created() {
+    if (this.loggedIn) {
+     // this.$router.push("/profile");
     }
   },
   methods: {
-    async attemptLogin () {
-      console.log('attempting login')
-      const loginSuccess = await UserService.login(this.email, this.password)
-      if (loginSuccess) {
-        //this.User = UserService.GetMe(this.email)
-       // this.Users = await UserService.GetMe()
-        this.$router.push({ name:'profile' })
-      } else {
-        // login error
-        this.loginError = true
-        setTimeout(() => {
-          this.loginError = false
-        }, 2000)
-      }
-    }
-  }
-}
+    handleLogin(user) {
+      this.loading = true;
+      this.$store.dispatch("auth/login", user).then(
+        () => {
+                      console.log("hello2")
 
+          this.$router.push("/profile");
+        },
+        (error) => {
+          this.loading = false;
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+        }
+      );
+    },
+  },
+};
 </script>
+<style scoped>
 
- 
+</style>
