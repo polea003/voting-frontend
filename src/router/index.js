@@ -169,6 +169,7 @@ const routes = [
       path: "/home2",
       component: Home2,
     },
+    
   ]
 
 const router = createRouter({
