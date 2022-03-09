@@ -66,13 +66,14 @@ div.wallpaper {
 }
 
 #nav a {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-decoration: underline;
   color: #FACC15;
   margin-top: 4px;
   margin-bottom: 0px;
-  margin-right: 8px;
-  margin-left: 8px;
+  margin-right: 6px;
+  margin-left: 6px;
   border: solid 0.2em rgb(4, 6, 56); 
 
 }
@@ -82,6 +83,7 @@ div.wallpaper {
   border: groove 0.2em rgb(4, 6, 56);
   border-color: #00c3ff8c;
   width: auto;
+
 
 }
 #nav a.router-link-exact-active {

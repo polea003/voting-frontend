@@ -1,6 +1,6 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
 <template>
-  <div id="Election" class="border-gray border-8 rounded-2xl m-6">
+  <div id="Election" class="border-gray border-8 rounded-2xl m-6 hover:shadow-2xl">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
       <span class="flex flex-col font-serif font-bold text-4xl mb-2">{{
