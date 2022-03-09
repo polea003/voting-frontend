@@ -87,12 +87,13 @@
               class=" 
                 w-full
                 h-full
+                text-gray-100
                 font-bold
                 rounded-md
-                bg-gradient-to-r from-blue-200 to-blue-600
-                border-4 border-black
+                bg-gradient-to-r from-blue-400 to-blue-800
+                border-4 border-white
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600': !selectedVote  }"
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600 hover:border-black hover:text-black': !selectedVote  }"
             >
               {{'Vote'}}
             </div>
@@ -210,7 +211,6 @@
             font-bold
             w-full
             h-16
-            rounded
             bg-gradient-to-r
             from-red-300
             to-red-500
@@ -332,9 +332,9 @@ export default {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
     90deg,
-    rgb(194, 191, 191) 0%,
-    rgb(235, 225, 225) 50%,
-    rgb(201, 201, 201) 100%
+    rgb(255, 255, 255) 0%,
+    rgb(180, 180, 180) 50%,
+    rgb(255, 255, 255) 100%
   );
 }
 

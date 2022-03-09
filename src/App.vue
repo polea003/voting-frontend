@@ -2,9 +2,9 @@
   <div>
     <div id="nav" style="Mystyle" >
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes
+      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 py-2'>Panther Votes
         <div id="img">
-          <img :src="require(`./assets/pantherPawHand.png`)" width="85" height="85" margin-left="10"/>
+          <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
       </div> 
       <!-- TOP NAV BAR -->
@@ -68,7 +68,7 @@ div.wallpaper {
 #nav a {
   font-size: 20px;
   text-decoration: underline;
-  color: #FFD800;
+  color: #FACC15;
   margin-top: 4px;
   margin-bottom: 0px;
   margin-right: 8px;
@@ -105,10 +105,10 @@ color:gray;
 }
 
 img{
-  width:85px;
-  height:85px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width:80px;
+  height:80px;
+  margin-left: 15px;
+  margin-right: 15px;
 
 }
 </style>
