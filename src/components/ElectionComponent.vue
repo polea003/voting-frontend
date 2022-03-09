@@ -202,7 +202,7 @@
     
     <!-- DELETE Election BUTTON -->
     <div>
-      <div class=" border-8 m-2  rounded-md border-gray-400">
+      <div class=" border-8 m-2  rounded-md border-transparent">
         <button
           @click="deleteElection(election._id)"
           class="
@@ -217,6 +217,7 @@
             hover:from-red-600 hover:to-red-900
             border-8 
             border-current
+            rounded
             hover:border-white
             hover:text-white
           "
