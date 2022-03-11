@@ -17,7 +17,7 @@
       <strong>Email:</strong>
       {{currentUser.email}}
     </p>
-    <strong>Authorities:</strong>
+    <strong>Authorities: Student</strong>
     <ul>
     </ul>
   </div>

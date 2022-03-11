@@ -2,6 +2,9 @@
   <div class="election-Dashboard">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
+    
+    <!-- Local Title Header-->
+    <h1 class="text-5xl font-bold text-gray-500 m-5">Election Dashboard</h1>
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-3xl font-bold mt-2">{{clubName}}</div>
@@ -30,6 +33,7 @@
               >
             </div>
           </div>
+          
         <div class="flex flex-col text-3xl font-bold mt-4">Active Elections</div>
         <div class="flex flex-wrap justify-center">
 
@@ -49,11 +53,14 @@
 // @ is an alias to /src
 import ElectionComponent from '@/components/ElectionComponent.vue'
 import ElectionService from '../services/ElectionService'
+//import ElectionCompUser from '../components/ElectionCompUser.vue'
 
 export default {
   // name: 'Election-Dashboard',
+  inject:['adminFlag'],
   components: {
-    ElectionComponent
+    ElectionComponent,
+    //ElectionCompUser,
   },
   props: {
     clubName: {

@@ -1,21 +1,28 @@
   <template>
   <div>
     <div id="nav" style="Mystyle" >
-      
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white '>Panther Votes</div>
+      <!-- TITLE of Webpage -->
+      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes
+        <div id="img">
+          <img :src="require(`./assets/pantherPawHand.png`)" width="85" height="85" margin-left="10"/>
+        </div>
+      </div> 
+      <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
       <router-link to="/">Home</router-link>
       <router-link to="/election-Dashboard">Election Dashboard</router-link>
       <router-link to="/club-Elections">Club Elections</router-link>
       <router-link to="/about">Voting History</router-link>
       <router-link to="/how">How It Works</router-link>
+      <router-link to="/Face">Face</router-link>
+
      
     </div>
      <div v-if="!currentUser" class="nav-link">
           <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user-plus" /> Sign Up
           </router-link>
-          <router-link to="/login2" class="nav-link">
+          <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
           </router-link>
       </div>
@@ -38,7 +45,6 @@
 
 
 <script>
-
 export default {
   name: 'app',
   computed: {
@@ -56,11 +62,20 @@ export default {
 </script>
 
 <style>
+div.wallpaper {
+  background: url("./assets/FIU_Panthers_logo.png") no-repeat center center fixed;
+  /*-webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;*/
+  background-size: 120%;
+  opacity: 50%
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
      /* color: #15e1f0;  */
@@ -70,6 +85,7 @@ export default {
 #nav {
   padding: 30px;
   background-color: rgb(4, 6, 56);
+  width:auto;
   
 }
 
@@ -81,34 +97,42 @@ export default {
   margin-bottom: 0px;
   margin-right: 8px;
   margin-left: 8px;
-  border: solid 0.2em rgb(4, 6, 56);
-  
+  border: solid 0.2em rgb(4, 6, 56); 
 
 }
 #nav a.active,
 #nav a:hover {
   background-color: rgb(1, 4, 39);
   border: groove 0.2em rgb(4, 6, 56);
-  border-bottom-color: #FF5858;
+  border-color: #00c3ff8c;
   width: auto;
+
 }
 #nav a.router-link-exact-active {
   font-weight: bold;
   color: #ffffff;
 
+}
+      
+footer {
+  text-align: center;
+  height: 50px;
+  background-color: #ccc;
+  padding: 10px;
+  /*margin-top: 10px;*/
+  bottom: 0px;
+      
+}
+
+h1 {
+color:gray;
+}
+
+img{
+  width:85px;
+  height:85px;
+  margin-left: 10px;
+  margin-right: 10px;
 
 }
-   
-
-    
-    footer {
-      text-align: center;
-      height: 50px;
-      background-color: #ccc;
-      padding: 10px;
-      /* margin-top: 10px; */
-      bottom: 0px;
-      
-    }
 </style>
-

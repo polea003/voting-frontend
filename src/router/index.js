@@ -27,12 +27,25 @@ const routes = [
     props: (route) => ({ clubName: route.params.club })
   },
   {
+    path: '/election-DashUser',
+    name: 'Election-DashUser',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Election-DashUser.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/voting-History',
+    name: 'Voting-History',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Voting-History.vue')
   },
   {
     path: '/how',
@@ -122,19 +135,19 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Motor.vue')
   },
   {
-  path: '/NewElection/:club',
+    path: '/NewElection/:club',
     name: 'NewElection',
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/NewElection.vue')
   },
   {
-    path: '/Login',
+    path: '/Login2',
       name: 'Login',
       props: true,
       component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
     },
     {
-      path: "/login2",
+      path: "/login",
       component: Login,
     },
     {
@@ -169,6 +182,14 @@ const routes = [
       path: "/home2",
       component: Home2,
     },
+    {
+      path: '/Face',
+      name: 'Face',
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import(/* webpackChunkName: "about" */ '../views/Face.vue')
+    }
     
   ]
 

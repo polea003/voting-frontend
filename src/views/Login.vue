@@ -1,7 +1,8 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-    <h1 class="text-5xl underline mb-3">Login</h1>
-
+  <div class="login">
+    <!-- Local Title Header-->
+    <h1 class="text-5xl font-bold m-5">Login Page</h1>
+    <!-- Email Input, Password Input, Login Button -->
     <div class="justify-center">
       <div v-show="loginError" class="text-base font-bold text-red-500">* invalid credentials *</div>
       <div class="card">
@@ -12,52 +13,111 @@
             <div class="py-6 form-group"> 
               <label
                 for="email"
-                class="flex flex-wrap justify-center font-bold px-6 mb-2"
-                >Email {{User}}</label
+                class="
+                  flex flex-wrap
+                  justify-center
+                  text-3xl
+                  font-bold
+                  px-6
+                  mb-2
+                "
+                >Email</label
               >
               <input
                 type="name"
                 v-model="email"
                 placeholder="JohnDoe@fiu.edu"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
+                class="w-80 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
             <div class="form-group">
               <label
                 for="password"
-                class="flex flex-wrap justify-center px-2 font-bold mb-2"
+                class="
+                  flex flex-wrap
+                  justify-center
+                  text-3xl
+                  px-2
+                  font-bold
+                  mb-2
+                "
                 >Password</label
               >
               <input
                 type="name"
                 v-model="password"
                 placeholder="Password123"
-                class="w-96 h-10 border-2 border-blue-800 rounded px-2"
+                class="w-80 h-10 border-2 border-blue-800 rounded px-2"
               />
             </div>
-            <button 
-              type="submit"
-              class="
-              mt-9
-                my-5
-                bg-blue-500
-                hover:bg-blue-800
-                text-white
-                hover:text-yellow-300
-                font-bold
-                py-2
-                px-4
-                border border-blue-700
-                rounded
-              "
-            >
-              Login
-            </button>
+            <!-- Admin CheckBox -->
+            <div class="flex justify-center pt-10 pb-3">
+              <form @submit.prevent="handleSubmit">
+                <div class="form-group form-check">
+                  <input
+                    type="checkbox"
+                    v-model="user.accept"
+                    id="accept"
+                    class="form-check-input"
+                  />
+                  <label
+                    class="form-check-label text-lg underline pl-3"
+                    for="accept"
+                    >Check Box for Admin Access</label
+                  >
+                  <div>{{ user.accept }} {{ adminFlag }}</div>
+                </div>
+              </form>
+            </div>
+            <!-- Login Button -->
+            <div class="flex justify-center">
+              <div class="flex h-full justify-center">
+                <div
+                  class="
+                    flex
+                    items-center
+                    justify-center
+                    font-bold
+                    text-white
+                    w-80
+                    h-16
+                    mt-2
+                    mb-10
+                    cursor-pointer
+                    rounded-full
+                    border-8 border-inherit
+                    bg-gradient-to-r
+                    from-blue-400
+                    to-blue-800
+                    hover:from-yellow-300
+                    hover:to-yellow-600
+                    hover:border-black
+                    hover:text-black
+                  "
+                >
+                  <!------------- ROUTER LINK IS NOT ACTIVE YET, TODO ---------------------------------->
+                  <div class="font-bold text-3xl">
+                    <div v-if="user.accept">
+                      <router-link to="/Election-Dashboard"
+                        >Admin Login</router-link
+                      >
+                    </div>
+                    <div v-else>
+                      <router-link to="/Election-DashUser"
+                        >Voter Login</router-link
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </form>
         </div>
       </div>
 
-      <div class="py-5">
+      <!-- SIGN IN BUTTONS: Google, Github, and Facebook (Gross)-->
+      <div class="mb-6">
+        <!--Google Button -->
         <div class="flex flex-wrap justify-center">
           <div
             class="
@@ -76,8 +136,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
           
@@ -102,6 +162,7 @@
     </div>
           </div>
 
+          <!--Github Button -->
           <div
             class="
               bg-gray-900
@@ -119,8 +180,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
             <svg
@@ -136,6 +197,7 @@
             <span class="pl-3">Sign up with Github</span>
           </div>
 
+          <!--Facebook Button -->
           <div
             class="
               bg-indigo-600
@@ -153,8 +215,8 @@
               cursor-pointer
               w-64
               h-14
-              my-2
-              mx-2
+              my-4
+              mx-4
             "
           >
             <svg
@@ -174,37 +236,47 @@
     </div>
   </div>
 </template>
+
+<style>
+input.form-check-input {
+  width: 25px /*preferred width*/;
+  height: 25px /*preferred height*/;
+}
+</style>
+
 <script>
-import UserService from '../services/UserService'
-
-
 export default {
-  data () {
+  data() {
     return {
-      email: '',
-      password: '',
-      loginError: false
-    }
+      user: {
+        accept: false,
+      },
+    };
   },
   methods: {
-    async attemptLogin () {
-      console.log('attempting login')
-      const loginSuccess = await UserService.login(this.email, this.password)
-      if (loginSuccess) {
-        //this.User = UserService.GetMe(this.email)
-       // this.Users = await UserService.GetMe()
-        this.$router.push({ name:'profile' })
-      } else {
-        // login error
-        this.loginError = true
-        setTimeout(() => {
-          this.loginError = false
-        }, 2000)
+    adminAccess(flag) {
+      this.adminFlag = flag;
+      //this.app.config.globalProperties.adminFlag = flag
+      /*if (flag){
+       this.router.push({ path: '../components/ElectionComponent' })
       }
-    }
-  }
-}
-
+      else{
+        this.router.push({ path: '../components/ElectionCompUser' })
+      }*/
+    },
+  },
+};
+/* <div class=" col-sm-4">
+        <div class=" border border-red-500 card">
+        <div class="card-body">
+            <a class=" btn btn-block btn-social btn-google " href="/auth/google" role="button">
+            <i class="fab fa-google"></i>
+            Sign In with Google
+            </a>
+        </div>
+        </div>
+    </div> */
+//min-h-screen
 </script>
 
  
