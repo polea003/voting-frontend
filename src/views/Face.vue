@@ -138,7 +138,15 @@ export default {
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
       console.log(results)
+      console.log(results[0].label)
+      
+     if(results[0].label != "unknown"){
+       
+        this.$router.push("/");}
+     else
+        this.$router.push("/login");
     },
+     
     async loadLabeledImages() {
       const labels = ['patrick', 'Tyler']
       return Promise.all(
