@@ -17,16 +17,30 @@
         <router-link to="/how">How It Works</router-link>
         <router-link to="/about">About</router-link>
       </div>
+           <div v-if="!currentUser" class="nav-link">
+          <router-link to="/register" class="nav-link">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+          <router-link to="/login2" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          </router-link>
+      </div>
+        <div v-if="currentUser" class="navbar-nav ml-auto">
+          <router-link to="/profile" class="nav-link">
+            <font-awesome-icon icon="user" />
+            {{ currentUser.name }}
+          </router-link>
+          <a  @click="logOut()">
+            <font-awesome-icon icon="sign-out-alt" /> LogOut
+          </a>
+        
+      </div>
     </div>
     <router-view></router-view>
     <!-- FOOTER -->
-    <div class="pt-8">
-    <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    <div id="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
-</div>
 </template>
-
-
 
 <script>
 export default {
@@ -34,6 +48,17 @@ export default {
   components: {
     
   },
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }},
+    methods:{
+  logOut() {
+      this.$store.dispatch('auth/logout');
+      this.$router.push('/login');
+    }
+
+    }
 }
 </script>
 
@@ -51,6 +76,7 @@ div.wallpaper {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  padding-bottom: 50px;
   width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
@@ -91,14 +117,22 @@ div.wallpaper {
   color: #ffffff;
 
 }
-      
-footer {
+
+#footer {
   text-align: center;
+  position: fixed;
+  font-weight: 700;
+  color: white;
+  background-color: rgb(29 78 216) !important;
   height: 50px;
+  width: 100%;
   background-color: #ccc;
   padding: 10px;
-  /*margin-top: 10px;*/
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 10px;
   bottom: 0px;
+  opacity: 90%;
       
 }
 

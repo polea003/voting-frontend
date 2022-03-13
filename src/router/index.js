@@ -1,6 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Home2 from "../components/Home2.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
+// lazy-loaded
+const Profile = () => import("../components/Profile.vue")
+const BoardAdmin = () => import("../components/BoardAdmin.vue")
+const BoardModerator = () => import("../components/BoardModerator.vue")
+const BoardUser = () => import("../components/BoardUser.vue")
 
 const routes = [
   {
@@ -135,11 +142,48 @@ const routes = [
   },
   {
     path: '/Login',
-    name: 'Login',
-    props: true,
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
-  },
-]
+      name: 'Login',
+      props: true,
+      component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
+    },
+    {
+      path: "/login2",
+      component: Login,
+    },
+    {
+      path: "/register",
+      component: Register,
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      // lazy-loaded
+      component: Profile,
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      // lazy-loaded
+      component: BoardAdmin,
+    },
+    {
+      path: "/mod",
+      name: "moderator",
+      // lazy-loaded
+      component: BoardModerator,
+    },
+    {
+      path: "/user",
+      name: "user",
+      // lazy-loaded
+      component: BoardUser,
+    },
+    {
+      path: "/home2",
+      component: Home2,
+    },
+    
+  ]
 
 const router = createRouter({
   history: createWebHashHistory(),
