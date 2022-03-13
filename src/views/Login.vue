@@ -235,6 +235,7 @@ input.form-check-input {
   width: 25px /*preferred width*/;
   height: 25px /*preferred height*/;
 }
+
 </style>
 
 <script>

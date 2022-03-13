@@ -165,8 +165,4 @@ img {
 .error-feedback{
   color:red;
 }
-.form-group{
-  border-color: black;
-  border-style: groove;
-}
 </style>
