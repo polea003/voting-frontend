@@ -1,6 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-
+import Home2 from "../components/Home2.vue";
+import Login from "../components/Login.vue";
+import Register from "../components/Register.vue";
+// lazy-loaded
+const Profile = () => import("../components/Profile.vue")
+const BoardAdmin = () => import("../components/BoardAdmin.vue")
+const BoardModerator = () => import("../components/BoardModerator.vue")
+const BoardUser = () => import("../components/BoardUser.vue")
 
 const routes = [
   {
@@ -20,6 +27,11 @@ const routes = [
     props: (route) => ({ clubName: route.params.club })
   },
   {
+    path: '/election-DashUser',
+    name: 'Election-DashUser',
+    component: () => import(/* webpackChunkName: "about" */ '../views/Election-DashUser.vue')
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -28,13 +40,13 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-  path: '/voting-History',
-  name: 'Voting-History',
-  // route level code-splitting
-  // this generates a separate chunk (about.[hash].js) for this route
-  // which is lazy-loaded when the route is visited.
-  component: () => import(/* webpackChunkName: "about" */ '../views/Voting-History.vue')
-},
+    path: '/voting-History',
+    name: 'Voting-History',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Voting-History.vue')
+  },
   {
     path: '/how',
     name: 'How',
@@ -123,7 +135,7 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/Motor.vue')
   },
   {
-  path: '/NewElection/:club',
+    path: '/NewElection/:club',
     name: 'NewElection',
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/NewElection.vue')
@@ -134,6 +146,43 @@ const routes = [
       props: true,
       component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
     },
+    {
+      path: "/login2",
+      component: Login,
+    },
+    {
+      path: "/register",
+      component: Register,
+    },
+    {
+      path: "/profile",
+      name: "profile",
+      // lazy-loaded
+      component: Profile,
+    },
+    {
+      path: "/admin",
+      name: "admin",
+      // lazy-loaded
+      component: BoardAdmin,
+    },
+    {
+      path: "/mod",
+      name: "moderator",
+      // lazy-loaded
+      component: BoardModerator,
+    },
+    {
+      path: "/user",
+      name: "user",
+      // lazy-loaded
+      component: BoardUser,
+    },
+    {
+      path: "/home2",
+      component: Home2,
+    },
+    
   ]
 
 const router = createRouter({

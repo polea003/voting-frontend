@@ -38,7 +38,7 @@
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in !clubName ? elections : elections.filter( election => election.club === clubName)" :key="election._id">
-            <ElectionComponent :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
+            <ElectionCompUser :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
           </div>
 
 
@@ -51,16 +51,15 @@
 
 <script>
 // @ is an alias to /src
-import ElectionComponent from '@/components/ElectionComponent.vue'
+//import ElectionComponent from '@/components/ElectionComponent.vue'
 import ElectionService from '../services/ElectionService'
-//import ElectionCompUser from '../components/ElectionCompUser.vue'
+import ElectionCompUser from '../components/ElectionCompUser.vue'
 
 export default {
   // name: 'Election-Dashboard',
-  inject:['adminFlag'],
   components: {
-    ElectionComponent,
-    //ElectionCompUser,
+    //ElectionComponent,
+    ElectionCompUser,
   },
   props: {
     clubName: {

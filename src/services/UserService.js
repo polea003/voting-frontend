@@ -18,7 +18,19 @@ class UserService{
             return false
         }
     }
-    
+    static async GetMe(email) {
+        const response = await axios.get(`${url}/me`, email)
+        try {
+            if (response.status === 200) {
+                return true
+            } else {
+                return false
+            }
+        } catch (err) {
+            return false
+        }
+  }
+
 }
 
 export default UserService
