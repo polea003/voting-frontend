@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div>
     <div id="nav" style="Mystyle" >
       <!-- TITLE of Webpage -->
@@ -17,14 +17,15 @@
         <router-link to="/how">How It Works</router-link>
         <router-link to="/about">About</router-link>
       </div>
-           <div v-if="!currentUser" class="nav-link">
+      <div class="signup-login">
+        <div v-if="!currentUser" class="nav-link">
           <router-link to="/register" class="nav-link">
             <font-awesome-icon icon="user-plus" /> Sign Up
           </router-link>
           <router-link to="/login2" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
           </router-link>
-      </div>
+        </div>
         <div v-if="currentUser" class="navbar-nav ml-auto">
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
@@ -32,8 +33,8 @@
           </router-link>
           <a  @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>
-        
+          </a>  
+        </div>
       </div>
     </div>
     <router-view></router-view>
@@ -51,14 +52,14 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
-    }},
-    methods:{
-  logOut() {
+    }
+  },
+  methods:{
+    logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     }
-
-    }
+  }
 }
 </script>
 
@@ -135,7 +136,10 @@ div.wallpaper {
   opacity: 90%;
       
 }
+.signup-login{
+  padding-top: 10px;
 
+}
 h1 {
 color:gray;
 }

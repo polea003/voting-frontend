@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12 flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-      <h1 class="text-5xl underline mb-3">Login</h1>
+      <h1 class="text-5xl mb-3">Login</h1>
     <div class="card card-container">
     
       <Form @submit="handleLogin" :validation-schema="schema">
@@ -19,7 +19,7 @@
            <button 
               type="submit"
               class="
-              mt-9
+                mt-9
                 my-5
                 bg-blue-500
                 hover:bg-blue-800

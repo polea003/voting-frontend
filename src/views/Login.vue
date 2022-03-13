@@ -13,7 +13,7 @@
             <div class="py-6 form-group"> 
               <label
                 for="email"
-                class="flex flex-wrap justify-center font-bold px-6 mb-2"
+                class="flex flex-wrap justify-center text-3xl font-bold px-6 mb-2"
                 >Email {{User}}</label
               >
               <input
