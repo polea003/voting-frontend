@@ -10,7 +10,7 @@
       <div v-if="!successful">
         <div class="form-group mb-6">
           <div>
-          <label for="username" class="font-bold">Username</label>
+          <label for="username" class="font-bold">Name</label>
           </div>
           <Field name="username" type="text" class="form-control border-4 border-black" />
           <div>

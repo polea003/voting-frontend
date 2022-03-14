@@ -76,7 +76,6 @@
                 ></span>
                 Create Election
               </button>
-  <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mb-5 mx-2">Create Election</button>
 </form>  
 
 
