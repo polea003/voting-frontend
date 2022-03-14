@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="register mt-5 text-2xl font-bold">
     <h1 class="text-5xl font-bold m-5">Sign Up </h1>
     <img
       id="profile-img"
@@ -12,7 +12,7 @@
           <div>
           <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" class="form-control border-4 border-gray-400" />
+          <Field name="username" type="text" placeholder="NameName" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
@@ -21,7 +21,7 @@
           <div>
           <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" class="form-control border-4 border-gray-400" />
+          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -30,7 +30,7 @@
           <div>
           <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" class="form-control border-4 border-gray-400" />
+          <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
@@ -156,12 +156,12 @@ export default {
 </script>
 <style scoped>
 img {
-  padding-top: 20px;
+  padding-top: 6px;
   padding-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 13%;
+  width: 11%;
 }
 .error-feedback{
   color:red;

@@ -7,11 +7,15 @@
         <div class=" py-6 form-group">
           <label for="email" class="flex flex-wrap justify-center font-bold px-6 mb-2">Email</label>
           <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
-          <ErrorMessage name="email" class="error-feedback " />
+          <div>
+            <ErrorMessage name="email" class="error-feedback " />
+          </div>
         </div>
         <div class="form-group">
           <label for="password" class="flex flex-wrap justify-center font-bold px-5 mb-2">Password</label>
-          <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <div>
+            <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          </div>
           <ErrorMessage name="password" class="error-feedback" />
         </div>
         <div class="form-group">
@@ -180,7 +184,7 @@ export default {
   },
   data() {
     const schema = yup.object().shape({
-      email: yup.string().required("email is required!"),
+      email: yup.string().required("Email is required!"),
       password: yup.string().required("Password is required!"),
     });
     return {
@@ -224,5 +228,7 @@ export default {
 };
 </script>
 <style scoped>
-
+.error-feedback{
+  color:red;
+}
 </style>

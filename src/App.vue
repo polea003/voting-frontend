@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div id="nav" style="Mystyle" >
+    <div id="nav" style="Mystyle">
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 py-2'>Panther Votes
+      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 pb-2'>Panther Votes
         <div id="img">
           <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
@@ -17,7 +17,6 @@
         <router-link to="/about">About</router-link>
         <router-link to="/Face">Face</router-link>
 
-     
       </div>
       <div v-if="!currentUser" class="nav-link">
         <router-link to="/register" class="nav-link">
