@@ -16,7 +16,7 @@
     <!-- Allow the user to capture photos and take other camera actions. -->
     <section id="camera" v-if="stream" class="absolute flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
       <footer>
-        <button class="capture" @click="capturePhoto">
+        <button class="capture" @click="capturePhoto(stream)">
           <img src="https://assets.codepen.io/141041/Button-Fill-White-Large.png" alt="CodePen" class="h-24 w-24" :disabled="!ready">
         </button>
       </footer>
@@ -100,7 +100,7 @@ export default {
       }
     },
      
-    async capturePhoto() {
+    async capturePhoto(stream) {
       let video = this.$refs.video
       
       let videoCanvas = document.createElement('canvas')      
@@ -138,14 +138,18 @@ export default {
       const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
       console.log(results)
       console.log(results[0].label)
-      
+      stream.getTracks().forEach(function(track) {
+      track.stop();
+});
      if(results[0].label != "unknown"){
-       
         this.$router.push("/election-Dashboard");}
      else
         this.$router.push("/login");
     },
      
+
+ 
+  
     async loadLabeledImages() {
       const labels = ['patrick', 'Tyler']
       return Promise.all(
