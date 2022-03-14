@@ -10,27 +10,27 @@
       <div v-if="!successful">
         <div class="form-group mb-6">
           <div>
-          <label for="username">Username</label>
+          <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" class="form-control border-4" />
+          <Field name="username" type="text" class="form-control border-4 border-gray-400" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="email">Email</label>
+          <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" class="form-control border-4" />
+          <Field name="email" type="email" class="form-control border-4 border-gray-400" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="password">Password</label>
+          <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" class="form-control border-4" />
+          <Field name="password" type="password" class="form-control border-4 border-gray-400" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
@@ -109,6 +109,7 @@ export default {
         .required("Password is required!")
         .min(6, "Must be at least 6 characters!")
         .max(40, "Must be maximum 40 characters!"),
+        
     });
     return {
       successful: false,
@@ -160,7 +161,7 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 10%;
+  width: 13%;
 }
 .error-feedback{
   color:red;

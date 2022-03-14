@@ -1,6 +1,6 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
 <template>
-  <div id="Election" class="border-gray border-8 rounded-2xl m-6 hover:shadow-2xl">
+  <div id="Election" class="border-grey border-8 rounded-2xl m-6">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
       <span class="flex flex-col font-serif font-bold text-4xl mb-2">{{
@@ -87,13 +87,12 @@
               class=" 
                 w-full
                 h-full
-                text-gray-100
                 font-bold
                 rounded-md
-                bg-gradient-to-r from-blue-400 to-blue-800
-                border-4 border-white
+                bg-gradient-to-r from-blue-200 to-blue-600
+                border-4 border-black
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600 hover:border-black hover:text-black': !selectedVote  }"
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600': !selectedVote  }"
             >
               {{'Vote'}}
             </div>
@@ -202,7 +201,7 @@
     
     <!-- DELETE Election BUTTON -->
     <div>
-      <div class=" border-8 m-2  rounded-md border-transparent">
+      <div class=" border-8 m-2  rounded-md border-gray-400">
         <button
           @click="deleteElection(election._id)"
           class="
@@ -211,13 +210,13 @@
             font-bold
             w-full
             h-16
+            rounded
             bg-gradient-to-r
             from-red-300
             to-red-500
             hover:from-red-600 hover:to-red-900
             border-8 
             border-current
-            rounded
             hover:border-white
             hover:text-white
           "
@@ -333,9 +332,9 @@ export default {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
     90deg,
-    rgb(255, 255, 255) 0%,
-    rgb(180, 180, 180) 50%,
-    rgb(255, 255, 255) 100%
+    rgb(194, 191, 191) 0%,
+    rgb(235, 225, 225) 50%,
+    rgb(201, 201, 201) 100%
   );
 }
 

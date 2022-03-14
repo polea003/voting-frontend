@@ -10,22 +10,23 @@
       <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
         <router-link to="/">Home</router-link>
-        <router-link to="/Login">Login</router-link>
         <router-link to="/election-Dashboard">Election Dashboard</router-link>
         <router-link to="/club-Elections">Club Elections</router-link>
-        <router-link to="/voting-History">Voting History</router-link>
+        <router-link to="/results">Voting History</router-link>
         <router-link to="/how">How It Works</router-link>
         <router-link to="/about">About</router-link>
+        <router-link to="/Face">Face</router-link>
+
+     
       </div>
-      <div class="signup-login">
-        <div v-if="!currentUser" class="nav-link">
-          <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-          <router-link to="/login2" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
-        </div>
+      <div v-if="!currentUser" class="nav-link">
+        <router-link to="/register" class="nav-link">
+          <font-awesome-icon icon="user-plus" /> Sign Up
+        </router-link>
+        <router-link to="/login" class="nav-link">
+          <font-awesome-icon icon="sign-in-alt" /> Login
+        </router-link>
+      </div>
         <div v-if="currentUser" class="navbar-nav ml-auto">
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
@@ -36,19 +37,14 @@
           </a>  
         </div>
       </div>
-    </div>
-    <router-view></router-view>
-    <!-- FOOTER -->
-    <div id="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    <router-view/>
+    <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
 </template>
 
 <script>
 export default {
   name: 'app',
-  components: {
-    
-  },
   computed: {
     currentUser() {
       return this.$store.state.auth.user;

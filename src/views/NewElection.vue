@@ -25,17 +25,36 @@
   <!-- <component v-bind:is="NewElectionForm"></component> -->
     <div>
       <div v-for="FirstName in FirstName" v-bind:key="FirstName" class="my-3 mr-2">
-        <form @submit.prevent="submitForm">
-          <input type="FirstName" v-model="FirstName.value" placeholder="First Name">
-        </form>
+         <Form  :validation-schema="schema">
+      <div v-if="!successful">
+        <div class="form-group mb-6">
+          <div>
+          <label for="FirstName" class="font-bold">First Name</label>
+          </div>
+          <Field name="FirstName" type="text" v-model="FirstName.value" class="form-control border-4 border-black" />
+          <div>
+            <ErrorMessage name="FirstName" class="error-feedback" />
+          </div>
+        </div></div></Form>
+        
       </div>
     </div>
 
     <div>
+       
     <div v-for="LastName in LastName" v-bind:key="LastName" class="my-3 ml-2">
-      <form @submit.prevent="submitForm">
-        <input type="LastName" v-model="LastName.value" placeholder="Last Name">
-      </form>
+      <Form  :validation-schema="schema">
+      <div v-if="!successful">
+        <div class="form-group mb-6">
+          <div>
+          <label for="LastName" class="font-bold">Last Name</label>
+          </div>
+          <Field name="LastName" type="text" v-model="LastName.value" class="form-control border-4 border-black" />
+          <div>
+            <ErrorMessage name="LastName" class="error-feedback" />
+          </div>
+        </div></div></Form>
+    
     </div></div>
     <!-- <Form></Form> -->
   </div>
@@ -45,8 +64,18 @@
   <div class="flex justify-center"><datepicker class="w-72" v-model="startTime"/></div>
   <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
   <div class="flex justify-center"><datepicker class="w-72" v-model="endTime"/></div>
-   
-  <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mb-5 mx-2">Create Election</button>
+    <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)"
+                class="
+                bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mb-5 mx-2
+                "
+                :disabled="loading"
+              >
+                <span
+                  v-show="loading"
+                  class="spinner-border spinner-border-sm"
+                ></span>
+                Create Election
+              </button>
 </form>  
 
 
@@ -81,14 +110,34 @@ import router from '../router'
     <input type="Candidate2LastName" v-model="Candidate2LastName" placeholder="Last Name">
   </form>`)
 }}; */
+import { Form, Field, ErrorMessage } from "vee-validate";
+import * as yup from "yup";
     export default {
       name: "NewElection",
       components: {
             // Form
-            Datepicker
+            Datepicker,
+           
+    Form,
+    Field,
+    ErrorMessage,
+ 
       },
       el: '#app',
        data: function(){
+       const schema = yup.object().shape({
+      FirstName: yup
+        .string()
+        .required("Username is required!")
+        .max(20, "Must be maximum 20 characters!"),
+      LastName: yup
+        .string()
+        .required("Username is required!")
+        .max(20, "Must be maximum 20 characters!"),
+
+    
+        
+    });  
      return {
        name: "",
        Candidate1FirstName: "",
@@ -104,6 +153,10 @@ import router from '../router'
        Vote: [],
        startTime: new Date(),
        endTime: null,
+      successful: false,
+      loading: false,
+      message: "",
+      schema,
      }},
  methods: {
    add(){
@@ -123,17 +176,29 @@ import router from '../router'
       this.LastName.pull({value: ''});
     },*/
     goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime){
+        console.log(NumberOfCandidates)
+        var i = 0;
+        while(i < NumberOfCandidates){
+        if(FirstName[i].value == "" || LastName[i].value == "")
+            throw(Error)
+        i++}
+
+        
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
         ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime)
         this.$router.push({ name:'Club-Election-Dashboard', params:{club: club} });
-    
+        
 
     }
   },
  created(){
     this.club = router.currentRoute.value.params.club
  },
- 
+ handleinput() {
+      
+      
+
+      }
     }
     /*
     <form @submit.prevent="submitForm">
