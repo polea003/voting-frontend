@@ -65,12 +65,12 @@ export default {
 
 <style>
 div.wallpaper {
-  background: url("./assets/FIU_Panthers_logo.png") no-repeat center center fixed;
+  background: url("./assets/miami-sights-data.jpg") no-repeat fixed;
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;*/
-  background-size: 120%;
-  opacity: 50%
+  background-size: 100%;
+  opacity: 100%
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -89,7 +89,7 @@ div.wallpaper {
   padding: 30px;
   background-color: rgb(4, 6, 56);
   width:auto;
-  
+  font-weight: bold;
 }
 
 #nav a {
@@ -101,14 +101,14 @@ div.wallpaper {
   margin-bottom: 0px;
   margin-right: 6px;
   margin-left: 6px;
-  border: solid 0.2em rgb(4, 6, 56); 
+  border: solid 0.3em rgb(4, 6, 56, 0);
 
 }
 #nav a.active,
 #nav a:hover {
   background-color: rgb(1, 4, 39);
-  border: groove 0.2em rgb(4, 6, 56);
-  border-color: #00c3ff8c;
+  border: groove 0.3em;
+  border-color: #00c3ffa9;
   width: auto;
 
 
