@@ -12,7 +12,7 @@
           <div>
           <label for="username">Username</label>
           </div>
-          <Field name="username" type="text" class="form-control border-2" />
+          <Field name="username" type="text" class="form-control border-4" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
@@ -21,7 +21,7 @@
           <div>
           <label for="email">Email</label>
           </div>
-          <Field name="email" type="email" class="form-control border-2" />
+          <Field name="email" type="email" class="form-control border-4" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -30,7 +30,7 @@
           <div>
           <label for="password">Password</label>
           </div>
-          <Field name="password" type="password" class="form-control border-2" />
+          <Field name="password" type="password" class="form-control border-4" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
