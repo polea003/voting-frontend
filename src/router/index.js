@@ -140,14 +140,10 @@ const routes = [
     props: true,
     component: () => import(/* webpackChunkName: "about" */ '../views/NewElection.vue')
   },
-  {
-    path: '/Login2',
-      name: 'Login',
-      props: true,
-      component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
-    },
+
     {
       path: "/login",
+      name: "login",
       component: Login,
     },
     {

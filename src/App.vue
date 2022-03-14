@@ -2,9 +2,9 @@
   <div>
     <div id="nav" style="Mystyle" >
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold text-white py-2 '>Panther Votes
+      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 py-2'>Panther Votes
         <div id="img">
-          <img :src="require(`./assets/pantherPawHand.png`)" width="85" height="85" margin-left="10"/>
+          <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
       </div> 
       <!-- TOP NAV BAR -->
@@ -42,8 +42,6 @@
   </div>
 </template>
 
-
-
 <script>
 export default {
   name: 'app',
@@ -75,6 +73,7 @@ div.wallpaper {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  padding-bottom: 50px;
   width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
@@ -90,13 +89,14 @@ div.wallpaper {
 }
 
 #nav a {
+  font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-decoration: underline;
-  color: #FFD800;
+  color: #FACC15;
   margin-top: 4px;
   margin-bottom: 0px;
-  margin-right: 8px;
-  margin-left: 8px;
+  margin-right: 6px;
+  margin-left: 6px;
   border: solid 0.2em rgb(4, 6, 56); 
 
 }
@@ -107,20 +107,29 @@ div.wallpaper {
   border-color: #00c3ff8c;
   width: auto;
 
+
 }
 #nav a.router-link-exact-active {
   font-weight: bold;
   color: #ffffff;
 
 }
-      
-footer {
+
+#footer {
   text-align: center;
+  position: fixed;
+  font-weight: 700;
+  color: white;
+  background-color: rgb(29 78 216) !important;
   height: 50px;
+  width: 100%;
   background-color: #ccc;
   padding: 10px;
-  /*margin-top: 10px;*/
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-top: 10px;
   bottom: 0px;
+  opacity: 90%;
       
 }
 
@@ -129,10 +138,10 @@ color:gray;
 }
 
 img{
-  width:85px;
-  height:85px;
-  margin-left: 10px;
-  margin-right: 10px;
+  width:80px;
+  height:80px;
+  margin-left: 15px;
+  margin-right: 15px;
 
 }
 </style>
