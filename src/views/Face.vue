@@ -5,14 +5,11 @@
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
     <section id="intro"  v-if="!stream" class="absolute flex flex-col inset-0 px-4 py-8 z-20">
       <article class="flex flex-1 flex-col items-center justify-center">
-        <img src="https://assets.codepen.io/141041/Button-Fill-Black-Large.png" alt="CodePen" class="h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
-        <h1 class="font-bold mb-4 text-2xl md:text-3xl lg:text-5xl text-center">CodePen Camera</h1>
-        <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">This is a Progressive Web App Camera built on CodePen using <a href="https://vuejs.org/" target="_blank" class="underline">Vue</a>, <a href="https://tailwindcss.com/" target="_blank" class="underline">Tailwind</a>, and <a href="http://webrtc.org/" target="_blank" class="underline">WebRTC</a>. Try adding the Debug view to your home screen and read the companion <a href="https://medium.com/@leemartin/how-to-build-a-simple-ios-home-screen-pwa-camera-using-vue-tailwind-and-webrtc-on-codepen-2d61a9754d47?source=friends_link&sk=2ed90bf1e4f52db8491636cebb4b582b" target="_blank" class="underline">blog</a> to learn more.</p>
+        <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
+        <h1 class="font-bold mb-4 text-2xl md:text-3xl lg:text-5xl text-center">Facial Recognition</h1>
+        <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">In order to vote, please click the "Allow Access" button below to enable your webcam for facial validation.</p>
+        <button @click="startCamera" class="bg-black font-bold px-4 py-2 mt-4 rounded-md text-white">Allow Access</button>
       </article>
-      
-      <footer class="text-center">
-        <button @click="startCamera" class="bg-black font-bold px-4 py-2 rounded-md text-white">Allow Access</button>
-      </footer>
     </section>
       
     <!-- Camera -- this is where the camera starts, everything above is the first page-->
