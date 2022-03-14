@@ -37,7 +37,7 @@
         </div>
       </div>
     <router-view/>
-    <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
 </template>
 
@@ -114,12 +114,12 @@ div.wallpaper {
 
 }
 
-#footer {
+div.footer {
   text-align: center;
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(29 78 216) !important;
+  background-color: rgb(4, 6, 56, 0.90) !important;
   height: 50px;
   width: 100%;
   background-color: #ccc;
@@ -128,7 +128,7 @@ div.wallpaper {
   padding-bottom: 8px;
   margin-top: 10px;
   bottom: 0px;
-  opacity: 90%;
+  /*opacity: 85%;*/
       
 }
 .signup-login{
