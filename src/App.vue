@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div>
     <div id="nav" style="Mystyle" >
       <!-- TITLE of Webpage -->
@@ -25,7 +25,7 @@
           <router-link to="/login" class="nav-link">
             <font-awesome-icon icon="sign-in-alt" /> Login
           </router-link>
-      </div>
+        </div>
         <div v-if="currentUser" class="navbar-nav ml-auto">
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
@@ -33,10 +33,9 @@
           </router-link>
           <a  @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>
-        
+          </a>  
+        </div>
       </div>
-    </div>
     <router-view/>
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
@@ -48,14 +47,14 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
-    }},
-    methods:{
-  logOut() {
+    }
+  },
+  methods:{
+    logOut() {
       this.$store.dispatch('auth/logout');
       this.$router.push('/login');
     }
-
-    }
+  }
 }
 </script>
 
@@ -132,7 +131,10 @@ div.wallpaper {
   opacity: 90%;
       
 }
+.signup-login{
+  padding-top: 10px;
 
+}
 h1 {
 color:gray;
 }
