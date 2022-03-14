@@ -18,7 +18,7 @@
               h-16
               m-4
               bg-gradient-to-r
-              from-blue-400
+              from-blue-800
               to-blue-800
               hover:from-yellow-300 hover:to-yellow-600
               font-bold
@@ -38,7 +38,7 @@
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in !clubName ? elections : elections.filter( election => election.club === clubName)" :key="election._id">
-            <ElectionComponent :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
+            <ElectionComponent class="hover:shadow-2xl" :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
           </div>
 
 

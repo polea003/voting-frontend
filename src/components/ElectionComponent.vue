@@ -88,11 +88,13 @@
                 w-full
                 h-full
                 font-bold
+                text-white
+                border-white
                 rounded-md
-                bg-gradient-to-r from-blue-200 to-blue-600
-                border-4 border-black
+                bg-gradient-to-r from-blue-400 to-blue-800
+                border-4 
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600': !selectedVote  }"
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600 hover:text-black hover:border-black': !selectedVote  }"
             >
               {{'Vote'}}
             </div>
@@ -201,7 +203,7 @@
     
     <!-- DELETE Election BUTTON -->
     <div>
-      <div class=" border-8 m-2  rounded-md border-gray-400">
+      <div class=" border-8 m-2  rounded-md border-transparent">
         <button
           @click="deleteElection(election._id)"
           class="
@@ -216,7 +218,7 @@
             to-red-500
             hover:from-red-600 hover:to-red-900
             border-8 
-            border-current
+            border-black
             hover:border-white
             hover:text-white
           "
@@ -332,9 +334,9 @@ export default {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
     90deg,
-    rgb(194, 191, 191) 0%,
-    rgb(235, 225, 225) 50%,
-    rgb(201, 201, 201) 100%
+    rgb(230, 230, 230) 0%,
+    rgb(160, 160, 160) 50%,
+    rgb(230, 230, 230) 100%
   );
 }
 
