@@ -1,5 +1,5 @@
 <template>
-  <div class="election-Dashboard">
+  <div class="election-DashUser">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     

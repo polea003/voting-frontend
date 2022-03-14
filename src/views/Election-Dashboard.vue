@@ -57,7 +57,7 @@ import ElectionService from '../services/ElectionService'
 
 export default {
   // name: 'Election-Dashboard',
-  inject:['adminFlag'],
+  //inject:['adminFlag'],
   components: {
     ElectionComponent,
     //ElectionCompUser,

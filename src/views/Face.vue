@@ -89,6 +89,7 @@ export default {
           facingMode: 'user'
         }
       })
+      //stream.stop()
       
       this.$refs.video.srcObject = this.stream
       
@@ -101,6 +102,7 @@ export default {
         this.stream = null
       }
     },
+     
     async capturePhoto() {
       let video = this.$refs.video
       
@@ -142,7 +144,7 @@ export default {
       
      if(results[0].label != "unknown"){
        
-        this.$router.push("/");}
+        this.$router.push("/election-Dashboard");}
      else
         this.$router.push("/login");
     },
