@@ -335,7 +335,7 @@ export default {
   background: linear-gradient(
     90deg,
     rgb(230, 230, 230) 0%,
-    rgb(160, 160, 160) 50%,
+    rgb(175, 175, 175) 50%,
     rgb(230, 230, 230) 100%
   );
 }

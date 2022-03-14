@@ -18,7 +18,7 @@
               h-16
               m-4
               bg-gradient-to-r
-              from-blue-800
+              from-blue-400
               to-blue-800
               hover:from-yellow-300 hover:to-yellow-600
               font-bold
