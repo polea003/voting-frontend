@@ -353,7 +353,7 @@ table tr {
   /*border: 1px solid black;*/
 }
 table td {
-    border-bottom: 3px solid #000;
+    border-bottom: 3px double #000;
       padding:10px;
     /*border-right: 1px solid #000;*/
 }
