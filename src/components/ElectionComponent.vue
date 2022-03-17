@@ -1,12 +1,12 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
 <template>
-  <div id="Election" class="border-grey border-8 rounded-2xl m-6">
+  <div id="Election" class="border-gray-300 rounded-2xl m-7">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
-      <span class="flex flex-col font-serif font-bold text-4xl mb-2">{{
+      <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="flex flex-col font-serif font-bold text-3xl">{{
+            <span class="titleBall flex flex-col font-serif font-bold text-3xl">{{
         `${election.Poisition}`
       }}</span>
     </div>
@@ -20,7 +20,7 @@
     <table width="760"> 
       <!-- Column First Names -->
       <tr>
-        <td class="font-serif text-xl font-bold">
+        <td class="titleBall font-serif text-xl font-bold">
           First Name
         </td>
         <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
@@ -31,6 +31,7 @@
               text-lg
               overflow-hidden
               truncate
+              bg-gray-100
              
             "
           >
@@ -41,7 +42,7 @@
 
       <!-- Column Last Names -->
       <tr>
-        <td class="font-serif text-xl font-bold">
+        <td class="titleBall font-serif text-xl font-bold">
           Last Name
         </td>
         <div v-for="LastName in election.LastName" v-bind:key="LastName">
@@ -52,6 +53,7 @@
               text-lg 
               overflow-hidden
               truncate
+              bg-gray-100
             "
           >
             {{ LastName.value }}
@@ -61,14 +63,14 @@
 
       <!-- Column for Vote Button -->
       <tr>
-        <td class="font-serif text-xl font-bold">
+        <td class="titleBall font-serif text-xl font-bold">
           Selection
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
         >
-          <td height="60" class="font-serif font-bold text-lg">
+          <td height="60" class="font-serif font-bold text-lg bg-gray-100">
             <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
@@ -89,7 +91,7 @@
                 h-full
                 font-bold
                 text-white
-                border-white
+                border-gray-300
                 rounded-md
                 bg-gradient-to-r from-blue-400 to-blue-800
                 border-4 
@@ -129,6 +131,7 @@
                       @click="confirmationOpen = false"
                       class="
                         font-bold
+                        text-xl
                         w-32
                         px-6
                         py-2
@@ -146,7 +149,7 @@
                     </button>
                     <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                     <button
-                      class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                      class="w-32 font-bold text-xl px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
                       @click="ProcessVote(election._id, NumberOfCandidates)"
                     >
                       Vote
@@ -162,11 +165,11 @@
       <tr>
         <div>
           <td
-            class="font-serif text-xl font-bold"
+            class="titleBall font-serif text-xl font-bold "
           >
             {{`Vote Count`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
               <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11" color="red" scale="0.2" />
@@ -183,11 +186,11 @@
       <tr>
         <div>
           <td
-            class="font-serif text-xl font-bold"
+            class="titleBall font-serif text-xl font-bold"
           >
             {{`Blockchain`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
               <div v-if="loadingBlockchainVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11" color="red" scale="0.2" />
@@ -203,7 +206,7 @@
     
     <!-- DELETE Election BUTTON -->
     <div>
-      <div class=" border-8 m-2  rounded-md border-transparent">
+      <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="deleteElection(election._id)"
           class="
@@ -333,13 +336,34 @@ export default {
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
-    90deg,
-    rgb(230, 230, 230) 0%,
-    rgb(175, 175, 175) 50%,
-    rgb(230, 230, 230) 100%
+    50deg,
+    rgb(180, 180, 180) 0%,
+    rgba(230, 230, 230) 10%,
+    rgba(255, 255, 255) 20%,
+    rgba(230, 230, 230) 30%,
+    rgb(180, 180, 180) 40%,
+    rgb(205, 205, 205) 50%,
+    rgba(180, 180, 180) 60%,
+    rgb(220, 220, 220) 70%,
+    rgba(235, 235, 235) 80%,
+    rgb(230, 230, 230) 90%,
+    rgb(160, 160, 160) 100%
+    
+        /*rgba(4, 6, 56, 0.50) 50%,
+    rgb(250, 204, 21, 0.50) 100%*/
   );
+  border-width: 11px;
 }
-
+span.titleBall{
+  color:black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.9);
+}
+td.titleBall{
+  color:black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.5);
+}
 /* Changes Format from building Table from Rows to Columns*/
 table {
   display: table;
@@ -349,12 +373,12 @@ table {
 }
 table tr {
   display: table-cell;
-  
+
   /*border: 1px solid black;*/
 }
 table td {
-    border-bottom: 3px double #000;
-      padding:10px;
+    border-bottom: 3px double rgba(100, 100, 100, 0.7);
+    padding:10px;
     /*border-right: 1px solid #000;*/
 }
 /*
@@ -371,4 +395,7 @@ table tr td {
   /*border: 1px solid black;*/
 
 }
+/*div{
+  color:rgba(4, 6, 56)
+}*/
 </style>

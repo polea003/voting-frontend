@@ -2,7 +2,7 @@
   <div>
     <div id="nav" style="Mystyle">
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 pb-2'>Panther Votes
+      <div class='title flex flex-wrap justify-center font-serif pb-2'>Panther Votes
         <div id="img">
           <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
@@ -85,6 +85,7 @@ div.wallpaper {
   background-color: rgb(4, 6, 56);
   width:auto;
   font-weight: bold;
+  
 }
 
 #nav a {
@@ -137,6 +138,8 @@ div.footer {
 }
 h1 {
 color:gray;
+-webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
 }
 
 img{
@@ -145,5 +148,16 @@ img{
   margin-left: 15px;
   margin-right: 15px;
 
+}
+/*text-7xl font-bold font-serif */
+div.title{
+  color: rgba(251, 191, 36, 1.0);
+ -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+ -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
+  font-size: 4.5rem; /* 72px */
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing:1px;
 }
 </style>
