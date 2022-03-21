@@ -155,7 +155,7 @@ export default {
       return Promise.all(
         labels.map(async label => {
           const descriptions = []
-          const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
+          const img = await faceapi.fetchImage('url(' + 'http://localhost:5000/api/upload/files/1647817587992-bezkoder-headshot.PNG' + ')')
           console.log('huh')
           console.log(img.src)
           const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()

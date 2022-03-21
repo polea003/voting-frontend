@@ -8,6 +8,7 @@
     />
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
+        
         <div class="form-group mb-6">
           <div>
           <label for="username" class="font-bold">Name</label>

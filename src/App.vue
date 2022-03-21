@@ -15,6 +15,8 @@
       <router-link to="/about">Voting History</router-link>
       <router-link to="/how">How It Works</router-link>
       <router-link to="/Face">Face</router-link>
+      <router-link to="/uploadPicture">upload</router-link>
+
 
      
     </div>

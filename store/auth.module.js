@@ -34,7 +34,9 @@ export const auth = {
           return Promise.reject(error);
         }
       );
-    }
+    },
+   
+   
   },
   mutations: {
     loginSuccess(state, user) {
