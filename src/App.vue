@@ -93,10 +93,13 @@ div.wallpaper {
   font-size: 20px;
   text-decoration: underline;
   color: #FACC15;
-  margin-top: 4px;
+
+ -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+ -webkit-text-stroke-width: 1 px;
+  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
   margin-bottom: 0px;
-  margin-right: 6px;
-  margin-left: 6px;
+  margin-right: 5px;
+  margin-left: 5px;
   border: solid 0.3em rgb(4, 6, 56, 0);
 
 }
@@ -104,7 +107,7 @@ div.wallpaper {
 #nav a:hover {
   background-color: rgb(1, 4, 39);
   border: groove 0.3em;
-  border-color: #00c3ffa9;
+  border-color: #00c3ffa9; 
   width: auto;
 
 
