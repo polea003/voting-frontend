@@ -1,6 +1,6 @@
 <template>
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
-    <img id='img1' src='http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' crossorigin='anonymous'/>
+    <img id='img1' class="invisible" src='http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' crossorigin='anonymous'/>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
@@ -12,7 +12,7 @@
         <button @click="startCamera" class="bg-black font-bold px-4 py-2 mt-4 rounded-md text-white">Allow Access</button>
       </article>
     </section>
-      
+    
     <!-- Camera -- this is where the camera starts, everything above is the first page-->
     <!-- Allow the user to capture photos and take other camera actions. -->
     <section id="camera" v-if="stream" class="absolute flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
@@ -181,7 +181,7 @@ console.log(img1)
           const descriptions = []
           //const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
           console.log('huh')
-        // console.log(img)
+          //console.log(img)
          // console.log("hererererere->>>>>>"+ this.data1)
 
           const detections = await faceapi.detectSingleFace(img1).withFaceLandmarks().withFaceDescriptor()

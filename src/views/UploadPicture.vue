@@ -35,6 +35,7 @@
 
 <script>
 
+import axios from "axios"
 import PictureService from "../services/Picture.Service"
 //import axios from 'axios'
 export default ({
@@ -49,6 +50,7 @@ export default ({
   },
       created(){
                this.getimages()
+               axios.put('http://localhost:5000/api/users/update')
     },
      methods:{
 
