@@ -197,7 +197,7 @@ export default {
         () => {
                       console.log("hello2")
 
-          this.$router.push("/profile");
+          this.$router.push("/Face");
         },
         (error) => {
           this.loading = false;
