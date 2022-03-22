@@ -1,5 +1,6 @@
 <template>
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
+    <img id='img1' src='http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' crossorigin='anonymous'/>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
@@ -70,7 +71,7 @@ export default {
     return {
       stream: null,
       ready: false,
-      photo: null
+      photo: null,
     }
   },
   methods: {
@@ -149,16 +150,41 @@ export default {
      
 
  
-  
+   async toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      callback(reader.result);
+    }
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+},
+            
     async loadLabeledImages() {
+      
+      var img1 = document.getElementById('img1');
+      img1.onload = function(){
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(this,0,0);
+        var data = canvas.toDataURL('image/jpeg');
+        console.log(data)
+      }
+console.log(img1)
       const labels = ['patrick', 'Tyler']
       return Promise.all(
         labels.map(async label => {
           const descriptions = []
-          const img = await faceapi.fetchImage('url(' + 'http://localhost:5000/api/upload/files/1647817587992-bezkoder-headshot.PNG' + ')')
+          //const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
           console.log('huh')
-          console.log(img.src)
-          const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+        // console.log(img)
+         // console.log("hererererere->>>>>>"+ this.data1)
+
+          const detections = await faceapi.detectSingleFace(img1).withFaceLandmarks().withFaceDescriptor()
           descriptions.push(detections.descriptor)
           return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })

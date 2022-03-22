@@ -32,6 +32,7 @@
           <router-link to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.name }}
+            <img src=http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG>
           </router-link>
           <a  @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut

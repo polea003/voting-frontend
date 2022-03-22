@@ -14,7 +14,19 @@
 												class="mb-4">
 												<div
 													class="add-button object-cover h-48 w-48"
-													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/1647817587992-bezkoder-headshot.PNG' + ')' }">
+													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' + ')' }">
+												</div>
+												
+											</div>
+                                            <div v-for="names in names" v-bind:key="names" 
+												
+												cols="12"
+												sm="5"
+												md="3"
+												class="mb-4">
+												<div
+													class="add-button object-cover h-48 w-48"
+													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/' + names + ')' }">
 												</div>
 												
 											</div>
@@ -31,7 +43,8 @@ export default ({
     
     data () {
     return {
-     images: []
+     images: [],
+     names: []
     }
   },
       created(){
@@ -51,7 +64,12 @@ export default ({
 
          async getimages(){
               this.images= await PictureService.getPicture()
-             console.log(this.images.data[0])
+             
+             for(let i = 0; i < this.images.data.length; i++){
+                 this.names[i] = (this.images.data[i].name)
+             }
+            
+
          }
      }
 
