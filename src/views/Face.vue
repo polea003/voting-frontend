@@ -1,10 +1,11 @@
 <template>
+
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
     <img id='img1' class="invisible" src='http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' crossorigin='anonymous'/>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
-    <section id="intro"  v-if="!stream" class="absolute flex flex-col inset-0 px-4 py-8 z-20">
+    <section id="intro"  v-if="!stream" class=" flex flex-col inset-0 px-4 py-8 z-20">
       <article class="flex flex-1 flex-col items-center justify-center">
         <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
         <h1 class="font-bold mb-4 text-2xl md:text-3xl lg:text-5xl text-center">Facial Recognition</h1>
@@ -15,7 +16,7 @@
     
     <!-- Camera -- this is where the camera starts, everything above is the first page-->
     <!-- Allow the user to capture photos and take other camera actions. -->
-    <section id="camera" v-if="stream" class="absolute flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
+    <section id="camera" v-if="stream" class=" flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
       <footer>
         <button class="capture" @click="capturePhoto(stream)">
           <img src="https://assets.codepen.io/141041/Button-Fill-White-Large.png" alt="CodePen" class="h-24 w-24" :disabled="!ready">
@@ -26,7 +27,8 @@
     <!-- Download -->
     <!-- ---------- -->
     <!-- Allow the user to preview and download the captured photo or return to camera. -->
-    <section id="download" v-if="photo" class="absolute bg-white flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
+    
+    <section id="download" v-if="photo" class=" bg-white flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
       <header>
         <button @click="photo = null">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="h-10 md:h-12 lg:h-16 w-10 lg:w-12 md:w-16"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -46,8 +48,9 @@
     
     <!-- Video -->
     <!-- ---------- -->
-    <video ref="video" class="absolute h-full inset-0 object-cover w-full z-10" autoplay muted playsinline></video>
+    <video ref="video" class=" h-full inset-0 object-cover w-full z-10" autoplay muted playsinline></video>
   </main>
+
 </template>
 <script>
 // import not require
