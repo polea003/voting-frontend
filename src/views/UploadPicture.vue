@@ -55,11 +55,14 @@ export default ({
      methods:{
 
          Upload(){
+             console.log(this.$refs.input.files[0])
+             const myRenamedFile = new File([this.$refs.input.files[0]], 'renamedFile.jpg', { type: "image/jpeg" });
+             console.log(myRenamedFile)
              let formData = new FormData()
-             formData.append('file', this.$refs.input.files[0])
-            // console.log(formData)
+             formData.append('file', myRenamedFile)
+            console.log(formData)
 
-           // axios.post(`http://localhost:5000/api/uploads`, formData)
+        //    // axios.post(`http://localhost:5000/api/uploads`, formData)
             PictureService.uploadPicture(formData)
 
          },
