@@ -1,5 +1,5 @@
 import axios from 'axios'
-const url = 'http://localhost:5000/api/users'
+const url = '/api/api/users'
 
 class UserService{
 

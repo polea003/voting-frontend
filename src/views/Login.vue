@@ -146,7 +146,7 @@
              <div class="col-sm-4">
       <div class="card">
         <div class="card-body">
-          <a class="btn btn-block btn-social btn-google" href="http://localhost:5000/api/oauth/auth/google" role="button">
+          <a class="btn btn-block btn-social btn-google" href="/api/api/oauth/auth/google" role="button">
             <i class="fab fa-google"></i>
             Sign In with Google
           </a>

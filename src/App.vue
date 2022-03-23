@@ -49,7 +49,7 @@ export default {
     },
     userImg() {
       if (!this.currentUser) return undefined
-      return `http://localhost:5000/api/upload/files/${this.currentUser._id}`
+      return `/api/api/upload/files/${this.currentUser._id}`
     }
   },
   methods:{

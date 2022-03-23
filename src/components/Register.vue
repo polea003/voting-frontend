@@ -139,7 +139,7 @@ export default {
       if (!this.profileImageId) {
         return '//ssl.gstatic.com/accounts/ui/avatar_2x.png'
       }
-      return `http://localhost:5000/api/upload/files/${this.profileImageId}`
+      return `/api/api/upload/files/${this.profileImageId}`
     }
   },
   mounted() {

@@ -83,7 +83,7 @@ export default {
       return this.$store.state.auth.user;
     },
     imgurl(){
-      return `http://localhost:5000/api/upload/files/${this.currentUser._id}`
+      return `/api/api/upload/files/${this.currentUser._id}`
     }
     },
   methods: {

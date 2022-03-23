@@ -14,7 +14,7 @@
 												class="mb-4">
 												<div
 													class="add-button object-cover h-48 w-48"
-													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' + ')' }">
+													:style="{ 'background-image': 'url(' + '/api/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' + ')' }">
 												</div>
 												
 											</div>
@@ -26,7 +26,7 @@
 												class="mb-4">
 												<div
 													class="add-button object-cover h-48 w-48"
-													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/' + names + ')' }">
+													:style="{ 'background-image': 'url(' + '/api/api/upload/files/' + names + ')' }">
 												</div>
 												
 											</div>
@@ -50,7 +50,7 @@ export default ({
   },
       created(){
                this.getimages()
-               axios.put('http://localhost:5000/api/users/update')
+               axios.put('/api/api/users/update')
     },
      methods:{
 
@@ -62,7 +62,7 @@ export default ({
              formData.append('file', myRenamedFile)
             console.log(formData)
 
-        //    // axios.post(`http://localhost:5000/api/uploads`, formData)
+        //    // axios.post(`/api/api/uploads`, formData)
             PictureService.uploadPicture(formData)
 
          },
