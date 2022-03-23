@@ -150,11 +150,11 @@ export default {
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
       console.log(results)
-      console.log(results[0].label)
+      // console.log(results[0].label)
       stream.getTracks().forEach(function(track) {
       track.stop();
 });
-     if(results[0].label != "unknown"){
+     if(results.length > 0 && results[0].label != "unknown"){
         this.$router.push("/election-Dashboard");}
      else
         this.$router.push("/login");
