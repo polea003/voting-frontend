@@ -88,6 +88,7 @@ NEED MOBILE VERSION-->
             <div v-else
               @click="!selectedVote ? confirmVote(index) : {}"
               class=" 
+                font-sans
                 w-full
                 h-full
                 font-bold
@@ -132,7 +133,8 @@ NEED MOBILE VERSION-->
                       @click="confirmationOpen = false"
                       class="
                         font-bold
-                        text-xl
+                        font-sans
+                        text-2xl
                         w-32
                         px-6
                         py-2
@@ -151,7 +153,7 @@ NEED MOBILE VERSION-->
                     </button>
                     <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                     <button
-                      class="w-32 font-bold text-xl px-6 py-2 mx-6 mb-2 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                      class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
                       @click="ProcessVote(election._id, NumberOfCandidates)"
                     >
                       Vote
@@ -364,12 +366,12 @@ export default {
 span.titleBall{
   color:black;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgba(180, 180, 180, 0.9);
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.4);
 }
 td.titleBall{
   color:black;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgba(180, 180, 180, 0.5);
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.2);
 }
 /* Changes Format from building Table from Rows to Columns*/
 table {
@@ -384,7 +386,7 @@ table tr {
   /*border: 1px solid black;*/
 }
 table td {
-    border-bottom: 3px double rgba(100, 100, 100, 0.7);
+    border-bottom: 1px double rgba(100, 100, 100, 0.7);
     padding:10px;
     /*border-right: 1px solid #000;*/
 }
