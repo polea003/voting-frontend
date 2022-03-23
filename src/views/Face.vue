@@ -157,6 +157,7 @@ export default {
      if(results[0].label != "unknown"){
         this.$router.push("/election-Dashboard");}
      else
+        this.$store.dispatch('auth/logout');
         this.$router.push("/login");
     },
      
@@ -192,7 +193,6 @@ console.log(img1)
         labels.map(async label => {
           const descriptions = []
           //const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
-          console.log('huh')
           //console.log(img)
          // console.log("hererererere->>>>>>"+ this.data1)
 
