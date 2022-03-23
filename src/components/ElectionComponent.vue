@@ -115,7 +115,7 @@
                 "
               >
                 <!-- Confirmation PopUp -->
-                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
+                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex justify-center">
                     <h3 class="text-2xl">Please Confrim</h3>

@@ -98,3 +98,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.hover\:shadow-2xl:hover {
+    --tw-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.90);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+</style>
