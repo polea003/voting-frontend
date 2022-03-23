@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app">
     <div id="nav" style="Mystyle">
       <!-- TITLE of Webpage -->
       <div class='title flex flex-wrap justify-center font-serif pb-2'>Panther Votes
@@ -59,21 +59,21 @@ export default {
 </script>
 
 <style>
-div.wallpaper {
+/*div.wallpaper {
   background: url("./assets/miami-sights-data.jpg") no-repeat fixed;
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;*/
-  background-size: 100%;
+ /* background-size: 100%;
   opacity: 100%
-}
+}*/
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 50px;
-  width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
+  width: 100%; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
      /* color: #15e1f0;  */
@@ -98,16 +98,17 @@ div.wallpaper {
  -webkit-text-stroke-width: 1 px;
   -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
   margin-bottom: 0px;
-  margin-right: 5px;
-  margin-left: 5px;
-  border: solid 0.3em rgb(4, 6, 56, 0);
+  margin-right: 1px;
+  margin-left: 1px;
+  border: solid 0.5em rgb(4, 6, 56, 0);
 
 }
 #nav a.active,
 #nav a:hover {
   background-color: rgb(1, 4, 39);
-  border: groove 0.3em;
+  border: groove 0.5em;
   border-color: #00c3ffa9; 
+  border-radius: 25px;
   width: auto;
 
 
@@ -150,6 +151,7 @@ img{
   height:80px;
   margin-left: 15px;
   margin-right: 15px;
+  border-color: #FACC15;
 
 }
 /*text-7xl font-bold font-serif */

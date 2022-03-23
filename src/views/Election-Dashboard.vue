@@ -38,7 +38,7 @@
         <div class="flex flex-wrap justify-center">
 
           <div v-for="election in !clubName ? elections : elections.filter( election => election.club === clubName)" :key="election._id">
-            <ElectionComponent class="hover:shadow-2xl" :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
+            <ElectionComponent class="hover:shadow-2xl hover:border-yellow-400" :election="election" :blockchainVotes="blockchainVotes.filter(vote => vote.electionId === election._id)" @update="fetchElectionsAndBlockchainVotes()"/>
           </div>
 
 
@@ -101,7 +101,7 @@ export default {
 
 <style scoped>
 .hover\:shadow-2xl:hover {
-    --tw-shadow: 0 25px 50px -12px rgba(251, 191, 36, 0.90);
+    --tw-shadow: 0 25px 50px 10px rgba(251, 191, 36, 0.95);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 </style>

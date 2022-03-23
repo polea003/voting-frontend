@@ -1,4 +1,5 @@
-<!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
+<!--Displays Election Balot, TODO make seperate Admin and Voter Balots 
+NEED MOBILE VERSION-->
 <template>
   <div id="Election" class="border-gray-300 rounded-2xl m-7">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
@@ -15,13 +16,13 @@
     <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
     <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
 
-    <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) -->
+    <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
-    <table width="760"> 
+    <table width="360"> 
       <!-- Column First Names -->
       <tr>
         <td class="titleBall font-serif text-xl font-bold">
-          First Name
+          First
         </td>
         <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
           <td
@@ -43,7 +44,7 @@
       <!-- Column Last Names -->
       <tr>
         <td class="titleBall font-serif text-xl font-bold">
-          Last Name
+          Last
         </td>
         <div v-for="LastName in election.LastName" v-bind:key="LastName">
           <td
@@ -64,13 +65,13 @@
       <!-- Column for Vote Button -->
       <tr>
         <td class="titleBall font-serif text-xl font-bold">
-          Selection
+         {{`Select`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
         >
-          <td height="60" class="font-serif font-bold text-lg bg-gray-100">
+          <td height="60" class="font-serif font-bold text-xl bg-gray-100">
             <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
@@ -91,16 +92,16 @@
                 h-full
                 font-bold
                 text-white
-                border-gray-300
+                border-blue-200
                 rounded-md
                 bg-gradient-to-r from-blue-400 to-blue-800
                 border-4 
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600 hover:text-black hover:border-black': !selectedVote  }"
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
               {{'Vote'}}
             </div>
-
+<!-- End of Vote button -->
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
@@ -135,7 +136,8 @@
                         w-32
                         px-6
                         py-2
-                        mr-6
+                        mx-6
+                        mb-6
                         text-black
                         bg-white
                         border-4 border-red-600
@@ -149,7 +151,7 @@
                     </button>
                     <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                     <button
-                      class="w-32 font-bold text-xl px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                      class="w-32 font-bold text-xl px-6 py-2 mx-6 mb-2 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
                       @click="ProcessVote(election._id, NumberOfCandidates)"
                     >
                       Vote
@@ -161,13 +163,13 @@
         </div>
       </tr>
 
-      <!-- Column DISPLAYing mongoDB Vote Count -->
+      <!-- Column DISPLAYing mongoDB Vote Count NOW DISPLAYS BOTH MongoDB and Blockchain as a ratio-->
       <tr>
         <div>
           <td
             class="titleBall font-serif text-xl font-bold "
           >
-            {{`Vote Count`}}
+            {{`Tally`}}
           </td>
           <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
@@ -175,7 +177,12 @@
                 <Preloader class="-mt-11" color="red" scale="0.2" />
               </div>
               <div v-else class="font-serif text-lg">
-                Votes: {{ Vote.value }}
+                <div v-if=" (Vote.value - blockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
+                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                </div>
+                <div v-else class="text-red-500">
+                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                </div>
               </div>
             </td>
           </div>
@@ -183,7 +190,7 @@
       </tr>
 
       <!-- Column DISPLAYing BlockChain Vote Count -->
-      <tr>
+      <!--<tr>
         <div>
           <td
             class="titleBall font-serif text-xl font-bold"
@@ -201,7 +208,7 @@
             </td>
           </div>
         </div>
-      </tr>
+      </tr>-->
     </table>
     
     <!-- DELETE Election BUTTON -->
