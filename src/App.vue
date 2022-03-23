@@ -2,40 +2,38 @@
   <div>
     <div id="nav" style="Mystyle" >
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400 py-2'>Panther Votes
+      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400'>Panther Votes
         <div id="img">
           <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
       </div> 
       <!-- TOP NAV BAR -->
-      <div class="flex flex-wrap justify-center">
+      <div class="flex flex-wrap justify-center items-end h-12">
       <router-link to="/">Home</router-link>
       <router-link to="/election-Dashboard">Election Dashboard</router-link>
       <router-link to="/club-Elections">Club Elections</router-link>
       <router-link to="/about">Voting History</router-link>
       <router-link to="/how">How It Works</router-link>
 
+          <router-link v-if="!currentUser" to="/register">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+          <router-link v-if="!currentUser" to="/login" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          </router-link>
+          <router-link v-if="currentUser" to="/profile" class="nav-link">
+            <font-awesome-icon icon="user" />
+            {{ currentUser.name }}
+          </router-link>
+          <a  v-if="currentUser" @click="logOut()">
+            <font-awesome-icon icon="sign-out-alt" /> LogOut
+          </a>  
+            <img class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
+
 
      
     </div>
-     <div v-if="!currentUser" class="nav-link">
-          <router-link to="/register" class="nav-link">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-          <router-link to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
-        </div>
-        <div v-if="currentUser" class="navbar-nav ml-auto">
-          <router-link to="/profile" class="nav-link">
-            <font-awesome-icon icon="user" />
-            {{ currentUser.name }}
-            <img src=http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG>
-          </router-link>
-          <a  @click="logOut()">
-            <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>  
-        </div>
+
       </div>
     <router-view/>
     <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
@@ -48,6 +46,10 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
+    },
+    userImg() {
+      if (!this.currentUser) return undefined
+      return `http://localhost:5000/api/upload/files/${this.currentUser._id}`
     }
   },
   methods:{
