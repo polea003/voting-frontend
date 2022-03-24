@@ -2,13 +2,18 @@
 
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
     <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
-   <div v-if="currentUser" class="navbar-nav ml-auto"> <span> {{ currentUser.name }}</span> </div>
+   <div v-if="currentUser" class="navbar-nav mx-auto"> <span class="text-2xl"> {{ currentUser.name }}</span> </div>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
-    <section id="intro"  v-if="!stream" class="flex flex-col inset-0 px-4 py-8 z-20">
+    <section id="intro"  v-if="!stream" class="flex flex-col inset-0 px-4 py-4 z-20">
       <article class="flex flex-1 flex-col items-center justify-center">
-        <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
+        <div v-if="currentUser">
+        <img v-show="imgurl" :src="imgurl" class="mx-auto my-4 w-96 h-auto">
+        </div>
+        <div v-else>
+          <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
+          </div>
         <h1 class="font-bold mb-4 text-2xl md:text-3xl lg:text-5xl text-center">Facial Recognition</h1>
         <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">In order to vote, please click the "Allow Access" button below to enable your webcam for facial validation.</p>
         <button @click="startCamera" class="bg-black font-bold px-4 py-2 mt-4 rounded-md text-white">Allow Access</button>
@@ -19,8 +24,30 @@
     <!-- Allow the user to capture photos and take other camera actions. -->
     <section id="camera" v-if="stream" class="flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
       <footer>
-        <button class="capture" @click="capturePhoto(stream)">
-          <img src="https://assets.codepen.io/141041/Button-Fill-White-Large.png" alt="CodePen" class="h-24 w-24" :disabled="!ready">
+        <button @click="capturePhoto(stream)" 
+                class="capture
+                flex
+                items-center
+                justify-center
+                font-bold
+                text-white
+                text-3xl
+                w-32
+                h-32
+                m-6
+                mt-8
+                cursor-pointer
+                rounded-full
+                border-8 border-inherit
+                bg-gradient-to-r
+                from-blue-400
+                to-blue-800
+                hover:from-yellow-300 hover:to-yellow-600
+                hover:border-black 
+                hover:text-black" 
+                >
+          <img :src="require(`../assets/camera-transparent-png-12.png`)" class="h-20 w-20" :disabled="!ready">
+        
         </button>
       </footer>
     </section>

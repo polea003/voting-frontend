@@ -33,8 +33,9 @@
           <a  v-if="currentUser" @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
           </a>  
-            <img class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
-
+          <div class="flex flex-wrap justify-center mt-4">
+            <img class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
+          </div>
 
      
     </div>
@@ -89,7 +90,11 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
   background-color: rgb(4, 6, 56);
   width:auto;
   font-weight: bold;
@@ -116,7 +121,7 @@ export default {
   background-color: rgb(1, 4, 39);
   border: groove 0.5em;
   border-color: #00c3ffa9; 
-  border-radius: 25px;
+  border-radius: 26px;
   width: auto;
 
 
@@ -132,8 +137,8 @@ div.footer {
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(4, 6, 56, 0.90) !important;
-  height: 50px;
+  background-color: rgb(4, 6, 56, 0.88) !important;
+  height: 60px;
   width: 100%;
   background-color: #ccc;
   padding: 10px;

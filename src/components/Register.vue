@@ -13,7 +13,7 @@
           <div>
           <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" placeholder="NameName" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
@@ -22,7 +22,7 @@
           <div>
           <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -31,16 +31,16 @@
           <div>
           <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
         </div>
 
-        <div class="form-group mb-6 flex w-full justify-center">
+        <div class="flex flex-wrap justify-center mb-6 mt-6">
           <div class="custom-file flex flex-col mb-3">
             <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
-            <input type="file" name="pic" id="upload" class="w-60 pl-4 mt-2" ref="input">
+            <input type="file" name="pic" id="upload" class="file-look" ref="input">
           </div>
         </div>
 
@@ -179,6 +179,7 @@ export default {
   },
 };
 </script>
+
 <style scoped>
 img {
   padding-top: 6px;
@@ -190,5 +191,15 @@ img {
 }
 .error-feedback{
   color:red;
+}
+div.form-control{
+  width: 60px;
+  height: 10px;
+}
+.file-look{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 69%;
 }
 </style>
