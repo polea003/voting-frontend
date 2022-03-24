@@ -1,5 +1,8 @@
 <template>
+
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
+    <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
+   <div v-if="currentUser" class="navbar-nav ml-auto"> <span> {{ currentUser.name }}</span> </div>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
@@ -11,7 +14,7 @@
         <button @click="startCamera" class="bg-black font-bold px-4 py-2 mt-4 rounded-md text-white">Allow Access</button>
       </article>
     </section>
-      
+    
     <!-- Camera -- this is where the camera starts, everything above is the first page-->
     <!-- Allow the user to capture photos and take other camera actions. -->
     <section id="camera" v-if="stream" class="flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
@@ -47,6 +50,7 @@
     <!-- ---------- -->
     <video ref="video" class="h-full inset-0 object-cover w-full z-10" autoplay muted playsinline></video>
   </main>
+
 </template>
 <script>
 // import not require
@@ -58,7 +62,7 @@ import * as faceapi from "face-api.js"
 
 // const REFERENCE_IMAGE = 'assets/pat.png'
 
-export default {
+export default { 
   async mounted () {
     await Promise.all([
       faceapi.nets.faceRecognitionNet.loadFromUri('/models'),
@@ -70,9 +74,17 @@ export default {
     return {
       stream: null,
       ready: false,
-      photo: null
+      photo: null,
     }
   },
+  computed:{
+   currentUser() {
+      return this.$store.state.auth.user;
+    },
+    imgurl(){
+      return `http://localhost:5000/api/upload/files/${this.currentUser._id}`
+    }
+    },
   methods: {
     async start () {
       console.log('start')
@@ -137,11 +149,12 @@ export default {
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
       console.log(results)
-      console.log(results[0].label)
+
       stream.getTracks().forEach(function(track) {
       track.stop();
 });
-     if(results[0].label != "unknown"){
+     if(results.length > 0 && results[0].label != "unknown"){
+        console.log(results[0].label)
         this.$router.push("/election-Dashboard");}
      else
         this.$router.push("/login");
@@ -149,16 +162,37 @@ export default {
      
 
  
-  
+   async toDataURL(url, callback) {
+  var xhr = new XMLHttpRequest();
+  xhr.onload = function() {
+    var reader = new FileReader();
+    reader.onloadend = function() {
+      callback(reader.result);
+    }
+    reader.readAsDataURL(xhr.response);
+  };
+  xhr.open('GET', url);
+  xhr.responseType = 'blob';
+  xhr.send();
+},
+            
     async loadLabeledImages() {
-      const labels = ['patrick', 'Tyler']
+      
+      var img1 = document.getElementById('img1');
+      img1.onload = function(){
+        var canvas = document.createElement('canvas');
+        var ctx = canvas.getContext('2d');
+        ctx.drawImage(this,0,0);
+        var data = canvas.toDataURL('image/jpeg');
+        console.log(data)
+      }
+console.log(img1)
+      const labels = ['Face Recognized: Access granted']
       return Promise.all(
         labels.map(async label => {
           const descriptions = []
-          const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
-          console.log('huh')
-          console.log(img.src)
-          const detections = await faceapi.detectSingleFace(img).withFaceLandmarks().withFaceDescriptor()
+
+          const detections = await faceapi.detectSingleFace(img1).withFaceLandmarks().withFaceDescriptor()
           descriptions.push(detections.descriptor)
           return new faceapi.LabeledFaceDescriptors(label, descriptions)
         })

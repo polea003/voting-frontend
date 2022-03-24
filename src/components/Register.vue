@@ -3,11 +3,12 @@
     <h1 class="text-5xl font-bold m-5">Sign Up </h1>
     <img
       id="profile-img"
-      src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+      :src="imageSrc"
       class="profile-img-card"
     />
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
+        
         <div class="form-group mb-6">
           <div>
           <label for="username" class="font-bold">Name</label>
@@ -35,6 +36,16 @@
             <ErrorMessage name="password" class="error-feedback" />
           </div>
         </div>
+
+        <div class="form-group mb-6 flex w-full justify-center">
+          <div class="custom-file flex flex-col mb-3">
+            <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
+            <input type="file" name="pic" id="upload" class="w-60 pl-4 mt-2" ref="input">
+          </div>
+        </div>
+
+
+
         <div class="form-group">
           <div class="flex justify-center">
             <div class="flex h-full justify-center">
@@ -82,6 +93,7 @@
   </div>
 </template>
 <script>
+import PictureService from "../services/Picture.Service"
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 export default {
@@ -116,12 +128,19 @@ export default {
       loading: false,
       message: "",
       schema,
+      profileImageId: undefined
     };
   },
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
     },
+    imageSrc () {
+      if (!this.profileImageId) {
+        return '//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+      }
+      return `http://localhost:5000/api/upload/files/${this.profileImageId}`
+    }
   },
   mounted() {
     if (this.loggedIn) {
@@ -134,10 +153,16 @@ export default {
       this.successful = false;
       this.loading = true;
       this.$store.dispatch("auth/register", user).then(
-        (data) => {
+        async (data) => {
+          console.log(data)
+          const myRenamedFile = new File([this.$refs.input.files[0]], data._id, { type: this.$refs.input.files[0].type  });
+          let formData = new FormData()
+          formData.append('file', myRenamedFile)
+          await PictureService.uploadPicture(formData)
           this.message = data.message;
           this.successful = true;
           this.loading = false;
+          this.profileImageId = data._id
         },
         (error) => {
           this.message =

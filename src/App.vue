@@ -15,7 +15,6 @@
         <router-link to="/results">Voting History</router-link>
         <router-link to="/how">How It Works</router-link>
         <router-link to="/about">About</router-link>
-        <router-link to="/Face">Face</router-link>
 
       </div>
       <div v-if="!currentUser" class="nav-link">
@@ -31,10 +30,15 @@
             <font-awesome-icon icon="user" />
             {{ currentUser.name }}
           </router-link>
-          <a  @click="logOut()">
+          <a  v-if="currentUser" @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
           </a>  
-        </div>
+            <img class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
+
+
+     
+    </div>
+
       </div>
     <router-view/>
     <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
@@ -47,6 +51,10 @@ export default {
   computed: {
     currentUser() {
       return this.$store.state.auth.user;
+    },
+    userImg() {
+      if (!this.currentUser) return undefined
+      return `http://localhost:5000/api/upload/files/${this.currentUser._id}`
     }
   },
   methods:{
