@@ -33,13 +33,10 @@
           "
         >
           <div class="font-bold text-3xl">
-            <router-link :to="{ name: 'login' }">Login</router-link>
+            <router-link :to="{ name: 'login' }">Login Page</router-link>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
-
-
-

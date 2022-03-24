@@ -1,26 +1,31 @@
 <template>
-  <div>
-    <div id="nav" style="Mystyle" >
+  <div class="app">
+    <div id="nav" style="Mystyle">
       <!-- TITLE of Webpage -->
-      <div class='flex flex-wrap justify-center text-7xl font-bold font-serif text-yellow-400'>Panther Votes
+      <div class='title flex flex-wrap justify-center font-serif pb-2'>Panther Votes
         <div id="img">
           <img :src="require(`./assets/pantherPawHand.png`)"/>
         </div>
       </div> 
       <!-- TOP NAV BAR -->
-      <div class="flex flex-wrap justify-center items-end h-12">
-      <router-link to="/">Home</router-link>
-      <router-link to="/election-Dashboard">Election Dashboard</router-link>
-      <router-link to="/club-Elections">Club Elections</router-link>
-      <router-link to="/about">Voting History</router-link>
-      <router-link to="/how">How It Works</router-link>
+      <div class="flex flex-wrap justify-center">
+        <router-link to="/">Home</router-link>
+        <router-link to="/election-Dashboard">Election Dashboard</router-link>
+        <router-link to="/club-Elections">Club Elections</router-link>
+        <router-link to="/results">Voting History</router-link>
+        <router-link to="/how">How It Works</router-link>
+        <router-link to="/about">About</router-link>
 
-          <router-link v-if="!currentUser" to="/register">
-            <font-awesome-icon icon="user-plus" /> Sign Up
-          </router-link>
-          <router-link v-if="!currentUser" to="/login" class="nav-link">
-            <font-awesome-icon icon="sign-in-alt" /> Login
-          </router-link>
+      
+
+        <router-link v-if="!currentUser" to="/register" class="nav-link">
+          <font-awesome-icon icon="user-plus" /> Sign Up
+        </router-link>
+        <router-link v-if="!currentUser" to="/login" class="nav-link">
+          <font-awesome-icon icon="sign-in-alt" /> Login
+        </router-link>
+
+
           <router-link v-if="currentUser" to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.name }}
@@ -28,7 +33,7 @@
           <a  v-if="currentUser" @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
           </a>  
-            <img class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
+            <img v-if="currentUser" class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
 
 
      
@@ -36,7 +41,7 @@
 
       </div>
     <router-view/>
-    <div class="h-8 w-full py-2 text-center text-sm fixed bottom-0 text-white bg-blue-800 font-bold">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
 </template>
 
@@ -62,21 +67,21 @@ export default {
 </script>
 
 <style>
-div.wallpaper {
-  background: url("./assets/FIU_Panthers_logo.png") no-repeat center center fixed;
+/*div.wallpaper {
+  background: url("./assets/miami-sights-data.jpg") no-repeat fixed;
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;*/
-  background-size: 120%;
-  opacity: 50%
-}
+ /* background-size: 100%;
+  opacity: 100%
+}*/
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 50px;
-  width: auto; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
+  width: 100%; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
 
   /* color: #eff303; */
      /* color: #15e1f0;  */
@@ -87,6 +92,7 @@ div.wallpaper {
   padding: 30px;
   background-color: rgb(4, 6, 56);
   width:auto;
+  font-weight: bold;
   
 }
 
@@ -95,18 +101,22 @@ div.wallpaper {
   font-size: 20px;
   text-decoration: underline;
   color: #FACC15;
-  margin-top: 4px;
+
+ -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+ -webkit-text-stroke-width: 1 px;
+  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
   margin-bottom: 0px;
-  margin-right: 6px;
-  margin-left: 6px;
-  border: solid 0.2em rgb(4, 6, 56); 
+  margin-right: 1px;
+  margin-left: 1px;
+  border: solid 0.5em rgb(4, 6, 56, 0);
 
 }
 #nav a.active,
 #nav a:hover {
   background-color: rgb(1, 4, 39);
-  border: groove 0.2em rgb(4, 6, 56);
-  border-color: #00c3ff8c;
+  border: groove 0.5em;
+  border-color: #00c3ffa9; 
+  border-radius: 25px;
   width: auto;
 
 
@@ -117,12 +127,12 @@ div.wallpaper {
 
 }
 
-#footer {
+div.footer {
   text-align: center;
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(29 78 216) !important;
+  background-color: rgb(4, 6, 56, 0.90) !important;
   height: 50px;
   width: 100%;
   background-color: #ccc;
@@ -131,7 +141,7 @@ div.wallpaper {
   padding-bottom: 8px;
   margin-top: 10px;
   bottom: 0px;
-  opacity: 90%;
+  /*opacity: 85%;*/
       
 }
 .signup-login{
@@ -140,6 +150,8 @@ div.wallpaper {
 }
 h1 {
 color:gray;
+-webkit-text-stroke-width: 2px;
+-webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
 }
 
 img{
@@ -147,6 +159,18 @@ img{
   height:80px;
   margin-left: 15px;
   margin-right: 15px;
+  border-color: #FACC15;
 
+}
+/*text-7xl font-bold font-serif */
+div.title{
+  color: rgba(251, 191, 36, 1.0);
+ -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+ -webkit-text-stroke-width: 3px;
+  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
+  font-size: 4.5rem; /* 72px */
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing:1px;
 }
 </style>
