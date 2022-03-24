@@ -16,17 +16,17 @@
         <router-link to="/how">How It Works</router-link>
         <router-link to="/about">About</router-link>
 
-      </div>
-      <div v-if="!currentUser" class="nav-link">
-        <router-link to="/register" class="nav-link">
+      
+
+        <router-link v-if="!currentUser" to="/register" class="nav-link">
           <font-awesome-icon icon="user-plus" /> Sign Up
         </router-link>
-        <router-link to="/login" class="nav-link">
+        <router-link v-if="!currentUser" to="/login" class="nav-link">
           <font-awesome-icon icon="sign-in-alt" /> Login
         </router-link>
-      </div>
-        <div v-if="currentUser" class="navbar-nav ml-auto">
-          <router-link to="/profile" class="nav-link">
+
+
+          <router-link v-if="currentUser" to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
             {{ currentUser.name }}
           </router-link>
@@ -34,7 +34,7 @@
             <font-awesome-icon icon="sign-out-alt" /> LogOut
           </a>  
           <div class="flex flex-wrap justify-center mt-4">
-            <img class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
+            <img v-if="currentUser" class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
           </div>
 
      
