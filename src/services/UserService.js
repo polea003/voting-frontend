@@ -30,6 +30,10 @@ class UserService{
             return false
         }
   }
+    static async ElectionSubmit(Uid, Eid){
+        const response = await axios.put(`${url}/Election${Uid}/${Eid}`) 
+        console.log(response)
+    }
 
 }
 

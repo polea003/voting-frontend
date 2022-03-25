@@ -25,6 +25,7 @@ class AuthService {
       name: user.username,
       email: user.email,
       password: user.password,
+      ElectionsVoted: []
       
     });
   }

@@ -145,7 +145,7 @@
                     <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                     <button
                       class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
-                      @click="ProcessVote(election._id, NumberOfCandidates)"
+                      @click="ProcessVote(election._id, NumberOfCandidates), ElectionSubmit(currentUser._id, election._id) " 
                     >
                       Vote
                     </button>
@@ -260,10 +260,13 @@
 
 <script>
 import ElectionService from "../services/ElectionService";
+import UserService from "../services/UserService";
+import store from '../../store'
 import Preloader from './Preloader.vue'
 //import About from '../views/About.vue'
 
 export default {
+  
   async mounted () {
   },
   components: {
@@ -271,6 +274,11 @@ export default {
     Preloader
   },
   name: "ElectionComponent",
+    computed: {
+    currentUser() {
+      return store.state.auth.user
+    }
+  },
   props: {
     election: {
       type: Object,
@@ -280,7 +288,8 @@ export default {
       type: Array,
       required: true,
       default: new Array,
-    }
+    },
+    
   },
   data() {
     return {
@@ -315,6 +324,11 @@ export default {
       await ElectionService.UpdateElection(id, Canadent_number);
       this.$emit("update");
     },
+    async ElectionSubmit(Uid, EID){
+      
+      await UserService.ElectionSubmit(Uid,EID)
+
+    }
     /*DivCoutner() {
       this.DivNumber++;
     },*/

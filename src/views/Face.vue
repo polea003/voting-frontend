@@ -150,11 +150,12 @@ export default {
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
       const results = resizedDetections.map(d => faceMatcher.findBestMatch(d.descriptor))
       console.log(results)
-      console.log(results[0].label)
+
       stream.getTracks().forEach(function(track) {
       track.stop();
 });
-     if(results[0].label != "unknown"){
+     if(results.length > 0 && results[0].label != "unknown"){
+        console.log(results[0].label)
         this.$router.push("/election-Dashboard");}
      else
         this.$store.dispatch('auth/logout');
@@ -193,7 +194,7 @@ console.log(img1)
         labels.map(async label => {
           const descriptions = []
           //const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
-          //console.log(img)
+         // console.log(img1)
          // console.log("hererererere->>>>>>"+ this.data1)
 
           const detections = await faceapi.detectSingleFace(img1).withFaceLandmarks().withFaceDescriptor()
