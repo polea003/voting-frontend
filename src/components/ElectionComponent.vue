@@ -13,8 +13,8 @@ NEED MOBILE VERSION-->
     </div>
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
-    <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
+    <div class="font-bold" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
+    <div class="font-bold" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
@@ -294,6 +294,16 @@ export default {
       type: Array,
       required: true,
       default: new Array,
+    }
+  },
+  computed: {
+    computedStartTime () {
+      if (!this.election.startTime) return undefined
+      return new Date(this.election.startTime)
+    },
+    computedEndTime () {
+      if (!this.election.endTime) return undefined
+      return new Date(this.election.endTime)
     }
   },
   data() {

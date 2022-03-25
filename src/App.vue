@@ -9,22 +9,21 @@
       </div> 
       <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
-        <router-link to="/">Home</router-link>
-        <router-link to="/election-Dashboard">Election Dashboard</router-link>
-        <router-link to="/club-Elections">Club Elections</router-link>
-        <router-link to="/results">Voting History</router-link>
-        <router-link to="/how">How It Works</router-link>
-        <router-link to="/about">About</router-link>
-
-      
-
-        <router-link v-if="!currentUser" to="/register" class="nav-link">
-          <font-awesome-icon icon="user-plus" /> Sign Up
-        </router-link>
-        <router-link v-if="!currentUser" to="/login" class="nav-link">
-          <font-awesome-icon icon="sign-in-alt" /> Login
-        </router-link>
-
+        <div class="flex flex-wrap justify-center">
+          <router-link to="/">Home</router-link>
+          <router-link to="/election-Dashboard">Election Dashboard</router-link>
+          <router-link to="/club-Elections">Club Elections</router-link>
+          <router-link to="/results">Voting History</router-link>
+          <router-link to="/how">How It Works</router-link>
+          <router-link to="/about">About</router-link>
+        </div>
+        <div class="flex flex-wrap justify-center">
+          <router-link v-if="!currentUser" to="/register" class="nav-link">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+          <router-link v-if="!currentUser" to="/login" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          </router-link>
 
           <router-link v-if="currentUser" to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
@@ -32,14 +31,12 @@
           </router-link>
           <a  v-if="currentUser" @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>  
-            <img v-if="currentUser" class="object-cover w-12 h-12 rounded-full" v-show="userImg" :src="userImg">
-
-
-     
-    </div>
-
+          </a>
+          
+          <img v-if="currentUser" class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
+        </div>
       </div>
+    </div>
     <router-view/>
     <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
@@ -89,7 +86,11 @@ export default {
 }
 
 #nav {
-  padding: 30px;
+
+  padding-top: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
   background-color: rgb(4, 6, 56);
   width:auto;
   font-weight: bold;
@@ -116,7 +117,7 @@ export default {
   background-color: rgb(1, 4, 39);
   border: groove 0.5em;
   border-color: #00c3ffa9; 
-  border-radius: 25px;
+  border-radius: 26px;
   width: auto;
 
 
@@ -132,8 +133,8 @@ div.footer {
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(4, 6, 56, 0.90) !important;
-  height: 50px;
+  background-color: rgb(4, 6, 56, 0.88) !important;
+  height: 60px;
   width: 100%;
   background-color: #ccc;
   padding: 10px;
@@ -149,9 +150,12 @@ div.footer {
 
 }
 h1 {
-color:gray;
--webkit-text-stroke-width: 2px;
--webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
+  color:gray;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
+  font-size: 3rem; /* 48px */
+  line-height: 1;
+  font-weight: 700;
 }
 
 img{

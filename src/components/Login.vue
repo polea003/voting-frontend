@@ -6,7 +6,7 @@
       <Form @submit="handleLogin" :validation-schema="schema">
         <div class=" py-6 form-group">
           <label for="email" class="flex flex-wrap justify-center font-bold px-6 mb-2">Email</label>
-          <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+          <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-800 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback " />
           </div>
@@ -14,7 +14,7 @@
         <div class="form-group">
           <label for="password" class="flex flex-wrap justify-center font-bold px-5 mb-2">Password</label>
           <div>
-            <Field name="password" type="password" placeholder="Password123" class="form-control w-96 h-10 border-2 border-blue-800 rounded px-2" />
+            <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-800 rounded px-2" />
           </div>
           <ErrorMessage name="password" class="error-feedback" />
         </div>
@@ -32,7 +32,8 @@
                 text-3xl
                 w-72
                 h-16
-                m-4
+                m-6
+                mt-8
                 cursor-pointer
                 rounded-full
                 border-8 border-inherit
@@ -230,5 +231,9 @@ export default {
 <style scoped>
 .error-feedback{
   color:red;
+}
+div.form-control{
+  width: 60px;
+  height: 10px;
 }
 </style>
