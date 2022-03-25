@@ -9,22 +9,21 @@
       </div> 
       <!-- TOP NAV BAR -->
       <div class="flex flex-wrap justify-center">
-        <router-link to="/">Home</router-link>
-        <router-link to="/election-Dashboard">Election Dashboard</router-link>
-        <router-link to="/club-Elections">Club Elections</router-link>
-        <router-link to="/results">Voting History</router-link>
-        <router-link to="/how">How It Works</router-link>
-        <router-link to="/about">About</router-link>
-
-      
-
-        <router-link v-if="!currentUser" to="/register" class="nav-link">
-          <font-awesome-icon icon="user-plus" /> Sign Up
-        </router-link>
-        <router-link v-if="!currentUser" to="/login" class="nav-link">
-          <font-awesome-icon icon="sign-in-alt" /> Login
-        </router-link>
-
+        <div class="flex flex-wrap justify-center">
+          <router-link to="/">Home</router-link>
+          <router-link to="/election-Dashboard">Election Dashboard</router-link>
+          <router-link to="/club-Elections">Club Elections</router-link>
+          <router-link to="/results">Voting History</router-link>
+          <router-link to="/how">How It Works</router-link>
+          <router-link to="/about">About</router-link>
+        </div>
+        <div class="flex flex-wrap justify-center">
+          <router-link v-if="!currentUser" to="/register" class="nav-link">
+            <font-awesome-icon icon="user-plus" /> Sign Up
+          </router-link>
+          <router-link v-if="!currentUser" to="/login" class="nav-link">
+            <font-awesome-icon icon="sign-in-alt" /> Login
+          </router-link>
 
           <router-link v-if="currentUser" to="/profile" class="nav-link">
             <font-awesome-icon icon="user" />
@@ -32,15 +31,12 @@
           </router-link>
           <a  v-if="currentUser" @click="logOut()">
             <font-awesome-icon icon="sign-out-alt" /> LogOut
-          </a>  
-          <div class="flex flex-wrap justify-center mt-4">
-            <img v-if="currentUser" class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
-          </div>
-
-     
-    </div>
-
+          </a>
+          
+          <img v-if="currentUser" class="object-cover w-14 h-14 rounded-full border-2 border-yellow-400" v-show="userImg" :src="userImg">
+        </div>
       </div>
+    </div>
     <router-view/>
     <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
   </div>
