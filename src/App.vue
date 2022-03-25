@@ -154,9 +154,12 @@ div.footer {
 
 }
 h1 {
-color:gray;
--webkit-text-stroke-width: 2px;
--webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
+  color:gray;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
+  font-size: 3rem; /* 48px */
+  line-height: 1;
+  font-weight: 700;
 }
 
 img{
