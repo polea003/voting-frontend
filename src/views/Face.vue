@@ -2,8 +2,8 @@
 
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
     <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
-    <h1 class="text-5xl font-bold mb-4 text-center">Facial Recognition</h1>
-    <div v-if="currentUser" class="navbar-nav mx-auto"> <span class="text-3xl">Hi {{ currentUser.name }}!</span> </div>
+    <h1 class="text-5xl font-bold mb-6 text-center">Facial Recognition</h1>
+    <div v-if="currentUser" class="navbar-nav mx-auto mb-2"> <span class="text-3xl">Hi {{ currentUser.name }}!</span> </div>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
@@ -45,37 +45,7 @@
       </article>
     </section>
     
-    <!-- Camera -- this is where the camera starts, everything above is the first page-->
-    <!-- Allow the user to capture photos and take other camera actions. -->
-    <section id="camera" v-if="stream" class="flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
-      <footer>
-        <button @click="capturePhoto(stream)" 
-                class="capture
-                flex
-                items-center
-                justify-center
-                font-bold
-                text-white
-                text-3xl
-                w-32
-                h-32
-                m-6
-                mt-8
-                cursor-pointer
-                rounded-full
-                border-8 border-inherit
-                bg-gradient-to-r
-                from-blue-400
-                to-blue-800
-                hover:from-yellow-300 hover:to-yellow-600
-                hover:border-black 
-                hover:text-black" 
-                >
-          <img :src="require(`../assets/camera-transparent-png-12.png`)" class="h-20 w-20" :disabled="!ready">
-        
-        </button>
-      </footer>
-    </section>
+    
     
     <!-- Download -->
     <!-- ---------- -->
@@ -100,7 +70,38 @@
     
     <!-- Video -->
     <!-- ---------- -->
-    <video ref="video" class="h-full inset-0 object-cover w-full z-10" autoplay muted playsinline></video>
+    <video ref="video" class="flex flex-wrap justify-center w-96 h-auto mx-auto" autoplay muted playsinline></video>
+  <!-- Camera -- this is where the camera starts, everything above is the first page-->
+    <!-- Allow the user to capture photos and take other camera actions. -->
+    <section id="camera" v-if="stream" class="flex flex-col inset-0 items-center justify-end px-4 py-1 z-20">
+      <footer>
+        <button @click="capturePhoto(stream)" 
+                class="capture
+                flex
+                items-center
+                justify-center
+                font-bold
+                text-white
+                text-3xl
+                w-32
+                h-32
+                mb-4
+                mt-4
+                cursor-pointer
+                rounded-full
+                border-8 border-inherit
+                bg-gradient-to-r
+                from-blue-400
+                to-blue-800
+                hover:from-yellow-300 hover:to-yellow-600
+                hover:border-black 
+                hover:text-black" 
+                >
+          <img :src="require(`../assets/camera-transparent-png-12.png`)" class="h-20 w-20" :disabled="!ready">
+        
+        </button>
+      </footer>
+    </section>
   </main>
 
 </template>
