@@ -13,40 +13,18 @@ NEED MOBILE VERSION-->
     </div>
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
-    <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
+    <div class="font-bold my-2" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
+    <div class="font-bold mb-2" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
-    <table width="360"> 
-      <!-- Column First Names -->
+    <table>
+      <!-- Column Names -->
       <tr>
         <td class="titleBall font-serif text-xl font-bold">
-          First
+          Candidates
         </td>
-        <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
-          <td
-            height="60"
-            class="
-              font-serif
-              text-lg
-              overflow-hidden
-              truncate
-              bg-gray-100
-             
-            "
-          >
-            {{ FirstName.value }}
-          </td>
-        </div>
-      </tr>
-
-      <!-- Column Last Names -->
-      <tr>
-        <td class="titleBall font-serif text-xl font-bold">
-          Last
-        </td>
-        <div v-for="LastName in election.LastName" v-bind:key="LastName">
+        <div v-for="FullName in election.FullName" v-bind:key="FullName">
           <td
             height="60"
             class="
@@ -56,16 +34,66 @@ NEED MOBILE VERSION-->
               truncate
               bg-gray-100
             "
-          >
-            {{ LastName.value }}
+          ><button class="underline text-black hover:text-blue-600" @click="popUpOpen = true">
+            {{ FullName.value }}</button>
           </td>
         </div>
+      
+      <div v-show="popUpOpen"
+        class="
+          fixed
+          inset-0
+          w-screen
+          h-screen
+          flex
+          items-center
+          justify-center
+          bg-gray-700 bg-opacity-50
+        "
+      >
+      <!-- Confirmation PopUp -->
+        <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
+          <!--Header for Popup-->
+          <div class="flex justify-center">
+            <h3 class="text-2xl">Profile</h3>
+          </div>
+          <!-- Body for Popup-->
+          <div class="mt-4">
+            <!-- Display Name of Selection with message -->
+            <div class="mb-5">
+              
+            </div>
+            <!-- Cancel vote selection button -->
+            <button
+              @click="popUpOpen = false"
+              class="
+                font-bold
+                font-sans
+                text-2xl
+                w-32
+                px-6
+                py-2
+                mx-6
+                mb-6
+                text-black
+                bg-white
+                border-4 border-red-600
+                rounded-md
+                hover:bg-red-500 hover:text-black hover:border-black
+                hover:underline
+                
+              "
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
       </tr>
-
       <!-- Column for Vote Button -->
       <tr>
         <td class="titleBall font-serif text-xl font-bold">
-         {{`Select`}} 
+         {{`Selection`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
@@ -81,7 +109,7 @@ NEED MOBILE VERSION-->
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
+              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to- -600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
               >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
@@ -117,50 +145,50 @@ NEED MOBILE VERSION-->
                 "
               >
                 <!-- Confirmation PopUp -->
-                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
-                  <!--Header for Popup-->
-                  <div class="flex justify-center">
-                    <h3 class="text-2xl">Please Confrim</h3>
+              <div class="max-w-2xl p-6 mx-4 bg-white rounded-md border-8 shadow-lg">
+                <!--Header for Popup-->
+                <div class="flex justify-center">
+                  <h3 class="text-2xl">Please Confrim</h3>
+                </div>
+                <!-- Body for Popup-->
+                <div class="mt-4">
+                  <!-- Display Name of Selection with message -->
+                  <div class="mb-5">
+                    Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                   </div>
-                  <!-- Body for Popup-->
-                  <div class="mt-4">
-                    <!-- Display Name of Selection with message -->
-                    <div class="mb-5">
-                      Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
-                    </div>
-                    <!-- Cancel vote selection button -->
-                    <button
-                      @click="confirmationOpen = false"
-                      class="
-                        font-bold
-                        font-sans
-                        text-2xl
-                        w-32
-                        px-6
-                        py-2
-                        mx-6
-                        mb-6
-                        text-black
-                        bg-white
-                        border-4 border-red-600
-                        rounded-md
-                        hover:bg-red-500 hover:text-black hover:border-black
-                        hover:underline
-                        
-                      "
-                    >
-                      Cancel
-                    </button>
-                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
-                    <button
-                      class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
-                      @click="ProcessVote(election._id, NumberOfCandidates)"
-                    >
-                      Vote
-                    </button>
-                  </div>
+                  <!-- Cancel vote selection button -->
+                  <button
+                    @click="confirmationOpen = false"
+                    class="
+                      font-bold
+                      font-sans
+                      text-2xl
+                      w-32
+                      px-6
+                      py-2
+                      mx-6
+                      mb-6
+                      text-black
+                      bg-red-100
+                      border-4 border-red-600
+                      rounded-md
+                      hover:bg-red-500 hover:text-black hover:border-black
+                      hover:underline
+                      
+                    "
+                  >
+                    Cancel
+                  </button>
+                  <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
+                  <button
+                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                    @click="ProcessVote(election._id, NumberOfCandidates)"
+                  >
+                    Vote
+                  </button>
                 </div>
               </div>
+            </div>
           </td>
         </div>
       </tr>
@@ -278,6 +306,14 @@ import Preloader from './Preloader.vue'
 //import About from '../views/About.vue'
 
 export default {
+    computed: {
+    fullName() {
+      return this.FirstName.map((itm, i) => {
+        return { first: itm, last: this.LastName[i] }
+      })
+    }
+  },
+
   async mounted () {
   },
   components: {
@@ -307,6 +343,7 @@ export default {
       loadingBlockchainVotes: true,
       confirmationOpen: false,
       selectedVote: null,
+      popUpOpen: false,
     };
   },
   methods: {
@@ -378,6 +415,7 @@ table {
   display: table;
   border: none;
   border-collapse: collapse;
+  width: 400px;
   /*border: 1px solid black;*/
 }
 table tr {
@@ -388,6 +426,7 @@ table tr {
 table td {
     border-bottom: 1px double rgba(100, 100, 100, 0.7);
     padding:10px;
+    /*width:188px;*/
     /*border-right: 1px solid #000;*/
 }
 /*
