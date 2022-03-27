@@ -34,7 +34,7 @@ NEED MOBILE VERSION-->
               truncate
               bg-gray-100
             "
-          ><button class="underline text-black hover:text-blue-600" @click="popUpOpen = true">
+          ><button class="underline text-black hover:text-blue-6 00" @click="popUpOpen = true">
             {{ FullName.value }}</button>
           </td>
         </div>
@@ -54,14 +54,20 @@ NEED MOBILE VERSION-->
       <!-- Confirmation PopUp -->
         <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
           <!--Header for Popup-->
+          <div class="flex flex-col justify-center">
+            <h1 class="text-3xl">Candidate Profile</h1>
+          </div>
+          <div class="flex flex-col justify-center">
+            <h2 class="text-2xl mt-2">Name</h2>
+          </div>
           <div class="flex justify-center">
-            <h3 class="text-2xl">Profile</h3>
+            <img :src="require(`../assets/pantherPawHand.png`)"/>
           </div>
           <!-- Body for Popup-->
           <div class="mt-4">
             <!-- Display Name of Selection with message -->
             <div class="mb-5">
-              
+             Hi ya'll this is where a decription of the candidate will be found. I think width is controled with max-w-blahblahblah 
             </div>
             <!-- Cancel vote selection button -->
             <button
@@ -70,22 +76,17 @@ NEED MOBILE VERSION-->
                 font-bold
                 font-sans
                 text-2xl
-                w-32
-                px-6
-                py-2
+                w-12
                 mx-6
-                mb-6
                 text-black
-                bg-white
+                bg-red-100
                 border-4 border-red-600
                 rounded-md
                 hover:bg-red-500 hover:text-black hover:border-black
                 hover:underline
                 
               "
-            >
-              Close
-            </button>
+            >X</button>
           </div>
         </div>
       </div>
@@ -446,4 +447,12 @@ table tr td {
 /*div{
   color:rgba(4, 6, 56)
 }*/
+img{
+  width:80px;
+  height:80px;
+  margin-left: 15px;
+  margin-right: 15px;
+  /*border-color: #FACC15;*/
+
+}
 </style>
