@@ -50,12 +50,12 @@ class ElectionsService {
     static deletePost(id) {
         return axios.delete(`${url}${id}`)
     }
-    static UpdateElection(id, Canadent_Number){
-        return axios.put(`${url}${id}/${Canadent_Number}`)
+    static UpdateElection(electionId, Canadent_Number, userId){
+        return axios.put(`${url}${electionId}/${Canadent_Number}/${userId}`)
     }
     //get votes from blockchain
-    static getBlockchainVotes(){
-        return axios.get(`${url}solana`)
+    static getBlockchainVotes(electionId){
+        return axios.get(`${url}solana/${electionId}`)
     }
 }
 

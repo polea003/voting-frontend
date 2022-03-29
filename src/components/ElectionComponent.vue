@@ -7,10 +7,12 @@ NEED MOBILE VERSION-->
       <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="titleBall flex flex-col font-serif font-bold text-3xl">{{
+            <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
       }}</span>
+      <a class="mt-8 font-bold text-blue-700 text-xl underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
+    
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
     <div class="font-bold" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
@@ -176,14 +178,14 @@ NEED MOBILE VERSION-->
           <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
               <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
-                <Preloader class="-mt-11" color="red" scale="0.2" />
+                <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
               </div>
               <div v-else class="font-serif text-lg">
-                <div v-if=" (Vote.value - blockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                <div v-if=" (Vote.value - newBlockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
                 <div v-else class="text-red-500">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
               </div>
             </td>
@@ -279,6 +281,7 @@ import Preloader from './Preloader.vue'
 
 export default {
   async mounted () {
+    this.getBlockchainVotes()
   },
   components: {
     //About
@@ -297,6 +300,12 @@ export default {
     }
   },
   computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    },
+    chainLink() {
+      return `https://explorer.solana.com/address/${this.election.keys.baseAccount}?cluster=devnet`
+    },
     computedStartTime () {
       if (!this.election.startTime) return undefined
       return new Date(this.election.startTime)
@@ -317,6 +326,7 @@ export default {
       loadingBlockchainVotes: true,
       confirmationOpen: false,
       selectedVote: null,
+      newBlockchainVotes: []
     };
   },
   methods: {
@@ -336,8 +346,14 @@ export default {
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
       this.selectedVote = Canadent_number
-      await ElectionService.UpdateElection(id, Canadent_number);
+      await ElectionService.UpdateElection(id, Canadent_number, this.currentUser._id);
+      this.getBlockchainVotes()
       this.$emit("update");
+    },
+    async getBlockchainVotes() {
+      let votes = await ElectionService.getBlockchainVotes(this.election._id)
+      votes = votes.data
+      this.newBlockchainVotes = votes
     },
     /*DivCoutner() {
       this.DivNumber++;

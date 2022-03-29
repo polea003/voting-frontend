@@ -104,7 +104,7 @@ export default {
   methods: {
     async fetchElectionsAndBlockchainVotes () {
       await this.fetchElections()
-      await this.getBlockchainVotes()
+      // await this.getBlockchainVotes()
     },
     async fetchElections () {
       try {
