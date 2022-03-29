@@ -1,27 +1,28 @@
-<!--Displays Election Balot, TODO make seperate Admin and Voter Balots -->
+<!--Displays Election Balot, TODO make seperate Admin and Voter Balots 
+NEED MOBILE VERSION-->
 <template>
-  <div id="Election" class="border-grey border-8 rounded-2xl m-6">
+  <div id="Election" class="border-gray-300 rounded-2xl m-7">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
-      <span class="flex flex-col font-serif font-bold text-4xl mb-2">{{
+      <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="flex flex-col font-serif font-bold text-3xl">{{
+            <span class="titleBall flex flex-col font-serif font-bold text-3xl">{{
         `${election.Poisition}`
       }}</span>
     </div>
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold" v-show="election.startTime">{{`Election Start: ${new Date(election.startTime).toString()}`}}</div>
-    <div class="font-bold" v-show="election.endTime">{{`Election End: ${new Date(election.endTime).toString()}`}}</div>
+    <div class="font-bold" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
+    <div class="font-bold" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
 
-    <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) -->
+    <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
-    <table width="760"> 
+    <table width="360"> 
       <!-- Column First Names -->
       <tr>
-        <td class="font-serif text-xl font-bold">
-          First Name
+        <td class="titleBall font-serif text-xl font-bold">
+          First
         </td>
         <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
           <td
@@ -31,6 +32,7 @@
               text-lg
               overflow-hidden
               truncate
+              bg-gray-100
              
             "
           >
@@ -41,8 +43,8 @@
 
       <!-- Column Last Names -->
       <tr>
-        <td class="font-serif text-xl font-bold">
-          Last Name
+        <td class="titleBall font-serif text-xl font-bold">
+          Last
         </td>
         <div v-for="LastName in election.LastName" v-bind:key="LastName">
           <td
@@ -52,6 +54,7 @@
               text-lg 
               overflow-hidden
               truncate
+              bg-gray-100
             "
           >
             {{ LastName.value }}
@@ -61,14 +64,14 @@
 
       <!-- Column for Vote Button -->
       <tr>
-        <td class="font-serif text-xl font-bold">
-          Selection
+        <td class="titleBall font-serif text-xl font-bold">
+         {{`Select`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
         >
-          <td height="60" class="font-serif font-bold text-lg">
+          <td height="60" class="font-serif font-bold text-xl bg-gray-100">
             <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
@@ -94,18 +97,21 @@
             <div v-else
               @click="!selectedVote ? confirmVote(index) : {}"
               class=" 
+                font-sans
                 w-full
                 h-full
                 font-bold
+                text-white
+                border-blue-200
                 rounded-md
-                bg-gradient-to-r from-blue-200 to-blue-600
-                border-4 border-black
+                bg-gradient-to-r from-blue-400 to-blue-800
+                border-4 
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-600': !selectedVote  }"
+              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
               {{'Vote'}}
             </div>
-
+<!-- End of Vote button -->
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
@@ -120,7 +126,7 @@
                 "
               >
                 <!-- Confirmation PopUp -->
-                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-xl">
+                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex justify-center">
                     <h3 class="text-2xl">Please Confrim</h3>
@@ -136,10 +142,13 @@
                       @click="confirmationOpen = false"
                       class="
                         font-bold
+                        font-sans
+                        text-2xl
                         w-32
                         px-6
                         py-2
-                        mr-6
+                        mx-6
+                        mb-6
                         text-black
                         bg-white
                         border-4 border-red-600
@@ -165,21 +174,26 @@
         </div>
       </tr>
 
-      <!-- Column DISPLAYing mongoDB Vote Count -->
+      <!-- Column DISPLAYing mongoDB Vote Count NOW DISPLAYS BOTH MongoDB and Blockchain as a ratio-->
       <tr>
         <div>
           <td
-            class="font-serif text-xl font-bold"
+            class="titleBall font-serif text-xl font-bold "
           >
-            {{`Vote Count`}}
+            {{`Tally`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
               <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11" color="red" scale="0.2" />
               </div>
               <div v-else class="font-serif text-lg">
-                Votes: {{ Vote.value }}
+                <div v-if=" (Vote.value - blockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
+                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                </div>
+                <div v-else class="text-red-500">
+                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                </div>
               </div>
             </td>
           </div>
@@ -187,14 +201,14 @@
       </tr>
 
       <!-- Column DISPLAYing BlockChain Vote Count -->
-      <tr>
+      <!--<tr>
         <div>
           <td
-            class="font-serif text-xl font-bold"
+            class="titleBall font-serif text-xl font-bold"
           >
             {{`Blockchain`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
               <div v-if="loadingBlockchainVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11" color="red" scale="0.2" />
@@ -205,12 +219,12 @@
             </td>
           </div>
         </div>
-      </tr>
+      </tr>-->
     </table>
     
     <!-- DELETE Election BUTTON -->
     <div>
-      <div class=" border-8 m-2  rounded-md border-gray-400">
+      <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="deleteElection(election._id)"
           class="
@@ -225,7 +239,7 @@
             to-red-500
             hover:from-red-600 hover:to-red-900
             border-8 
-            border-current
+            border-black
             hover:border-white
             hover:text-white
           "
@@ -315,6 +329,16 @@ export default {
     },
     
   },
+  computed: {
+    computedStartTime () {
+      if (!this.election.startTime) return undefined
+      return new Date(this.election.startTime)
+    },
+    computedEndTime () {
+      if (!this.election.endTime) return undefined
+      return new Date(this.election.endTime)
+    }
+  },
   data() {
     return {
       // elections: [],
@@ -377,13 +401,34 @@ export default {
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
-    90deg,
-    rgb(194, 191, 191) 0%,
-    rgb(235, 225, 225) 50%,
-    rgb(201, 201, 201) 100%
+    50deg,
+    rgb(180, 180, 180) 0%,
+    rgba(230, 230, 230) 10%,
+    rgba(255, 255, 255) 20%,
+    rgba(230, 230, 230) 30%,
+    rgb(180, 180, 180) 40%,
+    rgb(205, 205, 205) 50%,
+    rgba(180, 180, 180) 60%,
+    rgb(220, 220, 220) 70%,
+    rgba(235, 235, 235) 80%,
+    rgb(230, 230, 230) 90%,
+    rgb(160, 160, 160) 100%
+    
+        /*rgba(4, 6, 56, 0.50) 50%,
+    rgb(250, 204, 21, 0.50) 100%*/
   );
+  border-width: 11px;
 }
-
+span.titleBall{
+  color:black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.4);
+}
+td.titleBall{
+  color:black;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgba(180, 180, 180, 0.2);
+}
 /* Changes Format from building Table from Rows to Columns*/
 table {
   display: table;
@@ -393,12 +438,12 @@ table {
 }
 table tr {
   display: table-cell;
-  
+
   /*border: 1px solid black;*/
 }
 table td {
-    border-bottom: 3px solid #000;
-      padding:10px;
+    border-bottom: 1px double rgba(100, 100, 100, 0.7);
+    padding:10px;
     /*border-right: 1px solid #000;*/
 }
 /*
@@ -415,4 +460,7 @@ table tr td {
   /*border: 1px solid black;*/
 
 }
+/*div{
+  color:rgba(4, 6, 56)
+}*/
 </style>

@@ -6,30 +6,30 @@
           </div>
           <input  type="submit" value="Submit" class="btn btn-primary btn-block">
           
-                                                <div
-												:key="i"
-												cols="12"
-												sm="5"
-												md="3"
-												class="mb-4">
-												<div
-													class="add-button object-cover h-48 w-48"
-													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' + ')' }">
-												</div>
-												
-											</div>
-                                            <div v-for="names in names" v-bind:key="names" 
-												
-												cols="12"
-												sm="5"
-												md="3"
-												class="mb-4">
-												<div
-													class="add-button object-cover h-48 w-48"
-													:style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/' + names + ')' }">
-												</div>
-												
-											</div>
+            <div
+            :key="i"
+            cols="12"
+            sm="5"
+            md="3"
+            class="mb-4">
+            <div
+                class="add-button object-cover h-48 w-48"
+                :style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/1647904040671-bezkoder-IMG_0306.JPG' + ')' }">
+            </div>
+            
+        </div>
+        <div v-for="names in names" v-bind:key="names" 
+            
+            cols="12"
+            sm="5"
+            md="3"
+            class="mb-4">
+            <div
+                class="add-button object-cover h-48 w-48"
+                :style="{ 'background-image': 'url(' + 'http://localhost:5000/api/upload/files/' + names + ')' }">
+            </div>
+            
+        </div>
         </Form>
 </template>
 

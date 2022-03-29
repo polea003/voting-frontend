@@ -2,34 +2,55 @@
 
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
     <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
-   <div v-if="currentUser" class="navbar-nav ml-auto"> <span> {{ currentUser.name }}</span> </div>
+    <h1 class="text-5xl font-bold mb-6 text-center">Facial Recognition</h1>
+    <div v-if="currentUser" class="navbar-nav mx-auto mb-2"> <span class="text-3xl">Hi {{ currentUser.name }}!</span> </div>
     <!-- Intro -->
     <!-- ---------- -->
     <!-- Inform the user of the camera's purpose and prepare them for camera permissions. -->
-    <section id="intro"  v-if="!stream" class="absolute flex flex-col inset-0 px-4 py-8 z-20">
+    <section id="intro"  v-if="!stream" class="flex flex-col inset-0 px-4 pb-4 z-20">
       <article class="flex flex-1 flex-col items-center justify-center">
-        <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
-        <h1 class="font-bold mb-4 text-2xl md:text-3xl lg:text-5xl text-center">Facial Recognition</h1>
+        <div v-if="currentUser">
+          <img v-show="imgurl" :src="imgurl" class="mx-auto my-4 w-96 h-auto">
+        </div>
+        <div v-else>
+          <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
+        </div>
+
         <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">In order to vote, please click the "Allow Access" button below to enable your webcam for facial validation.</p>
-        <button @click="startCamera" class="bg-black font-bold px-4 py-2 mt-4 rounded-md text-white">Allow Access</button>
+        <button @click="startCamera" 
+                class="
+                px-4 
+                py-2
+                flex
+                items-center
+                justify-center
+                font-bold
+                text-white
+                text-3xl
+                w-72
+                h-16
+                m-6
+                mt-8
+                cursor-pointer
+                rounded-full
+                border-8 border-inherit
+                bg-gradient-to-r
+                from-blue-400
+                to-blue-800
+                hover:from-yellow-300 hover:to-yellow-600
+                hover:border-black 
+                hover:text-black"
+                >Allow Access
+        </button>
       </article>
     </section>
     
-    <!-- Camera -- this is where the camera starts, everything above is the first page-->
-    <!-- Allow the user to capture photos and take other camera actions. -->
-    <section id="camera" v-if="stream" class="absolute flex flex-col inset-0 items-center justify-end px-4 py-8 z-20">
-      <footer>
-        <button class="capture" @click="capturePhoto(stream)">
-          <img src="https://assets.codepen.io/141041/Button-Fill-White-Large.png" alt="CodePen" class="h-24 w-24" :disabled="!ready">
-        </button>
-      </footer>
-    </section>
+    
     
     <!-- Download -->
     <!-- ---------- -->
     <!-- Allow the user to preview and download the captured photo or return to camera. -->
-    
-    <section id="download" v-if="photo" class="absolute bg-white flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
+    <section id="download" v-if="photo" class="bg-white flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
       <header>
         <button @click="photo = null">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="h-10 md:h-12 lg:h-16 w-10 lg:w-12 md:w-16"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
@@ -49,7 +70,38 @@
     
     <!-- Video -->
     <!-- ---------- -->
-    <video ref="video" class=" h-full inset-0 object-cover w-full z-10" autoplay muted playsinline></video>
+    <video ref="video" class="flex flex-wrap justify-center w-96 h-auto mx-auto" autoplay muted playsinline></video>
+  <!-- Camera -- this is where the camera starts, everything above is the first page-->
+    <!-- Allow the user to capture photos and take other camera actions. -->
+    <section id="camera" v-if="stream" class="flex flex-col inset-0 items-center justify-end px-4 py-1 z-20">
+      <footer>
+        <button @click="capturePhoto(stream)" 
+                class="capture
+                flex
+                items-center
+                justify-center
+                font-bold
+                text-white
+                text-3xl
+                w-32
+                h-32
+                mb-4
+                mt-4
+                cursor-pointer
+                rounded-full
+                border-8 border-inherit
+                bg-gradient-to-r
+                from-blue-400
+                to-blue-800
+                hover:from-yellow-300 hover:to-yellow-600
+                hover:border-black 
+                hover:text-black" 
+                >
+          <img :src="require(`../assets/camera-transparent-png-12.png`)" class="h-20 w-20" :disabled="!ready">
+        
+        </button>
+      </footer>
+    </section>
   </main>
 
 </template>
