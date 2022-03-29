@@ -1,7 +1,7 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots 
 NEED MOBILE VERSION-->
 <template>
-  <div id="Election" class="border-gray-300 rounded-2xl m-7">
+  <div id="Election" class="border-gray-300 rounded-2xl my-7 mx-3">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
       <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
@@ -13,40 +13,20 @@ NEED MOBILE VERSION-->
     </div>
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
-    <div class="font-bold" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
+    <div class="font-bold my-2" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
+    <div class="font-bold mb-2" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
-    <table width="360"> 
-      <!-- Column First Names -->
-      <tr>
+    <!-- Table width and Cells (td) widt must be hard coded for mobile, found in CSS, style tag below -->
+    <table>
+      <!-- Column Names -->
+      <tr width="50%">
         <td class="titleBall font-serif text-xl font-bold">
-          First
+          Candidates
         </td>
-        <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
-          <td
-            height="60"
-            class="
-              font-serif
-              text-lg
-              overflow-hidden
-              truncate
-              bg-gray-100
-             
-            "
-          >
-            {{ FirstName.value }}
-          </td>
-        </div>
-      </tr>
-
-      <!-- Column Last Names -->
-      <tr>
-        <td class="titleBall font-serif text-xl font-bold">
-          Last
-        </td>
-        <div v-for="LastName in election.LastName" v-bind:key="LastName">
+        <div v-for="(FullName, index) in election.FullName"
+          v-bind:key="FullName">
           <td
             height="60"
             class="
@@ -57,15 +37,69 @@ NEED MOBILE VERSION-->
               bg-gray-100
             "
           >
-            {{ LastName.value }}
-          </td>
+          <button class="underline text-black hover:text-blue-600" 
+          @click="displayProfile(index)">
+            {{ FullName.value }}
+          </button>
+        
+          <div v-show="popUpOpen && profileToDisplay === index"
+            class="
+              fixed
+              inset-0
+              w-screen
+              h-screen
+              flex
+              items-center
+              justify-center
+              bg-gray-700 bg-opacity-50
+            "
+          >
+          <!-- Confirmation PopUp -->
+          <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
+            <!--Header for Popup-->
+            <div class="flex flex-col justify-center">
+              <h1 class="text-3xl">Candidate Profile</h1>
+            </div>
+            <div class="flex flex-col justify-center">
+              <!--<h2 class="text-2xl mt-2">Name</h2>-->
+              <h2 class="text-2xl mt-2">{{ `${election.FullName[index].value}` }}</h2>
+            </div>
+            <div class="flex justify-center">
+              <img :src="require(`../assets/pantherPawHand.png`)"/>
+            </div>
+            <!-- Both whitespace and word breaks need to be taken care of-->  
+            <p class="whitespace-normal break-words">
+              {{`Hi ya'll this is where a decription of the candidate will be found. I think width is controled with max-w-blahblahblah`}} 
+            </p>
+              
+              <!-- Cancel vote selection button -->
+              <button
+                @click="popUpOpen = false"
+                class="
+                  font-bold
+                  font-sans
+                  text-2xl
+                  w-12
+                  mx-6
+                  mt-4
+                  text-black
+                  bg-red-100
+                  border-4 border-red-600
+                  rounded-full
+                  hover:bg-red-500 hover:text-black hover:border-black
+                  
+                  
+                "
+              >X</button>
+          </div>
         </div>
+        </td>
+      </div>
       </tr>
-
       <!-- Column for Vote Button -->
-      <tr>
+      <tr width="30%">
         <td class="titleBall font-serif text-xl font-bold">
-         {{`Select`}} 
+         {{`Selection`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
@@ -76,12 +110,12 @@ NEED MOBILE VERSION-->
                 w-full
                 h-full
                 font-bold
-                rounded-md
+                rounded-xl
                 bg-gradient-to-r 
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
+              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to- -600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
               >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
@@ -94,7 +128,7 @@ NEED MOBILE VERSION-->
                 font-bold
                 text-white
                 border-blue-200
-                rounded-md
+                rounded-3xl
                 bg-gradient-to-r from-blue-400 to-blue-800
                 border-4 
               "
@@ -102,7 +136,7 @@ NEED MOBILE VERSION-->
             >
               {{'Vote'}}
             </div>
-<!-- End of Vote button -->
+            <!-- End of Vote button -->
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
@@ -117,56 +151,56 @@ NEED MOBILE VERSION-->
                 "
               >
                 <!-- Confirmation PopUp -->
-                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
-                  <!--Header for Popup-->
-                  <div class="flex justify-center">
-                    <h3 class="text-2xl">Please Confrim</h3>
+              <div class="max-w-2xl p-6 mx-4 bg-white rounded-md border-8 shadow-lg">
+                <!--Header for Popup-->
+                <div class="flex justify-center">
+                  <h3 class="text-2xl">Please Confrim</h3>
+                </div>
+                <!-- Body for Popup-->
+                <div class="mt-4">
+                  <!-- Display Name of Selection with message -->
+                  <div class="mb-5">
+                    Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                   </div>
-                  <!-- Body for Popup-->
-                  <div class="mt-4">
-                    <!-- Display Name of Selection with message -->
-                    <div class="mb-5">
-                      Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
-                    </div>
-                    <!-- Cancel vote selection button -->
-                    <button
-                      @click="confirmationOpen = false"
-                      class="
-                        font-bold
-                        font-sans
-                        text-2xl
-                        w-32
-                        px-6
-                        py-2
-                        mx-6
-                        mb-6
-                        text-black
-                        bg-white
-                        border-4 border-red-600
-                        rounded-md
-                        hover:bg-red-500 hover:text-black hover:border-black
-                        hover:underline
-                        
-                      "
-                    >
-                      Cancel
-                    </button>
-                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
-                    <button
-                      class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
-                      @click="ProcessVote(election._id, NumberOfCandidates)"
-                    >
-                      Vote
-                    </button>
-                  </div>
+                  <!-- Cancel vote selection button -->
+                  <button
+                    @click="confirmationOpen = false"
+                    class="
+                      font-bold
+                      font-sans
+                      text-2xl
+                      w-32
+                      px-6
+                      py-2
+                      mx-6
+                      mb-6
+                      text-black
+                      bg-red-100
+                      border-4 border-red-600
+                      rounded-md
+                      hover:bg-red-500 hover:text-black hover:border-black
+                      hover:underline
+                      
+                    "
+                  >
+                    Cancel
+                  </button>
+                  <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
+                  <button
+                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                    @click="ProcessVote(election._id, NumberOfCandidates)"
+                  >
+                    Vote
+                  </button>
                 </div>
               </div>
+            </div>
           </td>
         </div>
       </tr>
 
       <!-- Column DISPLAYing mongoDB Vote Count NOW DISPLAYS BOTH MongoDB and Blockchain as a ratio-->
-      <tr>
+      <tr width="20%">
         <div>
           <td
             class="titleBall font-serif text-xl font-bold "
@@ -317,6 +351,8 @@ export default {
       loadingBlockchainVotes: true,
       confirmationOpen: false,
       selectedVote: null,
+      popUpOpen: false,
+      profileToDisplay: undefined,
     };
   },
   methods: {
@@ -330,6 +366,10 @@ export default {
     confirmVote(index) {
       this.voteToConfirm = index
       this.confirmationOpen = true
+    },
+    displayProfile(i){
+      this.profileToDisplay = i
+      this.popUpOpen = true
     },
     async ProcessVote(id, Canadent_number) {
       this.confirmationOpen = false
@@ -351,7 +391,6 @@ export default {
 </script>
 
 <style scoped>
-
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
@@ -388,16 +427,18 @@ table {
   display: table;
   border: none;
   border-collapse: collapse;
+  width: 100%;
   /*border: 1px solid black;*/
 }
 table tr {
   display: table-cell;
-
+  /*width:150px;*/
   /*border: 1px solid black;*/
 }
 table td {
     border-bottom: 1px double rgba(100, 100, 100, 0.7);
     padding:10px;
+    /*width:auto;*/
     /*border-right: 1px solid #000;*/
 }
 /*
@@ -417,4 +458,11 @@ table tr td {
 /*div{
   color:rgba(4, 6, 56)
 }*/
+img{
+  width:80px;
+  height:80px;
+  margin-left: 15px;
+  margin-right: 15px;
+  /*border-color: #FACC15;*/
+}
 </style>

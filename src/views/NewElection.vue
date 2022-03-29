@@ -31,7 +31,7 @@
           <div>
           <label for="FirstName" class="font-bold">First Name</label>
           </div>
-          <Field name="FirstName" type="text" v-model="FirstName.value" class="form-control border-4 border-black" />
+          <Field name="FirstName" type="text" v-model="FirstName.value" class="form-control border-2 border-black" />
           <div>
             <ErrorMessage name="FirstName" class="error-feedback" />
           </div>
@@ -49,7 +49,7 @@
           <div>
           <label for="LastName" class="font-bold">Last Name</label>
           </div>
-          <Field name="LastName" type="text" v-model="LastName.value" class="form-control border-4 border-black" />
+          <Field name="LastName" type="text" v-model="LastName.value" class="form-control border-2 border-black" />
           <div>
             <ErrorMessage name="LastName" class="error-feedback" />
           </div>
@@ -64,18 +64,38 @@
   <div class="flex justify-center"><datepicker class="w-72" v-model="startTime"/></div>
   <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
   <div class="flex justify-center"><datepicker class="w-72" v-model="endTime"/></div>
-    <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, NumberOfCandidates, Vote, startTime, endTime)"
-                class="
-                bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-10 mb-5 mx-2
-                "
-                :disabled="loading"
-              >
-                <span
-                  v-show="loading"
-                  class="spinner-border spinner-border-sm"
-                ></span>
-                Create Election
-              </button>
+  <div class="flex flex-wrap justify-center">
+    <button @click="goback(name, club,Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, FullName, NumberOfCandidates, Vote, startTime, endTime)"
+      class="
+        flex
+        items-center
+        justify-center
+        font-bold
+        text-white
+        text-3xl
+        w-72
+        h-16
+        m-6
+        mt-8
+        cursor-pointer
+        rounded-full
+        border-8 border-inherit
+        bg-gradient-to-r
+        from-blue-400
+        to-blue-800
+        hover:from-yellow-300 hover:to-yellow-600
+        hover:border-black 
+        hover:text-black
+      "
+      :disabled="loading"
+    >
+      <span
+        v-show="loading"
+        class="spinner-border spinner-border-sm"
+      ></span>
+      Create Election
+    </button>
+  </div>
 </form>  
 
 
@@ -148,8 +168,9 @@ import * as yup from "yup";
        Vote1: 0,
        Vote2: 0,
        NumberOfCandidates: 0,
-       FirstName : [],
-       LastName : [],
+       FirstName: [],
+       LastName: [],
+       FullName: [],
        Vote: [],
        startTime: new Date(),
        endTime: null,
@@ -167,6 +188,7 @@ import * as yup from "yup";
       this.Vote.push({value: 0})
       this.FirstName.push({ value: '' });
       this.LastName.push({value: ''});
+      this.FullName.push({value: ''});
     
     },
    /* sub(){
@@ -175,17 +197,33 @@ import * as yup from "yup";
       this.FirstName.pull({ value: '' });
       this.LastName.pull({value: ''});
     },*/
-    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime){
+    goback(name, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, FullName, NumberOfCandidates, Vote, startTime, endTime){
         console.log(NumberOfCandidates)
         var i = 0;
+       // let candiates = []
         while(i < NumberOfCandidates){
-        if(FirstName[i].value == "" || LastName[i].value == "")
-            throw(Error)
-        i++}
+        if(FirstName[i].value == "" || LastName[i].value == ""){
+          throw(Error)}
+        else{
+          /* go fuck yourself */
+          //FullName[i].value = FirstName[i].value + " " + LastName[i].value;}
+          let str = FirstName[i].value.concat(' ', LastName[i].value)
+          console.log(str)
+          FullName[i].value = str
+          console.log(FullName[i].value)
+         /* canidates = [
+            {firstName: FirstName[i], lastName: LastName[i]},
+          ]*/
 
+          }
+        i++}
+        console.log(FullName)
+       /* console.log(canidates)
+        fullCanName = canidates.map (canidates => `${canidates.firstName} ${canidates.lastName}`)
+        console.log(fullCanName)*/
         
         ElectionService.createElection(name, this.club, Candidate1FirstName,Candidate1LastName
-        ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime)
+        ,Candidate2FirstName,Candidate2LastName, Position, Vote1, Vote2, FirstName, LastName, FullName, NumberOfCandidates, Vote, startTime, endTime)
         this.$router.push({ name:'Club-Election-Dashboard', params:{club: club} });
         
 
@@ -228,4 +266,12 @@ import * as yup from "yup";
     */
 </script>
 
-
+<style scoped>
+.error-feedback{
+  color:red;
+}
+div.form-control{
+  width: 60px;
+  height: 10px;
+}
+</style>
