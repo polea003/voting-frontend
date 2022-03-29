@@ -82,6 +82,15 @@
               >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
+            <div v-else-if="currentUser && voted" class=" 
+                w-full
+                h-full
+                font-bold
+                rounded-md
+                bg-gradient-to-r from-blue-200 to-blue-600
+                border-4 border-black
+                opacity-20
+              ">Already Voted</div>
             <div v-else
               @click="!selectedVote ? confirmVote(index) : {}"
               class=" 
@@ -277,6 +286,21 @@ export default {
     computed: {
     currentUser() {
       return store.state.auth.user
+    },
+    voted(){
+     
+      for(var i = 0; i < this.currentUser.ElectionsVoted.length; i++){
+        if(this.currentUser.ElectionsVoted[i].EID == this.election._id.toString()){
+        //console.log("before:" + store.state.auth.user.ElectionsVoted)
+        //console.log(store.state.auth.user)
+        //console.log("after:" + store.state.auth.user.ElectionsVoted)
+        //console.log("user:"+this.currentUser.ElectionsVoted)
+          return true 
+        }
+      }
+      return false
+     
+
     }
   },
   props: {
@@ -313,10 +337,17 @@ export default {
       ElectionService.createElection(id);
     },
     confirmVote(index) {
+      //const yes = UserService.UpdateE(this.currentUser._id)
+     // store.state.auth.user.ElectionsVoted = yes
+     var append = this.currentUser.ElectionsVoted
+     append[append.length ] = {EID: this.election._id}
+      store.state.auth.user.ElectionsVoted = append 
+      //console.log(this.currentUser.ElectionsVoted.length)
       this.voteToConfirm = index
       this.confirmationOpen = true
     },
     async ProcessVote(id, Canadent_number) {
+      
       this.confirmationOpen = false
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
@@ -328,7 +359,8 @@ export default {
       
       await UserService.ElectionSubmit(Uid,EID)
 
-    }
+    },
+    
     /*DivCoutner() {
       this.DivNumber++;
     },*/

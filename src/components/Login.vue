@@ -195,7 +195,6 @@ export default {
       this.loading = true;
       this.$store.dispatch("auth/login", user).then(
         () => {
-                      console.log("hello2")
 
           this.$router.push("/Face");
         },

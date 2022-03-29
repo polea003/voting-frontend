@@ -34,6 +34,20 @@ class UserService{
         const response = await axios.put(`${url}/Election${Uid}/${Eid}`) 
         console.log(response)
     }
+    static async UpdateE(id){
+        const response = await axios.get(`${url}/UpdateE${id}`)
+       // const  res = new Proxy( await response.data.ElectionsVoted, {})
+        //console.log( response.data.ElectionsVoted.then())
+        
+        var promProxy = new Proxy(await response.data.ElectionsVoted, {
+            get: function(target, prop) {
+              var value = target[prop];
+              return typeof value == 'function' ? value.bind(target) : value;
+            }
+          });
+          //console.log(promProxy)
+        return promProxy
+    }
 
 }
 

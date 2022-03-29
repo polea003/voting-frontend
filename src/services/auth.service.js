@@ -9,15 +9,32 @@ class AuthService {
         password: user.password
       })
       .then(response => {
-          console.log("hello")
+          console.log(response.data)
         if (response.data.accessToken) {
           localStorage.setItem('user', JSON.stringify(response.data));
         }
         return response.data;
       });
   }
+
   logout() {
     localStorage.removeItem('user');
+  }
+  reload(user){
+
+    return axios
+    .post(API_URL + 'reload', {
+      email: user.email,
+      
+    })
+    .then(response => {
+      //localStorage.removeItem('user');
+        console.log(response.data)
+      if (response.data.accessToken) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+      }
+      return response.data;
+    });
   }
   register(user) {
     
