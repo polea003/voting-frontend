@@ -210,6 +210,7 @@ export default {
         console.log(results[0].label)
         this.$router.push("/election-Dashboard");}
      else
+        this.$store.dispatch('auth/logout');
         this.$router.push("/login");
     },
      
@@ -244,6 +245,9 @@ console.log(img1)
       return Promise.all(
         labels.map(async label => {
           const descriptions = []
+          //const img = await faceapi.fetchImage(`/labeled_images/${label}/1.png`)
+         // console.log(img1)
+         // console.log("hererererere->>>>>>"+ this.data1)
 
           const detections = await faceapi.detectSingleFace(img1).withFaceLandmarks().withFaceDescriptor()
           descriptions.push(detections.descriptor)

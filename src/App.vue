@@ -133,7 +133,7 @@ div.footer {
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(4, 6, 56, 0.88) !important;
+  background-color: rgb(4, 6, 56, 0.95) !important;
   height: 60px;
   width: 100%;
   background-color: #ccc;
