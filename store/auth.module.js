@@ -19,6 +19,15 @@ export const auth = {
         }
       );
     },
+    reload({ commit }, user) {
+      return AuthService.reload(user).then(
+        user => {
+          commit('update', user);
+          return Promise.resolve(user);
+        },
+       
+      );
+    },
     logout({ commit }) {
       AuthService.logout();
       commit('logout');
@@ -56,6 +65,10 @@ export const auth = {
     },
     registerFailure(state) {
       state.status.loggedIn = false;
+    },
+    update(state, elections){
+      console.log("HERE->>>>>>>>>"+ state.user.ElectionsVoted)
+      state.user.ElectionsVoted = elections
     }
   }
 };

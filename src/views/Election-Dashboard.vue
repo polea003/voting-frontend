@@ -105,6 +105,7 @@ export default {
     async fetchElectionsAndBlockchainVotes () {
       await this.fetchElections()
       // await this.getBlockchainVotes()
+      // setTimeout(async () => { await this.fetchElectionsAndBlockchainVotes() }, 2000);
     },
     async fetchElections () {
       try {

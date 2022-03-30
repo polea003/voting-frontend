@@ -18,6 +18,10 @@
       {{currentUser.email}}
     </p>
     <strong>Authorities: Student</strong>
+     <p>
+      <strong>Id:</strong>
+      {{currentUser.ElectionsVoted}}
+    </p>
     <ul>
     </ul>
   </div>
