@@ -343,8 +343,8 @@ export default {
       popUpOpen: false,
       profileToDisplay: undefined,
       Profile: [{
-        name: "fgsdfgs",
-        description: "dfghd",        
+        name: "",
+        description: "",        
       }],
     };
   },
