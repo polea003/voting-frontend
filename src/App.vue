@@ -38,7 +38,7 @@
       </div>
     </div>
     <router-view/>
-    <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved</div>
+    <div class="footer">Copyright &copy;2022. Senior team 2 - Panther Votes. All rights reserved.</div>
   </div>
 </template>
 
