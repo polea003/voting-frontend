@@ -315,6 +315,14 @@ export default {
       return false
      
 
+    },
+    computedStartTime () {
+      if (!this.election.startTime) return undefined
+      return new Date(this.election.startTime)
+    },
+    computedEndTime () {
+      if (!this.election.endTime) return undefined
+      return new Date(this.election.endTime)
     }
   },
   props: {
@@ -329,16 +337,7 @@ export default {
     },
     
   },
-  computed: {
-    computedStartTime () {
-      if (!this.election.startTime) return undefined
-      return new Date(this.election.startTime)
-    },
-    computedEndTime () {
-      if (!this.election.endTime) return undefined
-      return new Date(this.election.endTime)
-    }
-  },
+ 
   data() {
     return {
       // elections: [],
