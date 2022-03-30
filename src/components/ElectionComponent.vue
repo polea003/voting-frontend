@@ -7,10 +7,12 @@ NEED MOBILE VERSION-->
       <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="titleBall flex flex-col font-serif font-bold text-3xl">{{
+            <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
       }}</span>
+      <a class="mt-8 font-bold text-blue-700 text-xl underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
+    
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
     <div class="font-bold my-2" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
@@ -115,8 +117,8 @@ NEED MOBILE VERSION-->
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to- -600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
-              >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
+              :class="{'from-blue-300 to-blue-600' :  loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingDatabaseVotes}"
+              >{{loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
             <div v-else-if="currentUser && voted" class=" 
@@ -129,7 +131,7 @@ NEED MOBILE VERSION-->
                 opacity-20
               ">Already Voted</div>
             <div v-else
-              @click="!selectedVote ? confirmVote(index) : {}"
+              @click="!selectedVote && currentUser ? confirmVote(index) : {}"
               class=" 
                 font-sans
                 w-full
@@ -141,9 +143,9 @@ NEED MOBILE VERSION-->
                 bg-gradient-to-r from-blue-400 to-blue-800
                 border-4 
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
+              :class="{'opacity-20': selectedVote || !currentUser ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
-              {{'Vote'}}
+              {{currentUser ? 'Vote' : 'Log In'}}
             </div>
             <!-- End of Vote button -->
             <div
@@ -219,15 +221,18 @@ NEED MOBILE VERSION-->
           </td>
           <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
-              <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
-                <Preloader class="-mt-11" color="red" scale="0.2" />
+              <div v-if="loadingDatabaseVotes && (!selectedVote || index === selectedVote - 1)">
+                <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
               </div>
+              <!-- <div v-else-if="loadingDatabaseVotes && index === selectedVote - 1">
+                <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
+              </div> -->
               <div v-else class="font-serif text-lg">
-                <div v-if=" (Vote.value - blockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                <div v-if=" (Vote.value - newBlockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
                 <div v-else class="text-red-500">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
               </div>
             </td>
@@ -326,6 +331,7 @@ import Preloader from './Preloader.vue'
 export default {
   
   async mounted () {
+    this.getBlockchainVotes()
   },
   components: {
     //About
@@ -335,6 +341,9 @@ export default {
     computed: {
     currentUser() {
       return store.state.auth.user
+    },
+    chainLink() {
+      return `https://explorer.solana.com/address/${this.election.keys.baseAccount}?cluster=devnet`
     },
     voted(){
      
@@ -369,8 +378,7 @@ export default {
       type: Array,
       required: true,
       default: new Array,
-    },
-    
+    }
   },
  
   data() {
@@ -384,6 +392,7 @@ export default {
       loadingBlockchainVotes: true,
       confirmationOpen: false,
       selectedVote: null,
+      newBlockchainVotes: [],
       popUpOpen: false,
       profileToDisplay: undefined,
     };
@@ -413,9 +422,25 @@ export default {
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
       this.selectedVote = Canadent_number
-      await ElectionService.UpdateElection(id, Canadent_number);
+      console.log('1')
+      await ElectionService.UpdateElection(id, Canadent_number, this.currentUser._id);
+      console.log('2')
       await this.ElectionSubmit(this.currentUser._id, this.election._id)
+      console.log('3')
+      await this.getBlockchainVotes()
+      console.log('4')
       this.$emit("update");
+    },
+    async getBlockchainVotes() {
+      console.log('5')
+
+      let votes = await ElectionService.getBlockchainVotes(this.election._id)
+      console.log('6')
+
+      votes = votes.data
+      this.newBlockchainVotes = votes
+      this.loadingDatabaseVotes = false
+      // setTimeout(async () => { await this.getBlockchainVotes() }, 2000);
     },
     async ElectionSubmit(Uid, EID){
       var append = this.currentUser.ElectionsVoted
@@ -429,8 +454,8 @@ export default {
     },*/
   },
   watch: {
-    blockchainVotes: function () { this.loadingBlockchainVotes = false },
-    election: function () { this.loadingDatabaseVotes = false }
+    // blockchainVotes: function () { this.loadingBlockchainVotes = false },
+    election: function () { this.getBlockchainVotes() }
   }
 };
 </script>
