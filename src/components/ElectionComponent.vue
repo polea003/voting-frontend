@@ -56,7 +56,7 @@ NEED MOBILE VERSION-->
           <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
             <!--Header for Popup-->
             <div class="flex flex-col justify-center">
-              <h1 class="text-3xl">Candidate Profile</h1>
+              <h1 class="text-3xl mb-4">Candidate Profile</h1>
             </div>
             <div class="flex flex-col justify-center">
               <!--<h2 class="text-2xl mt-2">Name</h2>-->
@@ -76,7 +76,6 @@ NEED MOBILE VERSION-->
                 @click="popUpOpen = false"
                 class="
                   font-bold
-                  font-sans
                   text-2xl
                   w-12
                   mx-6
@@ -86,8 +85,6 @@ NEED MOBILE VERSION-->
                   border-4 border-red-600
                   rounded-full
                   hover:bg-red-500 hover:text-black hover:border-black
-                  
-                  
                 "
               >X</button>
           </div>
