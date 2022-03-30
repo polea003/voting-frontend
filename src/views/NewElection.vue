@@ -124,6 +124,8 @@
                   flex
                   items-center
                   justify-center
+                  border-8
+                  border-gray-600
                   bg-gray-700 bg-opacity-50
                 "
               >
@@ -131,16 +133,37 @@
                 <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex flex-col justify-center">
-                    <h1 class="text-3xl">Candidate Profile</h1>
+                    <h1 class="text-3xl mb-4">Candidate Profile</h1>
                   </div>
-
-                  <div>{{popUpOpen}} {{profileToDisplay}} {{index}}</div>
-                  <textarea v-model="UserProfile.value" placeholder="add multiple lines"></textarea>
+                  <div class="flex flex-col justify-center">
+                  </div>
+                  <!--<div>{{popUpOpen}} {{profileToDisplay}} {{index}}</div>-->
+                <div>
+                  <p class="mb-2">Enter text for the candidate in the box below. Recommended to copy and paste. When completed click the Submit button.</p>
+                </div>
+                  <div>
+                    <textarea v-model="UserProfile.value" placeholder="Text box" class="textInput border-2 border-gray-300"></textarea>
+                  </div>
                   <!-- Cancel vote selection button -->
+                  <div>
+                    <button  
+                      @click="submitProfile(UserProfile, index)"
+                      class="
+                      submit
+                      mt-4
+                      bg-blue-500
+                      hover:bg-blue-700
+                      text-white
+                      text-xl
+                      font-bold
+                      rounded
+                    ">Submit
+                  </button>
+                </div>
                   <button
                     @click="popUpOpen = false"
                     class="
-                      font-bold font-sans
+                      font-bold
                       text-2xl
                       w-12
                       mx-6
@@ -151,18 +174,8 @@
                       rounded-full
                       hover:bg-red-500 hover:text-black hover:border-black
                     "
-                  >
-                    X
+                    >X
                   </button>
-                  <button  @click="submitProfile(UserProfile, index)"
-                  class="
-                  addPro
-                  bg-blue-500
-                  hover:bg-blue-700
-                  text-white
-                  font-bold
-                  rounded
-                "></button>
                 </div>
               </div>
             </div>
@@ -461,9 +474,12 @@ input {
   width: 100px;
   height: 25px;
 }
-.picker{
-z-index: 0;
-color: yellow;
-border-color: yellow;
+.submit {
+  width: 100px;
+  height: 35px;
+}
+.textInput{
+  width: 300px;
+  height: 300px;
 }
 </style>

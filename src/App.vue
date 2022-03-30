@@ -91,7 +91,7 @@ export default {
   padding-left: 30px;
   padding-right: 30px;
   padding-bottom: 20px;
-  background-color: rgb(4, 6, 56);
+  background-color: rgb(8, 30, 63, 1.0);
   width:auto;
   font-weight: bold;
   
@@ -101,23 +101,23 @@ export default {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 20px;
   text-decoration: underline;
-  color: #FACC15;
+  color: rgba(255, 204, 0, 1.0);
 
- -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+ -webkit-text-fill-color: rgba(255, 204, 0, 1.0); /* Will override color (regardless of order) */
  -webkit-text-stroke-width: 1 px;
-  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
+  -webkit-text-stroke-color: rgba(255, 204, 0, 0.3);
   margin-bottom: 0px;
   margin-right: 1px;
   margin-left: 1px;
-  border: solid 0.5em rgb(4, 6, 56, 0);
+  border: solid 0.4em rgb(8, 30, 63, 0);
 
 }
 #nav a.active,
 #nav a:hover {
-  background-color: rgb(1, 4, 39);
-  border: groove 0.5em;
-  border-color: #00c3ffa9; 
-  border-radius: 26px;
+  background-color: rgb(8, 30, 63);
+  border: groove 0.4em;
+  border-color: rgb(0, 255, 255, 0.7); 
+  border-radius: 20px;
   width: auto;
 
 
@@ -133,7 +133,7 @@ div.footer {
   position: fixed;
   font-weight: 700;
   color: white;
-  background-color: rgb(4, 6, 56, 0.95) !important;
+  background-color: rgb(8, 30, 63, 0.95) !important;
   height: 60px;
   width: 100%;
   background-color: #ccc;
@@ -163,15 +163,15 @@ img{
   height:80px;
   margin-left: 15px;
   margin-right: 15px;
-  border-color: #FACC15;
+  border-color: rgba(255, 204, 0, 1.0);
 
 }
 /*text-7xl font-bold font-serif */
 div.title{
-  color: rgba(251, 191, 36, 1.0);
- -webkit-text-fill-color: rgba(251, 191, 36, 1.0); /* Will override color (regardless of order) */
+  color: rgba(255, 204, 0, 1.0);
+ -webkit-text-fill-color: rgba(255, 204, 0, 1.0); /* Will override color (regardless of order) */
  -webkit-text-stroke-width: 3px;
-  -webkit-text-stroke-color: rgba(251, 191, 36, 0.3);
+  -webkit-text-stroke-color: rgba(255, 204, 0, 0.3);
   font-size: 4.5rem; /* 72px */
   line-height: 1;
   font-weight: 700;
