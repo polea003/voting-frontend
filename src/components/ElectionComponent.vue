@@ -172,35 +172,6 @@ NEED MOBILE VERSION-->
                       Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                     </div>
                     <!-- Cancel vote selection button -->
-                    <button
-                      @click="confirmationOpen = false"
-                      class="
-                        font-bold
-                        font-sans
-                        text-2xl
-                        w-32
-                        px-6
-                        py-2
-                        mx-6
-                        mb-6
-                        text-black
-                        bg-white
-                        border-4 border-red-600
-                        rounded-md
-                        hover:bg-red-500 hover:text-black hover:border-black
-                        hover:underline
-                        
-                      "
-                    >
-                      Cancel
-                    </button>
-                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
-                    <button
-                      class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
-                      @click="ProcessVote(election._id, NumberOfCandidates), ElectionSubmit(currentUser._id, election._id) " 
-                    >
-                      Vote
-                    </button>
                   </div>
                   <!-- Cancel vote selection button -->
                   <button
@@ -428,9 +399,6 @@ export default {
     confirmVote(index) {
       //const yes = UserService.UpdateE(this.currentUser._id)
      // store.state.auth.user.ElectionsVoted = yes
-     var append = this.currentUser.ElectionsVoted
-     append[append.length ] = {EID: this.election._id}
-      store.state.auth.user.ElectionsVoted = append 
       //console.log(this.currentUser.ElectionsVoted.length)
       this.voteToConfirm = index
       this.confirmationOpen = true
@@ -446,12 +414,14 @@ export default {
       this.loadingBlockchainVotes = true
       this.selectedVote = Canadent_number
       await ElectionService.UpdateElection(id, Canadent_number);
+      await this.ElectionSubmit(this.currentUser._id, this.election._id)
       this.$emit("update");
     },
     async ElectionSubmit(Uid, EID){
-      
+      var append = this.currentUser.ElectionsVoted
+      append[append.length ] = {EID: this.election._id}
+      store.state.auth.user.ElectionsVoted = append 
       await UserService.ElectionSubmit(Uid,EID)
-
     },
     
     /*DivCoutner() {
