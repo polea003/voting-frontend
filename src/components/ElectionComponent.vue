@@ -119,6 +119,15 @@ NEED MOBILE VERSION-->
               >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
+            <div v-else-if="currentUser && voted" class=" 
+                w-full
+                h-full
+                font-bold
+                rounded-md
+                bg-gradient-to-r from-blue-200 to-blue-600
+                border-4 border-black
+                opacity-20
+              ">Already Voted</div>
             <div v-else
               @click="!selectedVote ? confirmVote(index) : {}"
               class=" 
@@ -151,16 +160,47 @@ NEED MOBILE VERSION-->
                 "
               >
                 <!-- Confirmation PopUp -->
-              <div class="max-w-2xl p-6 mx-4 bg-white rounded-md border-8 shadow-lg">
-                <!--Header for Popup-->
-                <div class="flex justify-center">
-                  <h3 class="text-2xl">Please Confrim</h3>
-                </div>
-                <!-- Body for Popup-->
-                <div class="mt-4">
-                  <!-- Display Name of Selection with message -->
-                  <div class="mb-5">
-                    Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
+                <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
+                  <!--Header for Popup-->
+                  <div class="flex justify-center">
+                    <h3 class="text-2xl">Please Confrim</h3>
+                  </div>
+                  <!-- Body for Popup-->
+                  <div class="mt-4">
+                    <!-- Display Name of Selection with message -->
+                    <div class="mb-5">
+                      Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
+                    </div>
+                    <!-- Cancel vote selection button -->
+                    <button
+                      @click="confirmationOpen = false"
+                      class="
+                        font-bold
+                        font-sans
+                        text-2xl
+                        w-32
+                        px-6
+                        py-2
+                        mx-6
+                        mb-6
+                        text-black
+                        bg-white
+                        border-4 border-red-600
+                        rounded-md
+                        hover:bg-red-500 hover:text-black hover:border-black
+                        hover:underline
+                        
+                      "
+                    >
+                      Cancel
+                    </button>
+                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
+                    <button
+                      class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                      @click="ProcessVote(election._id, NumberOfCandidates), ElectionSubmit(currentUser._id, election._id) " 
+                    >
+                      Vote
+                    </button>
                   </div>
                   <!-- Cancel vote selection button -->
                   <button
@@ -194,7 +234,6 @@ NEED MOBILE VERSION-->
                   </button>
                 </div>
               </div>
-            </div>
           </td>
         </div>
       </tr>
@@ -308,10 +347,13 @@ NEED MOBILE VERSION-->
 
 <script>
 import ElectionService from "../services/ElectionService";
+import UserService from "../services/UserService";
+import store from '../../store'
 import Preloader from './Preloader.vue'
 //import About from '../views/About.vue'
 
 export default {
+  
   async mounted () {
   },
   components: {
@@ -319,18 +361,25 @@ export default {
     Preloader
   },
   name: "ElectionComponent",
-  props: {
-    election: {
-      type: Object,
-      required: true,
+    computed: {
+    currentUser() {
+      return store.state.auth.user
     },
-    blockchainVotes: {
-      type: Array,
-      required: true,
-      default: new Array,
-    }
-  },
-  computed: {
+    voted(){
+     
+      for(var i = 0; i < this.currentUser.ElectionsVoted.length; i++){
+        if(this.currentUser.ElectionsVoted[i].EID == this.election._id.toString()){
+        //console.log("before:" + store.state.auth.user.ElectionsVoted)
+        //console.log(store.state.auth.user)
+        //console.log("after:" + store.state.auth.user.ElectionsVoted)
+        //console.log("user:"+this.currentUser.ElectionsVoted)
+          return true 
+        }
+      }
+      return false
+     
+
+    },
     computedStartTime () {
       if (!this.election.startTime) return undefined
       return new Date(this.election.startTime)
@@ -340,6 +389,19 @@ export default {
       return new Date(this.election.endTime)
     }
   },
+  props: {
+    election: {
+      type: Object,
+      required: true,
+    },
+    blockchainVotes: {
+      type: Array,
+      required: true,
+      default: new Array,
+    },
+    
+  },
+ 
   data() {
     return {
       // elections: [],
@@ -364,6 +426,12 @@ export default {
       ElectionService.createElection(id);
     },
     confirmVote(index) {
+      //const yes = UserService.UpdateE(this.currentUser._id)
+     // store.state.auth.user.ElectionsVoted = yes
+     var append = this.currentUser.ElectionsVoted
+     append[append.length ] = {EID: this.election._id}
+      store.state.auth.user.ElectionsVoted = append 
+      //console.log(this.currentUser.ElectionsVoted.length)
       this.voteToConfirm = index
       this.confirmationOpen = true
     },
@@ -372,6 +440,7 @@ export default {
       this.popUpOpen = true
     },
     async ProcessVote(id, Canadent_number) {
+      
       this.confirmationOpen = false
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
@@ -379,6 +448,12 @@ export default {
       await ElectionService.UpdateElection(id, Canadent_number);
       this.$emit("update");
     },
+    async ElectionSubmit(Uid, EID){
+      
+      await UserService.ElectionSubmit(Uid,EID)
+
+    },
+    
     /*DivCoutner() {
       this.DivNumber++;
     },*/
