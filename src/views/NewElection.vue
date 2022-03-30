@@ -100,7 +100,7 @@
                 <label class="font-bold">Profile</label>
               </div>
               <button
-                @click="displayProfile(index)"
+                @click="profilePopUp(index)"
                 class="
                   addPro
                   bg-blue-500
@@ -133,8 +133,9 @@
                   <div class="flex flex-col justify-center">
                     <h1 class="text-3xl">Candidate Profile</h1>
                   </div>
+
                   <div>{{popUpOpen}} {{profileToDisplay}} {{index}}</div>
-<textarea v-model="UserProfile.value" placeholder="add multiple lines"></textarea>
+                  <textarea v-model="UserProfile.value" placeholder="add multiple lines"></textarea>
                   <!-- Cancel vote selection button -->
                   <button
                     @click="popUpOpen = false"
@@ -153,6 +154,15 @@
                   >
                     X
                   </button>
+                  <button  @click="submitProfile(UserProfile, index)"
+                  class="
+                  addPro
+                  bg-blue-500
+                  hover:bg-blue-700
+                  text-white
+                  font-bold
+                  rounded
+                "></button>
                 </div>
               </div>
             </div>
@@ -344,8 +354,9 @@ export default {
       Vote,
       startTime,
       endTime,
-      userPro
+      UserProfile
     ) {
+
       console.log(NumberOfCandidates);
       var i = 0;
 
@@ -358,6 +369,9 @@ export default {
           console.log(str);
           FullName[i].value = str;
           //console.log(FullName[i].value)
+        }
+        if (UserProfile[i].value == ""){
+          UserProfile[i].value = "Candidate Description was NOT Entered.";
         }
         i++;
       }
@@ -379,20 +393,25 @@ export default {
         Vote,
         startTime,
         endTime,
-        userPro
+        UserProfile
       );
       this.$router.push({
         name: "Club-Election-Dashboard",
         params: { club: club },
       });
     },
-    displayProfile(i) {
+    profilePopUp(i) {
       this.profileToDisplay = i;
       this.popUpOpen = true;
-      console.log(this.profileToDisplay);
-      console.log(this.popUpOpen);
+      //console.log(this.profileToDisplay);
+      //console.log(this.popUpOpen);
+    },
+    submitProfile(UserProfile,i){
+      this.UserProfile[i].value = UserProfile.value
+      this.popUpOpen = false
     },
   },
+  //end of methods
   created() {
     this.club = router.currentRoute.value.params.club;
   },

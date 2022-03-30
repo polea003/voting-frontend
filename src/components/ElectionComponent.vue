@@ -60,14 +60,15 @@ NEED MOBILE VERSION-->
             </div>
             <div class="flex flex-col justify-center">
               <!--<h2 class="text-2xl mt-2">Name</h2>-->
-              <h2 class="text-2xl mt-2">{{ `${election.FullName[index].value}` }}</h2>
+              <!-- Profile[index].name.value-->
+            <h2 class="text-2xl mt-2"> {{Profile.name}}</h2>
             </div>
             <div class="flex justify-center">
               <img :src="require(`../assets/pantherPawHand.png`)"/>
             </div>
             <!-- Both whitespace and word breaks need to be taken care of-->  
             <p class="whitespace-normal break-words">
-              {{`Hi ya'll this is where a decription of the candidate will be found. I think width is controled with max-w-blahblahblah`}} 
+              {{Profile.description}}
             </p>
               
               <!-- Cancel vote selection button -->
@@ -341,6 +342,10 @@ export default {
       selectedVote: null,
       popUpOpen: false,
       profileToDisplay: undefined,
+      Profile: [{
+        name: "fgsdfgs",
+        description: "dfghd",        
+      }],
     };
   },
   methods: {
@@ -357,6 +362,8 @@ export default {
     },
     displayProfile(i){
       this.profileToDisplay = i
+      this.Profile.name = this.election.FullName[i].value;
+      this.Profile.description = this.election.UserProfile[i].value;
       this.popUpOpen = true
     },
     async ProcessVote(id, Canadent_number) {
