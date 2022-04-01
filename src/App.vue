@@ -154,6 +154,7 @@ h1 {
   -webkit-text-stroke-color: rgb(0, 0, 0, 0.5);
   font-size: 3rem; /* 48px */
   line-height: 1;
+  
 }
 
 img{

@@ -3,22 +3,22 @@
   <div id="app">
     <form v-on:submit="addProduct">
       <div class="flex flex-col items-center">
-        <h1 class="text-5xl font-bold m-5">New Election</h1>
+        <h1 class="text-5xl font-extrabold m-5">New Election</h1>
         <span class="font-bold text-3xl m-2"> Club: {{ club }}</span>
         <div class="pt-2 text-lg font-bold">Election Name</div>
         <input
           type="name"
           v-model="name"
           placeholder="Election Name"
-          class="w-72 h-10 border-2 border-blue-800 rounded px-2"
+          class="w-64 h-8 border-2 border-blue-900 rounded px-2"
         />
-        <div class="pt-2 text-lg font-bold">Position</div>
+        <div class="pt-4 text-lg font-bold">Position</div>
         <div id="Drop">
           <select
             v-model="Position"
             class="
               form-select form-control
-              border-2 border-blue-800
+              border-2 border-blue-900
               w-72
               h-10
               px-2
@@ -33,7 +33,7 @@
           </select>
         </div>
       </div>
-      <div class="pt-2 text-lg font-bold">Candidates</div>
+      <div class="pt-4 text-lg font-bold">Candidates</div>
       <!-- Area to enter first and lastname -->
       <div class="flex justify-center">
         <!-- <component v-bind:is="NewElectionForm"></component> -->
@@ -41,7 +41,7 @@
           <div
             v-for="FirstName in FirstName"
             v-bind:key="FirstName"
-            class="my-3 mr-2"
+            class="mb-6 mr-2"
           >
             <Form :validation-schema="schema">
               <div v-if="!successful">
@@ -53,7 +53,7 @@
                     name="FirstName"
                     type="text"
                     v-model="FirstName.value"
-                    class="form-control border-2 border-black w-36"
+                    class="form-control border-2 border-blue-900 rounded w-36"
                   />
                   <div>
                     <ErrorMessage name="FirstName" class="error-feedback" />
@@ -67,7 +67,7 @@
           <div
             v-for="LastName in LastName"
             v-bind:key="LastName"
-            class="my-3 mr-2"
+            class="mb-6 mr-2"
           >
             <Form :validation-schema="schema">
               <div v-if="!successful">
@@ -79,7 +79,7 @@
                     name="LastName"
                     type="text"
                     v-model="LastName.value"
-                    class="form-control border-2 border-black w-36"
+                    class="form-control border-2 border-blue-900 rounded w-36"
                   />
                   <div>
                     <ErrorMessage name="LastName" class="error-feedback" />
@@ -93,7 +93,7 @@
           <div
             v-for="(UserProfile, index) in UserProfile"
             v-bind:key="UserProfile"
-            class="my-3"
+            class="mb-6"
           >
             <div class="form-group mb-6">
               <div>
@@ -103,8 +103,9 @@
                 @click="profilePopUp(index)"
                 class="
                   addPro
-                  bg-blue-500
-                  hover:bg-blue-700
+                  bg-blue-600
+                  hover:underline
+                  hover:bg-blue-900
                   text-white
                   font-bold
                   rounded
@@ -124,22 +125,20 @@
                   flex
                   items-center
                   justify-center
-                  border-8
-                  border-gray-600
-                  bg-gray-700 bg-opacity-50
+                  bg-gray-700 bg-opacity-80
                 "
               >
                 <!-- Confirmation PopUp -->
                 <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex flex-col justify-center">
-                    <h1 class="text-3xl mb-4">Candidate Profile</h1>
+                    <h2 class="text-3xl font-extrabold mb-2 text-gray-600">Candidate Profile</h2>
                   </div>
                   <div class="flex flex-col justify-center">
                   </div>
                   <!--<div>{{popUpOpen}} {{profileToDisplay}} {{index}}</div>-->
                 <div>
-                  <p class="mb-2">Enter text for the candidate in the box below. Recommended to copy and paste. When completed click the Submit button.</p>
+                  <p class="mb-2 text-gray-600">Enter text for the candidate in the box below. When completed click the Submit button.</p>
                 </div>
                   <div class="control">
                     <textarea v-model="UserProfile.value" placeholder="Text box" class="textInput border-2 border-gray-300" v-on:keyup="check(index)"></textarea>
@@ -151,8 +150,11 @@
                       class="
                       submit
                       mt-4
-                      bg-blue-500
-                      hover:bg-blue-700
+                      bg-blue-600
+                      hover:bg-blue-900
+                      border-4
+                      border-blue-600
+                      hover:border-blue-300
                       text-white
                       text-xl
                       font-bold
@@ -165,12 +167,12 @@
                     class="
                       font-bold
                       text-2xl
+                      text-red-700
                       w-12
                       mx-6
                       mt-4
-                      text-black
                       bg-red-100
-                      border-4 border-red-600
+                      border-4 border-red-700
                       rounded-full
                       hover:bg-red-500 hover:text-black hover:border-black
                     "
@@ -186,14 +188,18 @@
       <button
         type="button"
         class="
-          bg-blue-500
-          hover:bg-blue-700
+          bg-blue-600
+          border-4
+          border-blue-600
+          hover:border-blue-400
+          hover:bg-blue-900
+          hover:underline
           text-white
           font-bold
           py-2
           px-4
           rounded
-          my-3
+          mb-3
         "
         @click="add()"
       >
@@ -202,11 +208,11 @@
 
       <div class="pt-2 font-bold">Date/Time Voting Starts:</div>
       <div class="flex justify-center">
-        <datepicker class="picker w-72 z-0" v-model="startTime" />
+        <datepicker class="picker w-72 z-0 border-2 border-blue-900 rounded" v-model="startTime" />
       </div>
       <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
       <div class="flex justify-center">
-        <datepicker class="picker w-72 z-0" v-model="endTime" />
+        <datepicker class="picker w-72 z-0 border-2 border-blue-900 rounded" v-model="endTime" />
       </div>
       <div class="flex flex-wrap justify-center">
         <button
@@ -245,8 +251,8 @@
             rounded-full
             border-8 border-inherit
             bg-gradient-to-r
-            from-blue-400
-            to-blue-800
+            from-blue-600
+            to-blue-900
             hover:from-yellow-300
             hover:to-yellow-600
             hover:border-black

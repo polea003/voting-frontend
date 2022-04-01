@@ -82,12 +82,12 @@ NEED MOBILE VERSION-->
                 class="
                   font-bold
                   text-2xl
+                  text-red-700
                   w-12
                   mx-6
                   mt-4
-                  text-black
                   bg-red-100
-                  border-4 border-red-600
+                  border-4 border-red-700
                   rounded-full
                   hover:bg-red-500 hover:text-black hover:border-black
                 "
@@ -158,7 +158,7 @@ NEED MOBILE VERSION-->
                   flex
                   items-center
                   justify-center
-                  bg-gray-700 bg-opacity-50
+                  bg-gray-700 bg-opacity-80
                 "
               >
                 <!-- Confirmation PopUp -->
