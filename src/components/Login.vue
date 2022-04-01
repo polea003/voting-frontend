@@ -230,7 +230,8 @@ export default {
 
 <style scoped>
 .error-feedback{
-  color:red;
+  color:#E60000;
+
 }
 div.form-control{
   width: 60px;

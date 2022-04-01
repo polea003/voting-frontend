@@ -17,8 +17,8 @@
               h-16
               m-4
               bg-gradient-to-r
-              from-blue-400
-              to-blue-800
+              from-blue-600
+              to-blue-900
               hover:from-yellow-300 hover:to-yellow-600
               font-bold
               cursor-pointer
@@ -26,7 +26,7 @@
               border-8 border-inherit
             "
           >
-            <div class="font-bold text-xl">
+            <div class="font-bold text-3xl">
               <router-link :to="{ name: 'NewElection', params: { club: Name } }"
                 >New Election</router-link
               >
