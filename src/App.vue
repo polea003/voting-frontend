@@ -86,7 +86,6 @@ export default {
 }
 
 #nav {
-
   padding-top: 30px;
   padding-left: 30px;
   padding-right: 30px;
@@ -102,7 +101,6 @@ export default {
   font-size: 20px;
   text-decoration: underline;
   color: rgba(255, 204, 0, 1.0);
-
  -webkit-text-fill-color: rgba(255, 204, 0, 1.0); /* Will override color (regardless of order) */
  -webkit-text-stroke-width: 1 px;
   -webkit-text-stroke-color: rgba(255, 204, 0, 0.3);
@@ -112,20 +110,21 @@ export default {
   border: solid 0.4em rgb(8, 30, 63, 0);
 
 }
+
 #nav a.active,
 #nav a:hover {
+  -webkit-text-fill-color: rgb(0, 255, 255, 1);
   background-color: rgb(8, 30, 63);
   border: groove 0.4em;
   border-color: rgb(0, 255, 255, 0.7); 
   border-radius: 20px;
   width: auto;
-
-
 }
+
 #nav a.router-link-exact-active {
   font-weight: bold;
-  color: #ffffff;
-
+  color: rgb(0, 255, 255, 1);
+  -webkit-text-fill-color: rgb(0, 255, 255, 1);
 }
 
 div.footer {
@@ -142,20 +141,19 @@ div.footer {
   padding-bottom: 8px;
   margin-top: 10px;
   bottom: 0px;
-  /*opacity: 85%;*/
-      
+  /*opacity: 85%;*/    
 }
+
 .signup-login{
   padding-top: 10px;
-
 }
+
 h1 {
-  color:gray;
-  -webkit-text-stroke-width: 2px;
-  -webkit-text-stroke-color: rgba(180, 180, 180, 0.3);
+  color:#808080;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0, 1);
   font-size: 3rem; /* 48px */
   line-height: 1;
-  font-weight: 700;
 }
 
 img{
@@ -176,5 +174,20 @@ div.title{
   line-height: 1;
   font-weight: 700;
   letter-spacing:1px;
+
 }
+/*div.PVbutton{
+    background: linear-gradient(
+    180deg,
+    rgb(204, 0, 102) 0%,
+    rgb(255, 204, 0) 100%
+  );
+}
+div.PVbutton:hover{
+    background: linear-gradient(
+    180deg,
+    rgb(255, 204, 0) 0%,
+    rgb(0, 255, 255) 100%
+  );
+}*/
 </style>

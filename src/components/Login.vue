@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12 flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-      <h1 class="text-5xl mb-3">Login Page</h1>
+      <h1 class="text-5xl font-extrabold mb-3">Login Page</h1>
     <div class="card card-container">
     
       <Form @submit="handleLogin" :validation-schema="schema">
@@ -38,8 +38,8 @@
                 rounded-full
                 border-8 border-inherit
                 bg-gradient-to-r
-                from-blue-400
-                to-blue-800
+                from-blue-600
+                to-blue-900
                 hover:from-yellow-300 hover:to-yellow-600
                 hover:border-black 
                 hover:text-black

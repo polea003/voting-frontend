@@ -1,6 +1,6 @@
 <template>
   <div class="register mt-5 text-2xl font-bold">
-    <h1 class="text-5xl font-bold m-5">Sign Up </h1>
+    <h1 class="text-5xl font-extrabold m-5">Sign Up </h1>
     <img
       id="profile-img"
       :src="imageSrc"
@@ -66,8 +66,8 @@
                   rounded-full
                   border-8 border-inherit
                   bg-gradient-to-r
-                  from-blue-400
-                  to-blue-800
+                  from-blue-600
+                  to-blue-900
                   hover:from-yellow-300
                   hover:to-yellow-600
                   hover:border-black

@@ -141,8 +141,8 @@
                 <div>
                   <p class="mb-2">Enter text for the candidate in the box below. Recommended to copy and paste. When completed click the Submit button.</p>
                 </div>
-                  <div>
-                    <textarea v-model="UserProfile.value" placeholder="Text box" class="textInput border-2 border-gray-300"></textarea>
+                  <div class="control">
+                    <textarea v-model="UserProfile.value" placeholder="Text box" class="textInput border-2 border-gray-300" v-on:keyup="check(index)"></textarea>
                   </div>
                   <!-- Cancel vote selection button -->
                   <div>
@@ -298,6 +298,7 @@ export default {
   },
   el: "#app",
   data: function () {
+
     const schema = yup.object().shape({
       FirstName: yup
         .string()
@@ -334,6 +335,10 @@ export default {
     };
   },
   methods: {
+    check: function(i){
+      this.UserProfile[i].value = this.UserProfile[i].value.substring(0,228);
+      console.log(this.UserProfile[i].value)
+    },
     add() {
       //console.log(this.components)
       //this.components.push(Comp)

@@ -39,13 +39,14 @@ NEED MOBILE VERSION-->
               bg-gray-100
             "
           >
-          <button class="underline text-black hover:text-blue-600" 
+          <button class="text-ellipsis overflow-hidden underline text-black hover:text-blue-600 " 
           @click="displayProfile(index)">
             {{ FullName.value }}
           </button>
         
           <div v-show="popUpOpen && profileToDisplay === index"
             class="
+              z-50
               fixed
               inset-0
               w-screen
@@ -65,7 +66,7 @@ NEED MOBILE VERSION-->
             <div class="flex flex-col justify-center">
               <!--<h2 class="text-2xl mt-2">Name</h2>-->
               <!-- Profile[index].name.value-->
-            <h2 class="text-2xl mt-2"> {{Profile.name}}</h2>
+            <h2 class="text-2xl mt-2 truncate"> {{Profile.name}}</h2>
             </div>
             <div class="flex justify-center">
               <img :src="require(`../assets/pantherPawHand.png`)"/>
@@ -115,7 +116,7 @@ NEED MOBILE VERSION-->
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-300 to-blue-600' :  loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingDatabaseVotes}"
+              :class="{'from-blue-600 to-blue-900' :  loadingDatabaseVotes, 'from-green-600 to-green-900' : !loadingDatabaseVotes}"
               >{{loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
@@ -138,10 +139,11 @@ NEED MOBILE VERSION-->
                 text-white
                 border-blue-200
                 rounded-3xl
-                bg-gradient-to-r from-blue-400 to-blue-800
+                bg-gradient-to-r from-blue-600 to-blue-900
                 border-4 
               "
-              :class="{'opacity-20': selectedVote || !currentUser ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
+              :class="{'opacity-20 cursor-not-allowed hover:from-blue-400 hover:to-blue-800 hover:text-white hover:border-blue-200': selectedVote || !currentUser ,
+              'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
               {{currentUser ? 'Vote' : 'Log In'}}
             </div>
@@ -187,9 +189,9 @@ NEED MOBILE VERSION-->
                       mb-6
                       text-black
                       bg-red-100
-                      border-4 border-red-600
+                      border-4 border-red-400
                       rounded-md
-                      hover:bg-red-500 hover:text-black hover:border-black
+                      hover:bg-red-600 hover:text-black hover:border-black
                       hover:underline
                       
                     "
@@ -229,7 +231,7 @@ NEED MOBILE VERSION-->
                 <div v-if=" (Vote.value - newBlockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
                   {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
-                <div v-else class="text-red-500">
+                <div v-else class="text-red-800">
                   {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
               </div>
@@ -275,7 +277,7 @@ NEED MOBILE VERSION-->
             bg-gradient-to-r
             from-red-300
             to-red-500
-            hover:from-red-600 hover:to-red-900
+            hover:from-red-700 hover:to-red-900
             border-8 
             border-black
             hover:border-white
@@ -512,6 +514,7 @@ table tr {
 table td {
     border-bottom: 1px double rgba(100, 100, 100, 0.7);
     padding:10px;
+    max-width:136px; /* hard coded so that name doesn't expand out of MOBILE VIEW */
     /*width:auto;*/
     /*border-right: 1px solid #000;*/
 }
