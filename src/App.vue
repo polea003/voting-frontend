@@ -150,8 +150,8 @@ div.footer {
 
 h1 {
   color:#808080;
-  -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgb(0, 0, 0, 1);
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: rgb(0, 0, 0, 0.5);
   font-size: 3rem; /* 48px */
   line-height: 1;
 }
