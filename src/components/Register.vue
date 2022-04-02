@@ -6,7 +6,7 @@
       :src="imageSrc"
       class="profile-img-card"
     />
-    <Form @submit="handleRegister" :validation-schema="schema">
+    <Form @submit="handleRegister" :validation-schema="schema" model-name="user">
       <div v-if="!successful">
         
         <div class="form-group mb-6">
@@ -40,10 +40,11 @@
         <div class="flex flex-wrap justify-center mb-6 mt-6">
           <div class="custom-file flex flex-col mb-3">
             <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
-            <input type="file" name="pic" id="upload" class="file-look" ref="input">
+            
+            <input as="input" type="file" name="pic" id="upload"  ref="input" accept="image/*" >
           </div>
            <div>
-            <ErrorMessage name="file" class="error-feedback" />
+            <ErrorMessage name="pic" class="error-feedback" />
           </div> 
         </div>
 
@@ -128,7 +129,7 @@ export default {
         .required("Password is required!")
         .min(6, "Must be at least 6 characters!")
         .max(40, "Must be maximum 40 characters!"),
-        /* pic: yup.mixed().required("Profile picture is required!").test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
+       /* pic: yup.mixed().required("Profile picture is required!").test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
           if(value){
         return value && (
             value[0].type === "image/jpeg" ||
@@ -171,9 +172,9 @@ export default {
       this.loading = true;
       this.$store.dispatch("auth/register", user).then(
         async (data) => {
-          console.log(data)
-          console.log(this.schema.fields.pic)
-    //console.log(this.$refs.input.files[0]
+         // console.log("data" + data)
+        //console.log(this.schema.fields.pic)
+         // console.log("ref" + this.$refs.input)
 
           const myRenamedFile = new File([this.$refs.input.files[0]], data._id, { type: this.$refs.input.files[0].type  }); 
           let formData = new FormData()
