@@ -110,13 +110,13 @@ NEED MOBILE VERSION-->
             <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
-                font-bold
+                text-white
                 rounded-xl
                 bg-gradient-to-r 
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-600 to-blue-900' :  loadingDatabaseVotes, 'from-green-600 to-green-900' : !loadingDatabaseVotes}"
+              :class="{'from-blue-600 to-blue-900' :  loadingDatabaseVotes, 'from-green-600 to-green-900 border-yelow-500' : !loadingDatabaseVotes}"
               >{{loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
@@ -128,7 +128,7 @@ NEED MOBILE VERSION-->
                 bg-gradient-to-r from-blue-200 to-blue-600
                 border-4 border-black
                 opacity-20
-              ">Already Voted</div>
+              ">Voted</div>
             <div v-else
               @click="!selectedVote && currentUser ? confirmVote(index) : {}"
               class=" 

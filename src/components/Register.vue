@@ -13,7 +13,7 @@
           <div>
           <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
@@ -22,7 +22,7 @@
           <div>
           <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -31,7 +31,7 @@
           <div>
           <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
@@ -62,6 +62,7 @@
                   w-64
                   h-16
                   m-4
+                  mb-6
                   cursor-pointer
                   rounded-full
                   border-8 border-inherit
