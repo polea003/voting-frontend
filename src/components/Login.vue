@@ -18,6 +18,7 @@
           </div>
           <ErrorMessage name="password" class="error-feedback" />
         </div>
+        <!-- Login Button -->
         <div class="form-group">
           <div class="flex justify-center pt-4">
             <div class="flex h-full justify-center">
@@ -50,6 +51,7 @@
           </div>
         </div>
         </div>
+        <!-- End of Login Button -->
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
             {{ message }}
@@ -63,20 +65,22 @@
             class="
               bg-blue-600
               text-white
-              hover:text-yellow-300 hover:shadow-lg
-              shadow
+              border-8
+              border-blue-500
+              hover:border-yellow-300
+              hover:text-yellow-300 
+              rounded-full
               font-bold
               text-sm
               py-3
               px-4
-              rounded
               flex
               justify-start
               items-center
               cursor-pointer
               w-64
               h-14
-              my-2
+              mb-4
               mx-2
             "
           >
@@ -91,17 +95,17 @@
               />
             </svg>
              <div class="col-sm-4">
-      <div class="card">
-        <div class="card-body">
-          <a class="btn btn-block btn-social btn-google" href="http://localhost:5000/api/oauth/auth/google" role="button">
-            <i class="fab fa-google"></i>
-            Sign In with Google
-          </a>
-        </div>
-      </div>
-    </div>
+              <div class="card">
+                <div class="card-body">
+                  <a class="btn btn-block btn-social btn-google" href="http://localhost:5000/api/oauth/auth/google" role="button">
+                    <i class="fab fa-google"></i>
+                    Sign In with Google
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
-
+          <!--
           <div
             class="
               bg-gray-900
@@ -169,6 +173,7 @@
             <span class="border-l border-indigo-500 h-6 w-1 block mr-1"></span>
             <span class="pl-3">Sign up with Facebook</span>
           </div>
+          -->
         </div>
       </div>
   </div>

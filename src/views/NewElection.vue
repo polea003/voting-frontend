@@ -114,10 +114,11 @@
                 Add
               </button>
 
+              <!-- Profile PopUp -->
               <div
                 v-show="popUpOpen && profileToDisplay === index"
                 class="
-                  z-50
+                  z-10
                   fixed
                   inset-0 
                   w-screen
@@ -128,22 +129,37 @@
                   bg-gray-700 bg-opacity-80
                 "
               >
-                <!-- Confirmation PopUp -->
-                <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
+                <div class="w-96 p-6 mx-4 bg-white border-2 border-gray-300 rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex flex-col justify-center">
                     <h2 class="text-3xl font-extrabold mb-2 text-gray-600">Candidate Profile</h2>
                   </div>
+                   <!-- <img
+                      [src]="imageSrc(index)"
+                      class="profile-img-card"
+                    />-->
                   <div class="flex flex-col justify-center">
                   </div>
                   <!--<div>{{popUpOpen}} {{profileToDisplay}} {{index}}</div>-->
-                <div>
-                  <p class="mb-2 text-gray-600">Enter text for the candidate in the box below. When completed click the Submit button.</p>
-                </div>
-                  <div class="control">
-                    <textarea v-model="UserProfile.value" placeholder="Text box" class="textInput border-2 border-gray-300" v-on:keyup="check(index)"></textarea>
+                  <!-- Text Input -->
+                  <div>
+                    <p class="mb-2 text-gray-600">Enter text for the candidate in the box below.<br>
+                      Only 305 characters can be entered.<br>
+                      When completed click the Submit button.</p>
                   </div>
-                  <!-- Cancel vote selection button -->
+                  <div class="control">
+                    <textarea v-model="UserProfile.value" placeholder="Text box" 
+                    class="textInput border-2 border-gray-300" v-on:keyup="check(index)">
+                    </textarea>
+                  </div>
+                  <!-- Image Upload -->
+                  <div class="flex flex-wrap justify-center mb-6 mt-6">
+                    <div class="custom-file flex flex-col mb-3">
+                      <label for="file" class="custom-file-label font-bold text-xl mb-1">Choose Profile Picture</label>
+                      <input type="file" name="pic" id="upload" class="file-look" ref="input">
+                    </div>
+                  </div>
+                  <!-- Submit Button -->
                   <div>
                     <button  
                       @click="submitProfile(UserProfile, index)"
@@ -160,8 +176,9 @@
                       font-bold
                       rounded
                     ">Submit
-                  </button>
-                </div>
+                    </button>
+                  </div>
+                  <!-- Close Popup-->
                   <button
                     @click="popUpOpen = false"
                     class="
@@ -180,6 +197,7 @@
                   </button>
                 </div>
               </div>
+              <!--^^^End of Popup -->
             </div>
           </div>
         </div>
@@ -280,6 +298,7 @@ import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
 import ElectionService from "../services/ElectionService";
 import router from "../router";
+//import PictureService from "../services/Picture.Service"
 // import Navbar from '../components/Navbar.vue';
 //const Comp = {template: '<div>Hello world</div>'}
 /* const Form = {
@@ -338,12 +357,21 @@ export default {
       UserProfile: [],
       popUpOpen: false,
       profileToDisplay: undefined,
+      profileImageId: [],
     };
+  },
+  computed: {
+    imageSrc (index) {
+      if (!this.profileImageId[index] ) { //|| typeof index === 'undefined'
+        return '//ssl.gstatic.com/accounts/ui/avatar_2x.png'
+      }
+      return `http://localhost:5000/api/upload/files/${this.profileImageId[index]}`
+    }
   },
   methods: {
     check: function(i){
-      this.UserProfile[i].value = this.UserProfile[i].value.substring(0,228);
-      console.log(this.UserProfile[i].value)
+      this.UserProfile[i].value = this.UserProfile[i].value.substring(0,306);
+      //console.log(this.UserProfile[i].value)
     },
     add() {
       //console.log(this.components)
@@ -492,5 +520,11 @@ input {
 .textInput{
   width: 300px;
   height: 300px;
+}
+.file-look{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 69%;
 }
 </style>

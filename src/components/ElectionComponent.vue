@@ -10,7 +10,7 @@ NEED MOBILE VERSION-->
             <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
       }}</span>
-      <a class="mt-8 font-bold text-blue-700 text-xl underline" :href="chainLink" target="_blank" >View On-Chain</a>
+      <a class="mt-8 font-bold text-blue-700 text-xl hover:text-blue-500 underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
     
 
@@ -43,7 +43,7 @@ NEED MOBILE VERSION-->
           @click="displayProfile(index)">
             {{ FullName.value }}
           </button>
-        
+          <!-- Candiate Profile Popup-->
           <div v-show="popUpOpen && profileToDisplay === index"
             class="
               z-50
@@ -57,18 +57,18 @@ NEED MOBILE VERSION-->
               bg-gray-700 bg-opacity-50
             "
           >
-          <!-- Confirmation PopUp -->
-          <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
-            <!--Header for Popup-->
+          <!-- Popup Canvas -->
+          <div class="w-96 p-6 mx-4 bg-white border-2 border-gray-300 rounded-md shadow-lg">
+            <!--Header for Popup
             <div class="flex flex-col justify-center">
               <h1 class="text-3xl mb-4">Candidate Profile</h1>
-            </div>
+            </div>-->
             <div class="flex flex-col justify-center">
               <!--<h2 class="text-2xl mt-2">Name</h2>-->
               <!-- Profile[index].name.value-->
-            <h2 class="text-2xl mt-2 truncate"> {{Profile.name}}</h2>
+            <h1 class="text-3xl font-extrabold mb-2 truncate"> {{Profile.name}}</h1>
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center m-b">
               <img :src="require(`../assets/pantherPawHand.png`)"/>
             </div>
             <!-- Both whitespace and word breaks need to be taken care of-->  
@@ -111,13 +111,13 @@ NEED MOBILE VERSION-->
                 w-full
                 h-full
                 text-white
-                rounded-xl
+                rounded-3xl
                 bg-gradient-to-r 
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-600 to-blue-900' :  loadingDatabaseVotes, 'from-green-600 to-green-900 border-yelow-500' : !loadingDatabaseVotes}"
-              >{{loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
+              :class="{'from-blue-600 to-blue-900 pt-1' :  loadingDatabaseVotes, 'from-green-600 to-green-900 border-yelow-500 border-gray-500 pt-1': !loadingDatabaseVotes}"
+              >{{loadingDatabaseVotes ? 'Processing' : 'Complete'}}
               
             </div>
             <div v-else-if="currentUser && voted" class=" 
@@ -142,7 +142,7 @@ NEED MOBILE VERSION-->
                 bg-gradient-to-r from-blue-600 to-blue-900
                 border-4 
               "
-              :class="{'opacity-20 cursor-not-allowed hover:from-blue-400 hover:to-blue-800 hover:text-white hover:border-blue-200': selectedVote || !currentUser ,
+              :class="{'opacity-20 cursor-not-allowed hover:from-blue-600 hover:to-blue-900 hover:text-white hover:border-blue-200': selectedVote || !currentUser ,
               'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
               {{currentUser ? 'Vote' : 'Log In'}}
@@ -266,7 +266,7 @@ NEED MOBILE VERSION-->
     <div>
       <div class=" border-8 m-2 rounded-md border-transparent">
         <button
-          @click="deleteElection(election._id)"
+          @click="currentUser ? deleteElection(election._id) : {}"
           class="
             font-serif
             text-xl
@@ -277,12 +277,11 @@ NEED MOBILE VERSION-->
             bg-gradient-to-r
             from-red-300
             to-red-500
-            hover:from-red-700 hover:to-red-900
             border-8 
             border-black
-            hover:border-white
-            hover:text-white
           "
+          :class="{'opacity-20 cursor-not-allowed hover:from-red-300 hover:to-red-500 hover:text-black hover:border-black': !currentUser ,
+              'cursor-pointer hover:from-red-500 hover:to-red-900 hover:text-white hover:border-white': currentUser}"
         >
           Delete
         </button>
