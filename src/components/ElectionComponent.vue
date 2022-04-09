@@ -7,8 +7,11 @@ NEED MOBILE VERSION-->
       <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
+      <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
+      }}</span>
+      <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
+        `${election.text}`
       }}</span>
       <a class="mt-8 font-bold text-blue-700 text-xl hover:text-blue-500 underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
@@ -124,7 +127,7 @@ NEED MOBILE VERSION-->
                 w-full
                 h-full
                 font-bold
-                rounded-md
+                rounded-3xl
                 bg-gradient-to-r from-blue-200 to-blue-600
                 border-4 border-black
                 opacity-20
@@ -200,7 +203,7 @@ NEED MOBILE VERSION-->
                   </button>
                   <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                   <button
-                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-400 hover:text-black hover:border-black"
                     @click="ProcessVote(election._id, NumberOfCandidates)"
                   >
                     Vote

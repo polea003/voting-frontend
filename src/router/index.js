@@ -127,13 +127,159 @@ const routes = [
   }
   ,
   {
-    path: '/Motor',
-    name: 'Motor',
+    path: '/SAE',
+    name: 'SAE',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Motor.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../views/SAE.vue')
   },
+  {
+  path: '/FIU',
+  name: 'FIU',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/FIU.vue')
+},
+{
+  path: '/AEMB',
+  name: 'AEMB',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/AEMB.vue')
+},
+{
+  path: '/AIAA',
+  name: 'AIAA',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/AIAA.vue')
+},
+{
+  path: '/ASHRAE',
+  name: 'ASHRAE',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/ASHRAE.vue')
+},
+{
+  path: '/BMES',
+  name: 'BMES',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/BMES.vue')
+},
+{
+  path: '/CELL-MET',
+  name: 'CELL-MET',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/CELL-MET.vue')
+},
+{
+  path: '/EWB',
+  name: 'EWB',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: () => import(/* webpackChunkName: "about" */ '../views/EWB.vue')
+},
+{
+  path: '/FES',
+  name: 'FES',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/FES.vue')
+},
+{
+  path: '/HKN',
+  name: 'HKN',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/HKN.vue')
+},
+{
+  path: '/IAARC',
+  name: 'IAARC',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/IAARC.vue')
+},
+{
+  path: '/IEEE',
+  name: 'IEEE',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/IEEE.vue')
+},
+{
+  path: '/NSBE',
+  name: 'NSBE',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/NSBE.vue')
+},
+{
+  path: '/TBP',
+  name: 'TBP',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/TBP.vue')
+},
+{
+  path: '/Theta Tau',
+  name: 'Theta Tau',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/Theta Tau.vue')
+},
+{
+  path: '/UPE',
+  name: 'UPE',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/UPE.vue')
+},
+{
+  path: '/WiCS',
+  name: 'WiCS',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/WiCS.vue')
+},
+{
+  path: '/WiCyS',
+  name: 'WiCyS',
+  // route level code-splitting
+  // this generates a separate chunk (about.[hash].js) for this route
+  // which is lazy-loaded when the route is visited.
+  component: 
+  () => import(/* webpackChunkName: "about" */ '../views/WiCyS.vue')
+},
   {
     path: '/NewElection/:club',
     name: 'NewElection',

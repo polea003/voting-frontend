@@ -5,8 +5,8 @@
     <!-- Welcome Message -->
     <div class="text-3xl font-bold m-6">Welcome to Panther Votes!</div>
     <!-- Action Message -->
-    <div class="text-lg font-bold mb-6">
-      Please login to vote or create elections.
+    <div class="text-lg font-sans font-medium mb-4">
+      Please 'Login' to vote.<br>If this is your first time here<br>please visit 'How It Works'
     </div>
     <!-- Login Button -->
     <div class="flex justify-center">
@@ -19,7 +19,7 @@
             justify-center
             font-bold
             text-white
-            w-64
+            w-72
             h-16
             m-4
             cursor-pointer
@@ -35,6 +35,37 @@
         >
           <div class="font-bold text-3xl">
             <router-link :to="{ name: 'login' }">Login Page</router-link>
+          </div>
+        </div>
+      </div>
+    </div>
+        <div class="flex justify-center">
+      <div class="flex h-full justify-center">
+        <div
+          class="
+            PVbutton
+            flex
+            items-center
+            justify-center
+            font-bold
+            text-white
+            w-72
+            h-16
+            m-4
+            mb-8
+            cursor-pointer
+            rounded-full
+            border-8 border-inherit
+            bg-gradient-to-r
+            from-blue-600
+            to-blue-900
+            hover:from-yellow-300 hover:to-yellow-600
+            hover:border-black 
+            hover:text-black
+          "
+        >
+          <div class="font-bold text-3xl">
+            <router-link :to="{ name: 'How' }">How It Works</router-link>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@
     <h1 class="text-5xl font-extrabold text-gray-500 m-5">Election Dashboard</h1>
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
-        <div v-if="clubName" class="text-3xl font-bold mt-2">{{clubName}}</div>
+        <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
         <div v-if="clubName"
             class="
               flex
@@ -21,10 +21,12 @@
               from-blue-600
               to-blue-900
               hover:from-yellow-300 hover:to-yellow-600
+              hover:text-black
+              hover:border-black
               font-bold
               cursor-pointer
               rounded-full
-              border-8 border-inherit
+              border-8 border-gray-200
             "
           >
             <div class="font-bold text-2xl">
@@ -34,7 +36,7 @@
             </div>
           </div>
           
-        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 rounded font-semibold text-center text-xl">
+        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
             <option value="active">Active Elections</option>
             <option value="upcoming">Upcoming Elections</option>
             <option value="past">Past Elections</option>

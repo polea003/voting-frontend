@@ -20,7 +20,7 @@
 export default {
   data () {
     return {
-      clubs: [ 'SHPE', 'SWE', 'AERO', 'IEEE', 'ASCE', 'Motor']
+      clubs: [ 'FIU', 'AERO', 'AEMB', 'ASCE', 'AIAA', 'ASME', 'ASHRAE', 'BMES', 'CELL-MET', 'EWB', 'FES', 'HKN', 'IAARC', 'IEEE', 'NSBE', 'PATHS-UP', 'SAE', 'SHPE', 'SWE', 'TBP', 'Theta Tau', 'UPE', 'WiCS', 'WiCyS']
     }
   }
 }
