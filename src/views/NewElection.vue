@@ -5,14 +5,14 @@
       <div class="flex flex-col items-center">
         <h1 class="text-5xl font-extrabold m-5">New Election</h1>
         <span class="font-bold font-sans text-5xl m-2"> {{ club }}</span>
-        <div class="pt-2 text-lg font-bold">Election Name</div>
+        <div class="pt-2 text-xl font-extrabold underline">Election Name</div>
         <input
           type="name"
           v-model="text"
           placeholder="Election Name"
           class="w-64 h-8 border-2 border-blue-900 rounded px-2"
         />
-        <div class="pt-4 text-lg font-bold">Position</div>
+        <div class="pt-4 text-xl font-extrabold underline">Position</div>
         <div id="Drop">
           <select
             v-model="Position"
@@ -33,16 +33,18 @@
           </select>
         </div>
       </div>
-      <div class="pt-4 text-lg font-bold">Candidates</div>
-      <!-- Area to enter first and lastname -->
 
+      <div class="pt-4 text-xl font-extrabold underline">Candidates</div>
       <!-- <component v-bind:is="NewElectionForm"></component> -->
-      <div class="flex flex-col justify-center">
+      <div class="flex flex-wrap justify-center ">
+      <div class="flex flex-col justify-center ">
         <div
           v-for="(FirstName, index) in FirstName"
           v-bind:key="FirstName"
-          class="mb-6 mr-2"
+          class="canCard mb-6 mt-2 py-2 border-8 border-gray-200 rounded-2xl w-96 
+          hover:shadow-xl hover:border-yellow-300 font-medium"
         >
+        <div class="font-bold text-xl pb-2">Candidate: {{index + 1}}</div> 
           <div class="flex flex-row justify-center">
             <Form :validation-schema="schema">
               <div v-if="!successful">
@@ -84,21 +86,22 @@
           </div>
           <!-- Text Input -->
           <!--<div>
-              <p class="mb-2 text-gray-600">Enter text for the candidate in the box below.<br>
-                Only 305 characters can be entered.<br>
-                When completed click the Submit button.</p>
-                  </div>-->
+                <p class="mb-2 text-gray-600">Enter text for the candidate in the box below.<br>
+                  Only 305 characters can be entered.<br>
+                  When completed click the Submit button.
+                </p>
+              </div>-->
           <div class="flex felx-wrap justify-center">
             <div class="">
-              <div class="mb-6">
+              <div class="">
                 <div>
-                  <label class="font-bold">Profile</label>
+                  <label class="font-bold">Description Profile</label>
                 </div>
                 <div class="flex flex-wrap">
                   <textarea
                     v-model="UserProfile[index].value"
-                    placeholder="Text box"
-                    class="textInput border-2 rounded border-blue-900"
+                    placeholder="Maximum 305 characters"
+                    class="textInput border-2 rounded border-blue-900 resize-y"
                     v-on:keyup="check(index)"
                   >
                   </textarea>
@@ -108,13 +111,15 @@
           </div>
         </div>
       </div>
+      </div>
 
       <button
         type="button"
         class="
           bg-blue-600
-          border-4 border-blue-600
-          hover:border-blue-400 hover:bg-blue-900 hover:underline
+          border-8 border-gray-200
+          hover:border-blue-400 hover:bg-blue-900
+
           text-white
           font-bold
           py-2
@@ -126,18 +131,18 @@
       >
         Add Candidate
       </button>
-
-      <div class="pt-2 font-bold">Date/Time Voting Starts:</div>
+      <div class="pt-4 text-xl font-extrabold underline">Date/Time</div>
+      <div class="pt-2 font-bold">Election Starts:</div>
       <div class="flex justify-center">
         <datepicker
-          class="picker w-72 z-0 border-2 border-blue-900 rounded"
+          class="picker z-0 border-2 border-blue-900 rounded"
           v-model="startTime"
         />
       </div>
-      <div class="pt-4 font-bold">Date/Time Voting Ends:</div>
+      <div class="pt-4 font-bold">Election Ends</div>
       <div class="flex justify-center">
         <datepicker
-          class="picker w-72 z-0 border-2 border-blue-900 rounded"
+          class="picker z-0 border-2 border-blue-900 rounded"
           v-model="endTime"
         />
       </div>
@@ -425,11 +430,40 @@ input {
 .textInput {
   width: 325px;
   height: 60px;
+  max-height: 388px;
+  min-height: 30px;
 }
 .file-look {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 69%;
+}
+.picker{
+  width: 325px;
+}
+.hover\:shadow-xl:hover {
+    --tw-shadow: 0 25px 50px 0px rgba(251, 191, 36, 0.95);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+.canCard{ 
+  background: linear-gradient(
+    45deg,
+    rgb(180, 180, 180) 0%,
+    rgba(230, 230, 230) 10%,
+    rgba(255, 255, 255) 20%,
+    rgba(230, 230, 230) 30%,
+    rgb(180, 180, 180) 40%,
+    rgb(205, 205, 205) 50%,
+    rgba(180, 180, 180) 60%,
+    rgb(220, 220, 220) 70%,
+    rgba(235, 235, 235) 80%,
+    rgb(230, 230, 230) 90%,
+    rgb(160, 160, 160) 100%
+    
+        /*rgba(4, 6, 56, 0.50) 50%,
+    rgb(250, 204, 21, 0.50) 100%*/
+  );
+  border-width: 11px;
 }
 </style>

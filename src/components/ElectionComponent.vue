@@ -472,7 +472,7 @@ export default {
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
-    50deg,
+    45deg,
     rgb(180, 180, 180) 0%,
     rgba(230, 230, 230) 10%,
     rgba(255, 255, 255) 20%,
