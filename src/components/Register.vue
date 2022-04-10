@@ -8,10 +8,9 @@
     />
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
-        
         <div class="form-group mb-6">
           <div>
-          <label for="username" class="font-bold">Name</label>
+            <label for="username" class="font-bold">Name</label>
           </div>
           <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
@@ -20,7 +19,7 @@
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="email" class="font-bold">Email</label>
+            <label for="email" class="font-bold">Email</label>
           </div>
           <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
@@ -29,7 +28,7 @@
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="password" class="font-bold">Password</label>
+            <label for="password" class="font-bold">Password</label>
           </div>
           <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-900 rounded px-2" />
           <div>
@@ -42,12 +41,10 @@
             <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
             <input type="file" name="pic" id="upload" class="file-look" ref="input">
           </div>
-           <div>
+          <div>
             <ErrorMessage name="file" class="error-feedback" />
           </div> 
         </div>
-
-
 
         <div class="form-group">
           <div class="flex justify-center">
@@ -96,6 +93,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import PictureService from "../services/Picture.Service"
 import { Form, Field, ErrorMessage } from "vee-validate";

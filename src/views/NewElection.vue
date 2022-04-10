@@ -1,40 +1,39 @@
-<!-- TODO: Delete Candiate Button. Logic to make sure First and Last Name Entered in Input -->
 <template>
   <div id="app">
     <form v-on:submit="addProduct">
       <div class="flex flex-col items-center">
         <h1 class="text-5xl font-extrabold m-5">New Election</h1>
-        <span class="font-bold font-sans text-5xl m-2"> {{ club }}</span>
-        <div class="pt-2 text-xl font-extrabold text-blue-900">Election Name</div>
+        <span class="font-bold font-sans text-5xl mb-2"> {{ club }}</span>
+        <div class="pt-2 text-2xl font-extrabold text-blue-900">Election Name</div>
         <input
           type="name"
           v-model="text"
           placeholder="Election Name"
           class="w-64 h-8 border-2 border-blue-900 rounded px-2"
         />
-        <div class="pt-4 text-xl font-extrabold text-blue-900">Position</div>
+        <div class="pt-4 text-2xl font-extrabold text-blue-900">Position</div>
         <div id="Drop">
           <select
             v-model="Position"
             class="
-              form-select form-control
+              form-look
               border-2 border-blue-900
-              w-72
-              h-10
               px-2
               rounded
+              flex flex-col justify-center
             "
           >
-            <option value="undefined" disabled>Positions</option>
-            <option value="President">President</option>
-            <option value="Vice president">Vice president</option>
+            <!--<option value="undefined" disabled>Positions</option>-->
+            <option value="President" class="justify-center">President</option>
+            <option value="Vice president">Vice President</option>
             <option value="Secretary">Secretary</option>
             <option value="Treasurer">Treasurer</option>
+            <option value="Ruler">Ruler of the Universe</option>
           </select>
         </div>
       </div>
 
-      <div class="pt-4 text-xl font-extrabold text-blue-900">Candidates</div>
+      <div class="pt-4 text-2xl font-extrabold text-blue-900">Candidates</div>
       <!-- <component v-bind:is="NewElectionForm"></component> -->
       <div class="flex flex-wrap justify-center ">
       <div class="flex flex-col justify-center ">
@@ -121,27 +120,50 @@
         </div>
       </div>
       </div>
-
       
       <button
         type="button"
         class="
           bg-blue-600
           border-8 border-gray-200
-          hover:border-blue-400 hover:bg-blue-900
-
+          hover:border-green-400 hover:bg-blue-900
+          hover:text-green-400
           text-white
+          text-lg
           font-bold
           py-2
           px-4
           rounded-full
-          mb-3
+          my-3
+          mr-3
+          w-44
         "
         @click="add()"
       >
-        Add Candidate
+        Add 
       </button>
-      <div class="pt-4 text-xl font-extrabold text-blue-900">Date/Time</div>
+            <button
+        type="button"
+        class="
+          bg-blue-600
+          border-8 border-gray-200
+          hover:border-red-400 hover:bg-blue-900
+          hover:text-red-400
+          text-white
+          text-lg
+          font-bold
+          py-2
+          px-4
+          rounded-full
+          my-3
+          ml-3
+          w-44
+        "
+        @click="sub()"
+      >
+        Remove  
+      </button>
+      <div class="pt-4 text-2xl font-extrabold text-blue-900">Date/Time</div>
       <div class="pt-2 font-bold">Election Starts:</div>
       <div class="flex justify-center">
         <datepicker
@@ -304,13 +326,17 @@ export default {
       this.LastName.push({ value: "" });
       this.FullName.push({ value: "" });
       this.UserProfile.push({ value: "" });
+      //this.profileImageId.push({ value: ""});
     },
-    /* sub(){
+    sub(){
       this.NumberOfCandidates--
       this.Vote.pop({value: 0})
       this.FirstName.pop({ value: '' });
       this.LastName.pop({value: ''});
-    },*/
+      this.FullName.pop({ value: "" });
+      this.UserProfile.pop({ value: "" });
+      //this.profileImageId.pop({ value: ""});
+    },
     goback(
       text,
       club,
@@ -425,7 +451,11 @@ export default {
 }
 .form-control {
   width: 150px;
-  height: 25px;
+  height: 30px;
+}
+.form-look {
+  width: 256px;
+  height: 30px;
 }
 input {
   text-align: center;
