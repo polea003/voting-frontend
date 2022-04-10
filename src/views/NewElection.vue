@@ -5,14 +5,14 @@
       <div class="flex flex-col items-center">
         <h1 class="text-5xl font-extrabold m-5">New Election</h1>
         <span class="font-bold font-sans text-5xl m-2"> {{ club }}</span>
-        <div class="pt-2 text-xl font-extrabold underline">Election Name</div>
+        <div class="pt-2 text-xl font-extrabold text-blue-900">Election Name</div>
         <input
           type="name"
           v-model="text"
           placeholder="Election Name"
           class="w-64 h-8 border-2 border-blue-900 rounded px-2"
         />
-        <div class="pt-4 text-xl font-extrabold underline">Position</div>
+        <div class="pt-4 text-xl font-extrabold text-blue-900">Position</div>
         <div id="Drop">
           <select
             v-model="Position"
@@ -34,7 +34,7 @@
         </div>
       </div>
 
-      <div class="pt-4 text-xl font-extrabold underline">Candidates</div>
+      <div class="pt-4 text-xl font-extrabold text-blue-900">Candidates</div>
       <!-- <component v-bind:is="NewElectionForm"></component> -->
       <div class="flex flex-wrap justify-center ">
       <div class="flex flex-col justify-center ">
@@ -48,7 +48,7 @@
           <div class="flex flex-row justify-center">
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-2">
+                <div class="mb-6 mx-3">
                   <div>
                     <label for="FirstName" class="font-bold">First Name</label>
                   </div>
@@ -67,7 +67,7 @@
 
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-2">
+                <div class="mb-6 mx-3">
                   <div>
                     <label for="LastName" class="font-bold">Last Name</label>
                   </div>
@@ -109,10 +109,20 @@
               </div>
             </div>
           </div>
+          <!-- Image Upload -->
+          <div class="flex flex-wrap justify-center mb-6 mt-6 ">
+            <div class="custom-file flex flex-col ">
+              <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
+              <div class ="imgBox">
+              <input type="file" name="pic" id="upload" class="file-look border-2 border-blue-900 bg-white py-2 px-2" ref="input">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
       </div>
 
+      
       <button
         type="button"
         class="
@@ -131,7 +141,7 @@
       >
         Add Candidate
       </button>
-      <div class="pt-4 text-xl font-extrabold underline">Date/Time</div>
+      <div class="pt-4 text-xl font-extrabold text-blue-900">Date/Time</div>
       <div class="pt-2 font-bold">Election Starts:</div>
       <div class="flex justify-center">
         <datepicker
@@ -220,6 +230,7 @@ import router from "../router";
     <input type="Candidate2LastName" v-model="Candidate2LastName" placeholder="Last Name">
   </form>`)
 }}; */
+//import PictureService from "../services/Picture.Service"
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 export default {
@@ -438,6 +449,7 @@ input {
   margin-left: auto;
   margin-right: auto;
   width: 69%;
+  border-radius: 0.25rem;
 }
 .picker{
   width: 325px;
@@ -448,22 +460,25 @@ input {
 }
 .canCard{ 
   background: linear-gradient(
-    45deg,
-    rgb(180, 180, 180) 0%,
+    50deg,
+    rgb(185, 185, 185) 0%,
     rgba(230, 230, 230) 10%,
     rgba(255, 255, 255) 20%,
     rgba(230, 230, 230) 30%,
-    rgb(180, 180, 180) 40%,
-    rgb(205, 205, 205) 50%,
-    rgba(180, 180, 180) 60%,
+    rgb(190, 190, 190) 40%,
+    rgb(215, 215, 215) 50%,
+    rgba(195, 195, 195) 60%,
     rgb(220, 220, 220) 70%,
     rgba(235, 235, 235) 80%,
     rgb(230, 230, 230) 90%,
-    rgb(160, 160, 160) 100%
+    rgb(180, 180, 180) 100%
     
         /*rgba(4, 6, 56, 0.50) 50%,
     rgb(250, 204, 21, 0.50) 100%*/
   );
   border-width: 11px;
+}
+.imgBox{
+  width: 465px;
 }
 </style>
