@@ -7,16 +7,17 @@
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
-        <div v-if="clubName"
+        <div 
             class="
               flex
               text-white
               font-xl
               items-center
               justify-center
-              w-64
+              w-72
               h-16
               m-4
+              mb-6
               bg-gradient-to-r
               from-blue-600
               to-blue-900

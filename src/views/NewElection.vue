@@ -21,10 +21,11 @@
               px-2
               rounded
               flex flex-col justify-center
+              text-center
             "
           >
             <!--<option value="undefined" disabled>Positions</option>-->
-            <option value="President" class="justify-center">President</option>
+            <option value="President">President</option>
             <option value="Vice president">Vice President</option>
             <option value="Secretary">Secretary</option>
             <option value="Treasurer">Treasurer</option>
