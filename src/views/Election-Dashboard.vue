@@ -37,7 +37,7 @@
             </div>
           </div>
           
-        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
+        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-64 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
             <option value="active">Active Elections</option>
             <option value="upcoming">Upcoming Elections</option>
             <option value="past">Past Elections</option>
