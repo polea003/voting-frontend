@@ -7,7 +7,7 @@
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
-        <div 
+        <div v-if="clubName"
             class="
               flex
               text-white

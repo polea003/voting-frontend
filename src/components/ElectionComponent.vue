@@ -4,9 +4,9 @@ NEED MOBILE VERSION-->
   <div id="Election" class="border-gray-300 rounded-2xl my-7 mx-3">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
-      <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
+      <!--<span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
-      }}</span>
+      }}</span>-->
       <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
       }}</span>
