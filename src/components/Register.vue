@@ -12,7 +12,7 @@
           <div>
             <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-900 rounded px-2" />
+          <Field name="username" type="text" placeholder="NameName" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
@@ -21,7 +21,7 @@
           <div>
             <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-900 rounded px-2" />
+          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
@@ -30,7 +30,7 @@
           <div>
             <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" placeholder="Password1234" class="form-control border-2 border-blue-900 rounded px-2" />
+          <Field name="password" type="password" placeholder="Password1234" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
@@ -38,7 +38,7 @@
 
         <div class="flex flex-wrap justify-center mb-6 mt-6">
           <div class="custom-file flex flex-col mb-3">
-            <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
+            <label for="file" class="custom-file-label font-bold mb-2">Choose Profile Picture</label>
             <input type="file" name="pic" id="upload" class="file-look" ref="input">
           </div>
           <div>
@@ -172,7 +172,7 @@ export default {
         async (data) => {
           console.log(data)
           console.log(this.schema.fields.pic)
-    //console.log(this.$refs.input.files[0]
+          //console.log(this.$refs.input.files[0])
 
           const myRenamedFile = new File([this.$refs.input.files[0]], data._id, { type: this.$refs.input.files[0].type  }); 
           let formData = new FormData()

@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-extrabold text-gray-500 m-5">Election Dashboard</h1>
+    <h1 class="text-5xl font-extrabold m-5">Election Dashboard</h1>
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
@@ -37,7 +37,7 @@
             </div>
           </div>
           
-        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-64 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
+        <select v-model="electionFilter" class="form-select form-control standard border-2 w-64 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
             <option value="active">Active Elections</option>
             <option value="upcoming">Upcoming Elections</option>
             <option value="past">Past Elections</option>

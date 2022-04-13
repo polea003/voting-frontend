@@ -4,18 +4,19 @@
       <div class="flex flex-col items-center">
         <h1 class="text-5xl font-extrabold m-5">New Election</h1>
         <span class="font-bold font-sans text-5xl mb-2"> {{ club }}</span>
-        <div class="pt-2 text-2xl font-extrabold text-blue-900">Election Name</div>
+        <div class="night pt-2 text-2xl font-extrabold">Election Name</div>
         <input
           type="name"
           v-model="text"
           placeholder="Election Name"
-          class="w-64 h-8 border-2 border-blue-900 rounded px-2"
+          class="standard w-64 h-8 border-2 rounded px-2"
         />
-        <div class="pt-4 text-2xl font-extrabold text-blue-900">Position</div>
+        <div class="night pt-4 text-2xl font-extrabold">Position</div>
         <div id="Drop">
           <select
             v-model="Position"
             class="
+              standard
               form-look
               border-2 border-blue-900
               px-2
@@ -34,21 +35,21 @@
         </div>
       </div>
 
-      <div class="pt-4 text-2xl font-extrabold text-blue-900">Candidates</div>
+      <div class="night pt-4 text-2xl font-extrabold">Candidates</div>
       <!-- <component v-bind:is="NewElectionForm"></component> -->
       <div class="flex flex-wrap justify-center ">
       <div class="flex flex-col justify-center ">
         <div
           v-for="(FirstName, index) in FirstName"
           v-bind:key="FirstName"
-          class="canCard mb-6 mt-2 py-2 border-8 border-gray-200 rounded-2xl w-96 
-          hover:shadow-xl hover:border-yellow-300 font-medium"
+          class="canCard mb-6 mt-2 py-2 border-8 rounded-2xl w-96 
+          hover:shadow-xl font-medium text-lg"
         >
         <div class="font-bold text-xl pb-2">Candidate: {{index + 1}}</div> 
           <div class="flex flex-row justify-center">
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-3">
+                <div class="mb-6 mx-2">
                   <div>
                     <label for="FirstName" class="font-bold">First Name</label>
                   </div>
@@ -56,7 +57,7 @@
                     name="FirstName"
                     type="text"
                     v-model="FirstName.value"
-                    class="form-control border-2 border-blue-900 rounded w-36"
+                    class="form-control border-2 border-blue-900 rounded w-42"
                   />
                   <div>
                     <ErrorMessage name="FirstName" class="error-feedback" />
@@ -67,7 +68,7 @@
 
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-3">
+                <div class="mb-6 mx-2">
                   <div>
                     <label for="LastName" class="font-bold">Last Name</label>
                   </div>
@@ -75,7 +76,7 @@
                     name="LastName"
                     type="text"
                     v-model="LastName[index].value"
-                    class="form-control border-2 border-blue-900 rounded w-36"
+                    class="form-control border-2 border-blue-900 rounded w-42"
                   />
                   <div>
                     <ErrorMessage name="LastName" class="error-feedback" />
@@ -100,7 +101,7 @@
                 <div class="flex flex-wrap">
                   <textarea
                     v-model="UserProfile[index].value"
-                    placeholder="Maximum 305 characters"
+                    placeholder=" Maximum 305 characters"
                     class="textInput border-2 rounded border-blue-900 resize-y"
                     v-on:keyup="check(index)"
                   >
@@ -112,7 +113,7 @@
           <!-- Image Upload -->
           <div class="flex flex-wrap justify-center mb-6 mt-6 ">
             <div class="custom-file flex flex-col ">
-              <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
+              <label for="file" class="custom-file-label font-bold text-black">Choose Profile Picture</label>
               <div class ="imgBox">
               <input type="file" name="pic" id="upload" class="file-look border-2 border-blue-900 bg-white py-2 px-2" ref="input">
               </div>
@@ -164,7 +165,7 @@
       >
         Remove  
       </button>
-      <div class="pt-4 text-2xl font-extrabold text-blue-900">Date/Time</div>
+      <div class="night pt-4 text-2xl font-extrabold">Date/Time</div>
       <div class="pt-2 font-bold">Election Starts:</div>
       <div class="flex justify-center">
         <datepicker
@@ -253,7 +254,7 @@ import router from "../router";
     <input type="Candidate2LastName" v-model="Candidate2LastName" placeholder="Last Name">
   </form>`)
 }}; */
-//import PictureService from "../services/Picture.Service"
+import PictureService from "../services/Picture.Service"
 import { Form, Field, ErrorMessage } from "vee-validate";
 import * as yup from "yup";
 export default {
@@ -314,6 +315,37 @@ export default {
     },
   },
   methods: {
+    handleRegister(user) {
+      this.message = "";
+      this.successful = false;
+      this.loading = true;
+      this.$store.dispatch("auth/register", user).then(
+        async (data) => {
+          console.log(data)
+          console.log(this.schema.fields.pic)
+    //console.log(this.$refs.input.files[0])
+
+          const myRenamedFile = new File([this.$refs.input.files[0]], data._id, { type: this.$refs.input.files[0].type  }); 
+          let formData = new FormData()
+          formData.append('file', myRenamedFile)
+          await PictureService.uploadPicture(formData)
+          this.message = data.message;
+          this.successful = true;
+          this.loading = false;
+          this.profileImageId = data._id
+        },
+        (error) => {
+          this.message =
+            (error.response &&
+              error.response.data &&
+              error.response.data.message) ||
+            error.message ||
+            error.toString();
+          this.successful = false;
+          this.loading = false;
+        }
+      );
+    },
     check: function (i) {
       this.UserProfile[i].value = this.UserProfile[i].value.substring(0, 306);
       //console.log(this.UserProfile[i].value)
@@ -361,7 +393,7 @@ export default {
       var i = 0;
 
       while (i < NumberOfCandidates) {
-        if (FirstName[i].value == "" || LastName[i].value == "") {
+        if (FirstName[i].value === "" || LastName[i].value === "") {
           throw Error;
         } else {
           //Used to pass first and last name as a string into a arrray
@@ -370,7 +402,7 @@ export default {
           FullName[i].value = str;
           //console.log(FullName[i].value)
         }
-        if (UserProfile[i].value == "") {
+        if (UserProfile[i] === "") {
           UserProfile[i].value = "Candidate Description was NOT Entered.";
         }
         i++;
@@ -481,33 +513,23 @@ input {
   margin-right: auto;
   width: 69%;
   border-radius: 0.25rem;
+  color: black !important;
 }
 .picker{
   width: 325px;
 }
 .hover\:shadow-xl:hover {
-    --tw-shadow: 0 25px 50px 0px rgba(251, 191, 36, 0.95);
+    --tw-shadow: 0 25px 50px 10px rgba(251, 191, 36, 0.95);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 .canCard{ 
-  background: linear-gradient(
-    50deg,
-    rgb(185, 185, 185) 0%,
-    rgba(230, 230, 230) 10%,
-    rgba(255, 255, 255) 20%,
-    rgba(230, 230, 230) 30%,
-    rgb(190, 190, 190) 40%,
-    rgb(215, 215, 215) 50%,
-    rgba(195, 195, 195) 60%,
-    rgb(220, 220, 220) 70%,
-    rgba(235, 235, 235) 80%,
-    rgb(230, 230, 230) 90%,
-    rgb(180, 180, 180) 100%
-    
-        /*rgba(4, 6, 56, 0.50) 50%,
-    rgb(250, 204, 21, 0.50) 100%*/
-  );
-  border-width: 11px;
+  /*background: rgb(204,0,102);*/
+  background: radial-gradient(circle, rgba(204,0,102,1) 0%, rgba(255,204,0,1) 100%);
+  border-width: 10px;
+}
+.canCard:hover{
+    border-color: rgb(204,0,102);
+    border-color: rgb(255,204,0) !important;
 }
 .imgBox{
   width: 465px;

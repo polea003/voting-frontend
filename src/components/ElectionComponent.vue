@@ -1,25 +1,25 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots 
 NEED MOBILE VERSION-->
 <template>
-  <div id="Election" class="border-gray-300 rounded-2xl my-7 mx-3">
+  <div id="Election" class="rounded-2xl my-7 mx-3">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
-      <!--<span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
+      <span class="titleBall flex flex-col font-serif text-5xl mb-2">{{
         `${election.club}`
-      }}</span>-->
-      <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
-        `${election.Poisition}`
       }}</span>
-      <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
+      <span class="titleBall2 flex flex-col font-serif text-3xl mb-2">{{
         `${election.text}`
       }}</span>
-      <a class="mt-8 font-bold text-blue-700 text-xl hover:text-blue-500 underline" :href="chainLink" target="_blank" >View On-Chain</a>
+      <span class="titleBall2 flex flex-col font-serif text-2xl mb-2">{{
+        `${election.Poisition}`
+      }}</span>
+      <a class="mt-8 font-bold text-blue-800 text-xl hover:text-blue-500 underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
     
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold my-2" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
-    <div class="font-bold mb-2" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
+    <div class="font-bold my-2 text-lg font-mono" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
+    <div class="font-bold mb-3 text-lg font-mono" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
@@ -27,7 +27,7 @@ NEED MOBILE VERSION-->
     <table>
       <!-- Column Names -->
       <tr width="50%">
-        <td class="titleBall font-serif text-xl font-bold">
+        <td class="titleBall3 font-serif text-xl font-bold">
           Candidates
         </td>
         <div v-for="(FullName, index) in election.FullName"
@@ -39,7 +39,8 @@ NEED MOBILE VERSION-->
               text-lg 
               overflow-hidden
               truncate
-              bg-gray-100
+              bg-gray-50
+              
             "
           >
           <button class="text-ellipsis overflow-hidden underline text-black hover:text-blue-600 " 
@@ -69,7 +70,7 @@ NEED MOBILE VERSION-->
             <div class="flex flex-col justify-center">
               <!--<h2 class="text-2xl mt-2">Name</h2>-->
               <!-- Profile[index].name.value-->
-            <h1 class="text-3xl font-extrabold mb-2 truncate"> {{Profile.name}}</h1>
+            <h2 class="text-3xl text-gray-600 font-extrabold mb-2 truncate"> {{Profile.name}}</h2>
             </div>
             <div class="flex justify-center m-b">
               <img :src="require(`../assets/pantherPawHand.png`)"/>
@@ -102,14 +103,14 @@ NEED MOBILE VERSION-->
       </tr>
       <!-- Column for Vote Button -->
       <tr width="30%">
-        <td class="titleBall font-serif text-xl font-bold">
+        <td class="titleBall3 font-serif text-xl font-bold">
          {{`Selection`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
           v-bind:key="NumberOfCandidates"
         >
-          <td height="60" class="font-serif font-bold text-xl bg-gray-100">
+          <td height="60" class="font-serif font-bold text-xl bg-gray-50">
             <div v-if="selectedVote && index === selectedVote - 1" class=" 
                 w-full
                 h-full
@@ -124,6 +125,7 @@ NEED MOBILE VERSION-->
               
             </div>
             <div v-else-if="currentUser && voted" class=" 
+                font-sans
                 w-full
                 h-full
                 font-bold
@@ -145,8 +147,8 @@ NEED MOBILE VERSION-->
                 bg-gradient-to-r from-blue-600 to-blue-900
                 border-4 
               "
-              :class="{'opacity-20 cursor-not-allowed hover:from-blue-600 hover:to-blue-900 hover:text-white hover:border-blue-200': selectedVote || !currentUser ,
-              'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
+              :class="{'opacity-20 cursor-not-allowed hover:text-white hover:from-blue-600 hover:to-blue-900  hover:border-blue-200': selectedVote || !currentUser ,
+              'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:border-yellow-400 hover:text-blue-800' : !selectedVote  }"
             >
               {{currentUser ? 'Vote' : 'Log In'}}
             </div>
@@ -218,11 +220,11 @@ NEED MOBILE VERSION-->
       <tr width="20%">
         <div>
           <td
-            class="titleBall font-serif text-xl font-bold "
+            class="titleBall3 font-serif text-xl font-bold "
           >
             {{`Tally`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-50">
             <td height="60">
               <div v-if="loadingDatabaseVotes && (!selectedVote || index === selectedVote - 1)">
                 <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
@@ -230,7 +232,7 @@ NEED MOBILE VERSION-->
               <!-- <div v-else-if="loadingDatabaseVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
               </div> -->
-              <div v-else class="font-serif text-lg">
+              <div v-else class="font-serif text-lg text-black">
                 <div v-if=" (Vote.value - newBlockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
                   {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
@@ -251,7 +253,7 @@ NEED MOBILE VERSION-->
           >
             {{`Blockchain`}}
           </td>
-          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
+          <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-50">
             <td height="60">
               <div v-if="loadingBlockchainVotes && index === selectedVote - 1">
                 <Preloader class="-mt-11" color="red" scale="0.2" />
@@ -470,7 +472,7 @@ export default {
 
 <style scoped>
 #Election {
-  /*background: rgb(255,255,255);*/
+  /*background: rgb(255,255,255);
   background: linear-gradient(
     50deg,
     rgb(180, 180, 180) 0%,
@@ -484,21 +486,34 @@ export default {
     rgba(235, 235, 235) 80%,
     rgb(230, 230, 230) 90%,
     rgb(160, 160, 160) 100%
-    
-        /*rgba(4, 6, 56, 0.50) 50%,
-    rgb(250, 204, 21, 0.50) 100%*/
   );
-  border-width: 11px;
+  border-width: 11px;*/
+  /*background: rgb(204,0,102);*/
+  /*-moz-animation: ;background: radial-gradient(circle, rgba(204,0,102,1) 0%, rgba(255,204,0,1) 100%);
+  border-color: rgba(182,134,44,1);*/
+  border-width: 8px;
+}
+#Election:hover{
+  border-color: rgba(255,204,0,1) !important;
 }
 span.titleBall{
-  color:black;
+  color: #081E3F;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: rgba(180, 180, 180, 0.4);
+  font-weight: 900;
+}
+span.titleBall2{
+  -webkit-text-stroke-width: 0px;
+  font-weight: 900;
+}
+span.titleBall3{
+  -webkit-text-stroke-width: 0px;
+  font-weight: 900;
 }
 td.titleBall{
   color:black;
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(180, 180, 180, 0.2);
+
 }
 /* Changes Format from building Table from Rows to Columns*/
 table {

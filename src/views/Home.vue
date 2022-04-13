@@ -1,13 +1,13 @@
 <template>
-  <div class="election-Dashboard">
+  <div class="election-Dashboard h-fit">
     <!-- Local Title Header-->
     <h1 class="text-5xl font-extrabold m-5">Home Page</h1>
     <!-- Welcome Message -->
-    <div class="text-3xl font-bold m-6">Welcome to Panther Votes!</div>
+    <h3 class="text-3xl font-bold m-6">Welcome to Panther Votes!</h3>
     <!-- Action Message -->
-    <div class="text-lg font-sans font-medium mb-4">
+    <p class="text-lg font-sans font-medium mb-4">
       Please 'Login' to vote.<br>If this is your first time here<br>please visit 'How It Works'
-    </div>
+    </p>
     <!-- Login Button -->
     <div class="flex justify-center">
       <div class="flex h-full justify-center">
@@ -29,7 +29,7 @@
             from-blue-600
             to-blue-900
             hover:from-yellow-300 hover:to-yellow-600
-            hover:border-black 
+            hover:border-black
             hover:text-black
           "
         >
