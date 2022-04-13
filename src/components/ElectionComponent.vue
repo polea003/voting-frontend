@@ -43,7 +43,7 @@ NEED MOBILE VERSION-->
               
             "
           >
-          <button class="text-ellipsis overflow-hidden underline text-black hover:text-blue-600 " 
+          <button class="text-ellipsis overflow-hidden underline text-black hover:text-blue-500 " 
           @click="displayProfile(index)">
             {{ FullName.value }}
           </button>
@@ -76,7 +76,7 @@ NEED MOBILE VERSION-->
               <img :src="require(`../assets/pantherPawHand.png`)"/>
             </div>
             <!-- Both whitespace and word breaks need to be taken care of-->  
-            <p class="whitespace-normal break-words">
+            <p class="whitespace-normal break-words text-black">
               {{Profile.description}}
             </p>
               
@@ -125,6 +125,7 @@ NEED MOBILE VERSION-->
               
             </div>
             <div v-else-if="currentUser && voted" class=" 
+                z-1
                 font-sans
                 w-full
                 h-full
@@ -137,6 +138,7 @@ NEED MOBILE VERSION-->
             <div v-else
               @click="!selectedVote && currentUser ? confirmVote(index) : {}"
               class=" 
+                z-1
                 font-sans
                 w-full
                 h-full
@@ -147,8 +149,8 @@ NEED MOBILE VERSION-->
                 bg-gradient-to-r from-blue-600 to-blue-900
                 border-4 
               "
-              :class="{'opacity-20 cursor-not-allowed hover:text-white hover:from-blue-600 hover:to-blue-900  hover:border-blue-200': selectedVote || !currentUser ,
-              'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:border-yellow-400 hover:text-blue-800' : !selectedVote  }"
+              :class="{'with-over-load opacity-20 cursor-not-allowed hover:text-white hover:from-blue-600 hover:to-blue-900  hover:border-blue-200': selectedVote || !currentUser ,
+              'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:border-yellow-400 hover:text-blue-800': !selectedVote}"
             >
               {{currentUser ? 'Vote' : 'Log In'}}
             </div>
@@ -156,6 +158,7 @@ NEED MOBILE VERSION-->
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
+                  z-10
                   fixed
                   inset-0
                   w-screen
@@ -170,12 +173,12 @@ NEED MOBILE VERSION-->
                 <div class="max-w-2xl p-6 mx-4 bg-white rounded-md shadow-lg">
                   <!--Header for Popup-->
                   <div class="flex justify-center">
-                    <h3 class="text-2xl">Please Confrim</h3>
+                    <h3 class="text-2xl text-black">Please Confrim</h3>
                   </div>
                   <!-- Body for Popup-->
                   <div class="mt-4">
                     <!-- Display Name of Selection with message -->
-                    <div class="mb-5">
+                    <div class="mb-5 text-black">
                       Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                     </div>
                     <!-- Cancel vote selection button -->
@@ -195,9 +198,9 @@ NEED MOBILE VERSION-->
                       text-black
                       bg-red-100
                       border-4 border-red-400
-                      rounded-md
+                      rounded-full
                       hover:bg-red-600 hover:text-black hover:border-black
-                      hover:underline
+                      
                       
                     "
                   >
@@ -205,7 +208,7 @@ NEED MOBILE VERSION-->
                   </button>
                   <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
                   <button
-                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-400 hover:text-black hover:border-black"
+                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-full border-4 border-blue-300 hover:bg-yellow-400 hover:text-black hover:border-black"
                     @click="ProcessVote(election._id, NumberOfCandidates)"
                   >
                     Vote
@@ -514,6 +517,9 @@ td.titleBall{
   -webkit-text-stroke-width: 1px;
   -webkit-text-stroke-color: rgba(180, 180, 180, 0.2);
 
+}
+.with-over-load{
+  color: white; /*some is bugged with tailwind */
 }
 /* Changes Format from building Table from Rows to Columns*/
 table {

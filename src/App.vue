@@ -51,7 +51,7 @@
             type="checkbox"
             class="switch-checkbox"
           />
-          <label for="checkbox" class="switch-label">
+          <label for="checkbox" class="switch-label ml-4">
             <span>🌙</span>
             <span>☀️</span>
             <div
@@ -174,29 +174,29 @@ export default {
 }
 /* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
-  --background-color-primary: rgb(0, 0, 0, 1);
+  --background-color-primary: rgb(0, 11, 25);
   --text-primary-color: rgb(255, 255, 255, 1);
   -webkit-text-stroke-color: rgba(0, 255, 255, 1);
   --border-color: rgba(182,134,44,1);
   --border-color-input: rgba(255,204,0,1);
   --background: radial-gradient(circle, rgba(204,0,102,1) 0%, rgba(255,204,0,1) 100%);
 
-
 }
 #Election{
   border-color: var(--border-color) !important;
   background: var(--background) !important;
 }
-
 .canCard{ 
   border-color: var(--border-color) !important;
   background: var(--background) !important;
 }
 .standard{
   border-color: var(--border-color-input) !important;
+  color: rgb(8, 30, 63, 1) !important;
 }
 .picker{
   border-color: var(--border-color-input) !important;
+  color: rgba(8, 30, 63, 1) !important
 }
 span.titleBall{
   -webkit-text-stroke-width: 1px;
@@ -229,7 +229,7 @@ label{
   color: var(--text-primary-color) !important;
 }
 input{
-  color: var(--text-primary-color) !important;
+  color: var(--text-primary-color);
 }
 div.night{
   color: var(--text-primary-color) !important;

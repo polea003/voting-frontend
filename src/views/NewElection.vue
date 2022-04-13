@@ -102,7 +102,7 @@
                   <textarea
                     v-model="UserProfile[index].value"
                     placeholder=" Maximum 305 characters"
-                    class="textInput border-2 rounded border-blue-900 resize-y"
+                    class="textInput text-black border-2 rounded border-blue-900 resize-y"
                     v-on:keyup="check(index)"
                   >
                   </textarea>
@@ -169,14 +169,14 @@
       <div class="pt-2 font-bold">Election Starts:</div>
       <div class="flex justify-center">
         <datepicker
-          class="picker z-0 border-2 border-blue-900 rounded"
+          class="picker z-0 border-2 rounded"
           v-model="startTime"
         />
       </div>
       <div class="pt-4 font-bold">Election Ends</div>
       <div class="flex justify-center">
         <datepicker
-          class="picker z-0 border-2 border-blue-900 rounded"
+          class="picker z-0 border-2 rounded"
           v-model="endTime"
         />
       </div>
@@ -262,7 +262,6 @@ export default {
   components: {
     // Form
     Datepicker,
-
     Form,
     Field,
     ErrorMessage,
@@ -492,6 +491,7 @@ export default {
 }
 input {
   text-align: center;
+  color: rgba(8, 30, 63, 1) !important 
 }
 .addPro {
   width: 100px;
@@ -516,6 +516,7 @@ input {
   color: black !important;
 }
 .picker{
+  color: rgba(8, 30, 63, 1) !important;
   width: 325px;
 }
 .hover\:shadow-xl:hover {
@@ -528,7 +529,7 @@ input {
   border-width: 10px;
 }
 .canCard:hover{
-    border-color: rgb(204,0,102);
+    /*border-color: rgb(204,0,102);*/
     border-color: rgb(255,204,0) !important;
 }
 .imgBox{
