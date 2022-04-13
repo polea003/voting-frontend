@@ -138,7 +138,7 @@
           rounded-full
           my-3
           mr-3
-          w-44
+          w-36
         "
         @click="add()"
       >
@@ -159,7 +159,7 @@
           rounded-full
           my-3
           ml-3
-          w-44
+          w-36
         "
         @click="sub()"
       >
