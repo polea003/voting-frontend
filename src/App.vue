@@ -179,7 +179,7 @@ export default {
   -webkit-text-stroke-color: rgba(0, 255, 255, 1);
   --border-color: rgba(182,134,44,1);
   --border-color-input: rgba(255,204,0,1);
-  --background: radial-gradient(circle, rgba(204,0,102,1) 0%, rgba(255,204,0,1) 100%);
+  --background: radial-gradient(circle, rgba(255,204,0,1) 0%, rgba(204,0,102,1) 100%);
 
 }
 #Election{
