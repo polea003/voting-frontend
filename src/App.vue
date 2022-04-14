@@ -145,9 +145,13 @@ export default {
   /*background-color: rgb(8, 30, 63, 1);*/
   /* color: #eff303; */
   /* color: #15e1f0;  */
-  background-size: contain, cover;
+  /*background-size: contain, cover;*/
   color: var(--text-primary-color);
   background: var(--background-color-primary);
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: 100%;
 }
 
 /* Define styles for the default root window element */
@@ -174,7 +178,7 @@ export default {
 }
 /* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
-  --background-color-primary: rgb(0, 11, 25);
+  --background-color-primary: url("./assets/stars.jpg");
   --text-primary-color: rgb(255, 255, 255, 1);
   -webkit-text-stroke-color: rgba(0, 255, 255, 1);
   --border-color: rgba(182,134,44,1);
