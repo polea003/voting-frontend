@@ -271,7 +271,8 @@ NEED MOBILE VERSION-->
     </table>
     
     <!-- DELETE Election BUTTON -->
-    <div>
+    <div v-if="currentUser">
+    <div v-if="currentUser.role == 'Admin'">
       <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="currentUser ? deleteElection(election._id) : {}"
@@ -294,7 +295,8 @@ NEED MOBILE VERSION-->
           Delete
         </button>
       </div>
-    </div>
+    </div></div>
+  
   </div>
 
   <!--

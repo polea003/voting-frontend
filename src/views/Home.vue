@@ -9,7 +9,7 @@
       Please 'Login' to vote.<br>If this is your first time here<br>please visit 'How It Works'
     </p>
     <!-- Login Button -->
-    <div class="flex justify-center">
+    <div class="flex justify-center" v-if="!currentUser">
       <div class="flex h-full justify-center">
         <div
           class="
@@ -33,7 +33,7 @@
             hover:text-black
           "
         >
-          <div class="font-bold text-3xl">
+          <div class="font-bold text-3xl" >
             <router-link :to="{ name: 'login' }">Login Page</router-link>
           </div>
         </div>
@@ -72,3 +72,13 @@
     </div>
   </div>
 </template>
+<script>
+export default {
+  name: 'Profile',
+  computed: {
+    currentUser() {
+      return this.$store.state.auth.user;
+    }
+  },
+};
+</script>
