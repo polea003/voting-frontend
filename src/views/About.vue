@@ -25,7 +25,7 @@
           </div>
           </div>
            <div class="p-3 w-72 h-72 border-gray-300 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-              <div class = "font-bold"> Isabella Fernandez
+              <div class = "font-bold"> Isabela Fernandez
               <img class =" object-cover w-48" :src="require(`../assets/Isa.jpeg`)">
           </div>
           </div>
