@@ -1,52 +1,34 @@
 <!--Displays Election Balot, TODO make seperate Admin and Voter Balots 
 NEED MOBILE VERSION-->
 <template>
-  <div id="Election" class="border-gray-300 rounded-2xl m-7">
+  <div id="Election" class="border-gray-300 rounded-2xl my-7 mx-3">
     <!-- DISPLAY 'Club Name' then 'Position' using flex-col -->
     <div class="mt-5 mb-5">
       <span class="titleBall flex flex-col font-serif font-bold text-5xl mb-2">{{
         `${election.club}`
       }}</span>
-            <span class="titleBall flex flex-col font-serif font-bold text-3xl">{{
+            <span class="titleBall flex flex-col font-serif font-bold text-3xl mb-2">{{
         `${election.Poisition}`
       }}</span>
+      <a class="mt-8 font-bold text-blue-700 text-xl underline" :href="chainLink" target="_blank" >View On-Chain</a>
     </div>
+    
 
     <!-- DISPLAY 'Start time' and 'End time' of Election -->
-    <div class="font-bold" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
-    <div class="font-bold" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
+    <div class="font-bold my-2" v-show="election.startTime">{{`Start: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format((computedStartTime))}`}}</div>
+    <div class="font-bold mb-2" v-show="election.endTime">{{`End: ${Intl.DateTimeFormat('en', { weekday: 'long', month: 'short', day: 'numeric', hour: "numeric", minute: "numeric", hour12: true } ).format(computedEndTime)}`}}</div>
 
     <!-- TABLE to DISPLAY Election Data, width of table is 760 (hard coded) for first, last, vot button, mongodb, blockchain -->
     <!-- TODO, need to test name length overflow, maybe truncate the name then allow hover to see full name (not sure about mobile)-->
-    <table width="360"> 
-      <!-- Column First Names -->
-      <tr>
+    <!-- Table width and Cells (td) widt must be hard coded for mobile, found in CSS, style tag below -->
+    <table>
+      <!-- Column Names -->
+      <tr width="50%">
         <td class="titleBall font-serif text-xl font-bold">
-          First
+          Candidates
         </td>
-        <div v-for="FirstName in election.FirstName" v-bind:key="FirstName">
-          <td
-            height="60"
-            class="
-              font-serif
-              text-lg
-              overflow-hidden
-              truncate
-              bg-gray-100
-             
-            "
-          >
-            {{ FirstName.value }}
-          </td>
-        </div>
-      </tr>
-
-      <!-- Column Last Names -->
-      <tr>
-        <td class="titleBall font-serif text-xl font-bold">
-          Last
-        </td>
-        <div v-for="LastName in election.LastName" v-bind:key="LastName">
+        <div v-for="(FullName, index) in election.FullName"
+          v-bind:key="FullName">
           <td
             height="60"
             class="
@@ -57,15 +39,69 @@ NEED MOBILE VERSION-->
               bg-gray-100
             "
           >
-            {{ LastName.value }}
-          </td>
+          <button class="underline text-black hover:text-blue-600" 
+          @click="displayProfile(index)">
+            {{ FullName.value }}
+          </button>
+        
+          <div v-show="popUpOpen && profileToDisplay === index"
+            class="
+              fixed
+              inset-0
+              w-screen
+              h-screen
+              flex
+              items-center
+              justify-center
+              bg-gray-700 bg-opacity-50
+            "
+          >
+          <!-- Confirmation PopUp -->
+          <div class="w-96 p-6 mx-4 bg-white rounded-md shadow-lg">
+            <!--Header for Popup-->
+            <div class="flex flex-col justify-center">
+              <h1 class="text-3xl">Candidate Profile</h1>
+            </div>
+            <div class="flex flex-col justify-center">
+              <!--<h2 class="text-2xl mt-2">Name</h2>-->
+              <h2 class="text-2xl mt-2">{{ `${election.FullName[index].value}` }}</h2>
+            </div>
+            <div class="flex justify-center">
+              <img :src="require(`../assets/pantherPawHand.png`)"/>
+            </div>
+            <!-- Both whitespace and word breaks need to be taken care of-->  
+            <p class="whitespace-normal break-words">
+              {{`Hi ya'll this is where a decription of the candidate will be found. I think width is controled with max-w-blahblahblah`}} 
+            </p>
+              
+              <!-- Cancel vote selection button -->
+              <button
+                @click="popUpOpen = false"
+                class="
+                  font-bold
+                  font-sans
+                  text-2xl
+                  w-12
+                  mx-6
+                  mt-4
+                  text-black
+                  bg-red-100
+                  border-4 border-red-600
+                  rounded-full
+                  hover:bg-red-500 hover:text-black hover:border-black
+                  
+                  
+                "
+              >X</button>
+          </div>
         </div>
+        </td>
+      </div>
       </tr>
-
       <!-- Column for Vote Button -->
-      <tr>
+      <tr width="30%">
         <td class="titleBall font-serif text-xl font-bold">
-         {{`Select`}} 
+         {{`Selection`}} 
         </td>
         <div
           v-for="(NumberOfCandidates, index) in election.NumberOfCandidates"
@@ -76,13 +112,13 @@ NEED MOBILE VERSION-->
                 w-full
                 h-full
                 font-bold
-                rounded-md
+                rounded-xl
                 bg-gradient-to-r 
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-300 to-blue-600' : loadingBlockchainVotes || loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingBlockchainVotes && !loadingDatabaseVotes}"
-              >{{loadingBlockchainVotes || loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
+              :class="{'from-blue-300 to-blue-600' :  loadingDatabaseVotes, 'from-green-300 to-green-600' : !loadingDatabaseVotes}"
+              >{{loadingDatabaseVotes ? 'Processing' : 'Confirmed'}}
               
             </div>
             <div v-else-if="currentUser && voted" class=" 
@@ -95,7 +131,7 @@ NEED MOBILE VERSION-->
                 opacity-20
               ">Already Voted</div>
             <div v-else
-              @click="!selectedVote ? confirmVote(index) : {}"
+              @click="!selectedVote && currentUser ? confirmVote(index) : {}"
               class=" 
                 font-sans
                 w-full
@@ -103,15 +139,15 @@ NEED MOBILE VERSION-->
                 font-bold
                 text-white
                 border-blue-200
-                rounded-md
+                rounded-3xl
                 bg-gradient-to-r from-blue-400 to-blue-800
                 border-4 
               "
-              :class="{'opacity-20': selectedVote ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
+              :class="{'opacity-20': selectedVote || !currentUser ,'cursor-pointer hover:from-yellow-200 hover:to-yellow-400 hover:text-black hover:border-yellow-400': !selectedVote  }"
             >
-              {{'Vote'}}
+              {{currentUser ? 'Vote' : 'Log In'}}
             </div>
-<!-- End of Vote button -->
+            <!-- End of Vote button -->
             <div
                 v-show="confirmationOpen && voteToConfirm === index"
                 class="
@@ -138,36 +174,37 @@ NEED MOBILE VERSION-->
                       Are you sure you want to vote for: {{ `${election.FirstName[index].value} ${election.LastName[index].value}` }}?
                     </div>
                     <!-- Cancel vote selection button -->
-                    <button
-                      @click="confirmationOpen = false"
-                      class="
-                        font-bold
-                        font-sans
-                        text-2xl
-                        w-32
-                        px-6
-                        py-2
-                        mx-6
-                        mb-6
-                        text-black
-                        bg-white
-                        border-4 border-red-600
-                        rounded-md
-                        hover:bg-red-500 hover:text-black hover:border-black
-                        hover:underline
-                        
-                      "
-                    >
-                      Cancel
-                    </button>
-                    <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
-                    <button
-                      class="w-32 font-bold px-6 py-2 ml-6 text-blue-100 bg-blue-600 rounded-md border-4 border-gray hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
-                      @click="ProcessVote(election._id, NumberOfCandidates), ElectionSubmit(currentUser._id, election._id) " 
-                    >
-                      Vote
-                    </button>
                   </div>
+                  <!-- Cancel vote selection button -->
+                  <button
+                    @click="confirmationOpen = false"
+                    class="
+                      font-bold
+                      font-sans
+                      text-2xl
+                      w-32
+                      px-6
+                      py-2
+                      mx-6
+                      mb-6
+                      text-black
+                      bg-red-100
+                      border-4 border-red-600
+                      rounded-md
+                      hover:bg-red-500 hover:text-black hover:border-black
+                      hover:underline
+                      
+                    "
+                  >
+                    Cancel
+                  </button>
+                  <!-- Vote confirmation Button, Calls ProcessVote() function: updates vote count in mongoDB and blockchain -->
+                  <button
+                    class="w-32 font-bold font-sans text-2xl px-6 py-2 mx-6 mb-2 text-white bg-blue-600 rounded-md border-4 border-blue-300 hover:underline hover:bg-yellow-500 hover:text-black hover:border-black"
+                    @click="ProcessVote(election._id, NumberOfCandidates)"
+                  >
+                    Vote
+                  </button>
                 </div>
               </div>
           </td>
@@ -175,7 +212,7 @@ NEED MOBILE VERSION-->
       </tr>
 
       <!-- Column DISPLAYing mongoDB Vote Count NOW DISPLAYS BOTH MongoDB and Blockchain as a ratio-->
-      <tr>
+      <tr width="20%">
         <div>
           <td
             class="titleBall font-serif text-xl font-bold "
@@ -184,15 +221,18 @@ NEED MOBILE VERSION-->
           </td>
           <div v-for="(Vote, index) in election.Vote" v-bind:key="Vote" class="bg-gray-100">
             <td height="60">
-              <div v-if="loadingDatabaseVotes && index === selectedVote - 1">
-                <Preloader class="-mt-11" color="red" scale="0.2" />
+              <div v-if="loadingDatabaseVotes && (!selectedVote || index === selectedVote - 1)">
+                <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
               </div>
+              <!-- <div v-else-if="loadingDatabaseVotes && index === selectedVote - 1">
+                <Preloader class="-mt-11 -mx-10" color="red" scale="0.2" />
+              </div> -->
               <div v-else class="font-serif text-lg">
-                <div v-if=" (Vote.value - blockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                <div v-if=" (Vote.value - newBlockchainVotes.filter(vote => vote.selection - 1 === index).length) === 0">
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
                 <div v-else class="text-red-500">
-                  {{ Vote.value }}:{{ blockchainVotes.filter(vote => vote.selection - 1 === index).length }}
+                  {{ Vote.value }}:{{ newBlockchainVotes.filter(vote => vote.selection - 1 === index).length }}
                 </div>
               </div>
             </td>
@@ -223,7 +263,8 @@ NEED MOBILE VERSION-->
     </table>
     
     <!-- DELETE Election BUTTON -->
-    <div>
+    <div v-if="currentUser">
+    <div v-if="currentUser.role == 'Admin'">
       <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="deleteElection(election._id)"
@@ -247,7 +288,8 @@ NEED MOBILE VERSION-->
           Delete
         </button>
       </div>
-    </div>
+    </div></div>
+  
   </div>
 
   <!--
@@ -291,6 +333,7 @@ import Preloader from './Preloader.vue'
 export default {
   
   async mounted () {
+    this.getBlockchainVotes()
   },
   components: {
     //About
@@ -300,6 +343,9 @@ export default {
     computed: {
     currentUser() {
       return store.state.auth.user
+    },
+    chainLink() {
+      return `https://explorer.solana.com/address/${this.election.keys.baseAccount}?cluster=devnet`
     },
     voted(){
      
@@ -334,8 +380,7 @@ export default {
       type: Array,
       required: true,
       default: new Array,
-    },
-    
+    }
   },
  
   data() {
@@ -349,6 +394,9 @@ export default {
       loadingBlockchainVotes: true,
       confirmationOpen: false,
       selectedVote: null,
+      newBlockchainVotes: [],
+      popUpOpen: false,
+      profileToDisplay: undefined,
     };
   },
   methods: {
@@ -362,12 +410,13 @@ export default {
     confirmVote(index) {
       //const yes = UserService.UpdateE(this.currentUser._id)
      // store.state.auth.user.ElectionsVoted = yes
-     var append = this.currentUser.ElectionsVoted
-     append[append.length ] = {EID: this.election._id}
-      store.state.auth.user.ElectionsVoted = append 
       //console.log(this.currentUser.ElectionsVoted.length)
       this.voteToConfirm = index
       this.confirmationOpen = true
+    },
+    displayProfile(i){
+      this.profileToDisplay = i
+      this.popUpOpen = true
     },
     async ProcessVote(id, Canadent_number) {
       
@@ -375,13 +424,31 @@ export default {
       this.loadingDatabaseVotes = true
       this.loadingBlockchainVotes = true
       this.selectedVote = Canadent_number
-      await ElectionService.UpdateElection(id, Canadent_number);
+      console.log('1')
+      await ElectionService.UpdateElection(id, Canadent_number, this.currentUser._id);
+      console.log('2')
+      await this.ElectionSubmit(this.currentUser._id, this.election._id)
+      console.log('3')
+      await this.getBlockchainVotes()
+      console.log('4')
       this.$emit("update");
     },
-    async ElectionSubmit(Uid, EID){
-      
-      await UserService.ElectionSubmit(Uid,EID)
+    async getBlockchainVotes() {
+      console.log('5')
 
+      let votes = await ElectionService.getBlockchainVotes(this.election._id)
+      console.log('6')
+
+      votes = votes.data
+      this.newBlockchainVotes = votes
+      this.loadingDatabaseVotes = false
+      // setTimeout(async () => { await this.getBlockchainVotes() }, 2000);
+    },
+    async ElectionSubmit(Uid, EID){
+      var append = this.currentUser.ElectionsVoted
+      append[append.length ] = {EID: this.election._id}
+      store.state.auth.user.ElectionsVoted = append 
+      await UserService.ElectionSubmit(Uid,EID)
     },
     
     /*DivCoutner() {
@@ -389,14 +456,13 @@ export default {
     },*/
   },
   watch: {
-    blockchainVotes: function () { this.loadingBlockchainVotes = false },
-    election: function () { this.loadingDatabaseVotes = false }
+    // blockchainVotes: function () { this.loadingBlockchainVotes = false },
+    election: function () { this.getBlockchainVotes() }
   }
 };
 </script>
 
 <style scoped>
-
 #Election {
   /*background: rgb(255,255,255);*/
   background: linear-gradient(
@@ -433,16 +499,18 @@ table {
   display: table;
   border: none;
   border-collapse: collapse;
+  width: 100%;
   /*border: 1px solid black;*/
 }
 table tr {
   display: table-cell;
-
+  /*width:150px;*/
   /*border: 1px solid black;*/
 }
 table td {
     border-bottom: 1px double rgba(100, 100, 100, 0.7);
     padding:10px;
+    /*width:auto;*/
     /*border-right: 1px solid #000;*/
 }
 /*
@@ -462,4 +530,11 @@ table tr td {
 /*div{
   color:rgba(4, 6, 56)
 }*/
+img{
+  width:80px;
+  height:80px;
+  margin-left: 15px;
+  margin-right: 15px;
+  /*border-color: #FACC15;*/
+}
 </style>

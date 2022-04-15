@@ -26,7 +26,7 @@ class ElectionsService {
   }
 
     //create election
-    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition, Vote1, Vote2, FirstName, LastName,NumberOfCandidates, Vote, startTime, endTime) {
+    static createElection(text, club, Candidate1FirstName, Candidate1LastName, Candidate2FirstName, Candidate2LastName, Poisition, Vote1, Vote2, FirstName, LastName, FullName, NumberOfCandidates, Vote, startTime, endTime) {
         return axios.post(url, {
             text,
             club,
@@ -39,10 +39,12 @@ class ElectionsService {
             Vote2,
             FirstName,
             LastName,
+            FullName,
             NumberOfCandidates,
             Vote,
             startTime,
             endTime,
+            
         })
     }
 
@@ -50,12 +52,12 @@ class ElectionsService {
     static deletePost(id) {
         return axios.delete(`${url}${id}`)
     }
-    static UpdateElection(id, Canadent_Number){
-        return axios.put(`${url}${id}/${Canadent_Number}`)
+    static UpdateElection(electionId, Canadent_Number, userId){
+        return axios.put(`${url}${electionId}/${Canadent_Number}/${userId}`)
     }
     //get votes from blockchain
-    static getBlockchainVotes(){
-        return axios.get(`${url}solana`)
+    static getBlockchainVotes(electionId){
+        return axios.get(`${url}solana/${electionId}`)
     }
 }
 
