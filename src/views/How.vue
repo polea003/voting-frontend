@@ -25,13 +25,13 @@
       </p>
       <h2 class = "text-3xl font-bold">Understanding Election Ballot</h2>
       <p class="text-xl mt-2">    
-      </p>
+      </p>---------
       <h2 class = "text-3xl font-bold">Voting for a Canidate</h2>
       <p class="text-xl mt-2">    
-      </p>
+      </p>---------
       <h2 class = "text-3xl font-bold">Setting Up an Election</h2>
       <p class="text-xl mt-2">    
-      </p>
+      </p>---------
     </div>
   </div>
 </template>
