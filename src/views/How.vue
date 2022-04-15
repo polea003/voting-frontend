@@ -24,13 +24,13 @@
         the image you uploaded when you signed up. If all went according to plan you should be in!    
       </p>
       <h2 class = "text-3xl font-bold">Understanding Election Ballot</h2>
-      <p class="text-xl mt-2">    
+      <p class="text-xl mt-2">---------    
       </p>
       <h2 class = "text-3xl font-bold">Voting for a Canidate</h2>
-      <p class="text-xl mt-2">    
+      <p class="text-xl mt-2">---------
       </p>
       <h2 class = "text-3xl font-bold">Setting Up an Election</h2>
-      <p class="text-xl mt-2">    
+      <p class="text-xl mt-2">---------    
       </p>
     </div>
   </div>
