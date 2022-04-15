@@ -34,7 +34,7 @@
         and past elections by clicking the drop-down menu. 
       </p>
       <div class="py-4">
-          <img :src="require(`../assets/how/electionDropdown.png`)"  class="howImgs rounded-2xl border-2 border-black"/>
+          <img :src="require(`../assets/how/electionDropdown.png`)"  class="howImgs rounded-2xl border-4 border-gray-300"/>
       </div>
       <p>
         At the top of each ballot (from top to bottom), you will see the club's name, 
@@ -43,7 +43,7 @@
         Finally, just under that is the start date of the election and the end date.  
       </p>
       <div class="py-4">
-          <img :src="require(`../assets/how/ballotTop.png`)"  class="howImgs2 rounded-2xl border-2 border-black"/>
+          <img :src="require(`../assets/how/ballotTop.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
       </div>
       <p>
       At the bottom of the ballot, there are three sections in columns (from left to right), Candidates, Selection, and Tally: 
@@ -57,11 +57,56 @@
        These two numbers should always be the same. 
       </p>
       <div class="py-4">
-        <img :src="require(`../assets/how/ballotBottom.png`)"  class="howImgs2 rounded-2xl border-2 border-black"/>
+        <img :src="require(`../assets/how/ballotBottom.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
       </div>
       <h2>Setting Up an Election</h2>
       <p>    
-      </p>---------
+      You must first visit the Club Elections page to set up an election. Next, click on a club, or you can click on the 
+      FIU logo to create a general election. The elections can be viewed by club on each of their corresponding pages, 
+      or every election available can be found on the Election Dashboard page.
+      <br>Click on the New Election button that will take you to the New Election page. You can then enter an Election Name 
+      and Position for the election. These are optional selections. 
+      </p>
+      <div class="py-4">
+        <img :src="require(`../assets/how/newElectionIntro.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
+      <p>
+      Below this is the Candidates section. You can click the Add button to add a candidate or the Remove button to remove a candidate. 
+      </p>
+      <div class="py-4">
+        <img :src="require(`../assets/how/candidates.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
+      <p>
+      When the Add button is clicked, a candidate card will appear on the screen. Here you can enter the candidate's First Name, 
+      Last Name, and a Description Profile. The description is set to a maximum of 305 characters. The description section can 
+      also be expanded by clicking and dragging the text box's lower right corner for better viewing. The First and Last Names 
+      are mandatory entries; you must enter the first and last name of the candidate. 
+      </p>
+      <div class="py-4">
+        <img :src="require(`../assets/how/candidateCard.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
+      <p>
+      Under the candidates’ card, there is a Date/Time section. This will help all will-be voters find your election in the election 
+      dashboard. It is not currently a mandatory section, but it is still recommended you take the time to fill out these sections. 
+      </p>
+      <div class="py-4">
+        <img :src="require(`../assets/how/dateTime.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
+      <p>
+      Click on the input field where you can choose a date. Next, click the little clock image to set the time. Once you have made 
+      your selection, click “Select” in the lower right of the menu. The date and time will display in the input box. 
+      </p>
+      <div class="py-4">
+        <img :src="require(`../assets/how/dateTimeSelect.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
+      <p>
+      Finally, review the form and make any corrections. Then click Create Election! Give it a few moments for all the data to be saved. 
+      Click on the Election Dashboard link in the nav bar at the top of the website to confirm it worked. If not displayed yet, wait 
+      another moment and click Election Dashboard again. Success! Happy voting 😊
+      </p>  
+      <div class="py-4">
+        <img :src="require(`../assets/how/create.png`)"  class="howImgs2 rounded-2xl border-4 border-gray-300"/>
+      </div>
     </div>
   </div>
 </template>
