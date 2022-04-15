@@ -41,7 +41,7 @@
         <div class="flex flex-wrap justify-center mb-6 mt-6">
           <div class="custom-file flex flex-col mb-3">
             <label for="file" class="custom-file-label font-bold mb-2">Choose Profile Picture</label>
-            <input as="input" type="file" name="pic" id="upload"  ref="input" accept="image/*" >
+            <input as="input" type="file" name="pic" id="upload" class="file-look" ref="input" accept="image/*" >
           </div>
            <div>
             <ErrorMessage name="pic" class="error-feedback" />
@@ -208,7 +208,9 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 11%;
+  width: 250px;
+  height: auto;
+  
 }
 .error-feedback{
   color:#E60000;

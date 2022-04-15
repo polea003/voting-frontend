@@ -37,12 +37,12 @@
 
       <div class="night pt-4 text-2xl font-extrabold">Candidates</div>
       <!-- <component v-bind:is="NewElectionForm"></component> -->
-      <div class="flex flex-wrap justify-center ">
-      <div class="flex flex-col justify-center ">
+      <div class="flex flex-wrap justify-center">
+      <div class="flex flex-col justify-center">
         <div
           v-for="(FirstName, index) in FirstName"
           v-bind:key="FirstName"
-          class="canCard mb-6 mt-2 py-2 border-8 rounded-2xl w-96 
+          class="canCard mb-7 mt-2 py-2 border-8 rounded-2xl w-96 
           hover:shadow-xl font-medium text-lg"
         >
         <div class="font-bold text-xl pb-2">Candidate: {{index + 1}}</div> 
@@ -92,7 +92,7 @@
                   When completed click the Submit button.
                 </p>
               </div>-->
-          <div class="flex felx-wrap justify-center">
+          <div class="flex felx-wrap justify-center pb-2">
             <div class="">
               <div class="">
                 <div>
@@ -111,14 +111,14 @@
             </div>
           </div>
           <!-- Image Upload -->
-          <div class="flex flex-wrap justify-center mb-6 mt-6 ">
+          <!--<div class="flex flex-wrap justify-center mb-6 mt-6 ">
             <div class="custom-file flex flex-col ">
               <label for="file" class="custom-file-label font-bold text-black">Choose Profile Picture</label>
               <div class ="imgBox">
               <input type="file" name="pic" id="upload" class="file-look border-2 border-blue-900 bg-white py-2 px-2" ref="input">
               </div>
             </div>
-          </div>
+          </div>-->
         </div>
       </div>
       </div>

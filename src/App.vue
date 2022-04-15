@@ -132,13 +132,15 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 50px;
+  height: 100%;
   width: 100%; 
   color: var(--text-primary-color);
-  background: var(--background-color-primary) no-repeat center center fixed;
-  -webkit-background-size: cover;
+  background: var(--background-color-primary) ;
+  
+  /*-webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: cover;*/
   
 }
 
@@ -180,14 +182,14 @@ export default {
   border-color: var(--border-color) !important;
   background: var(--background) !important;
 }
-.election-Dashboard{
+/*.election-Dashboard{
   background: var(--background-color-secondary) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  
-}
+
+}*/
 .canCard{ 
   border-color: var(--border-color) !important;
   background: var(--background) !important;
@@ -309,9 +311,9 @@ div.footer {
   background-color: rgb(8, 30, 63, 1) !important;
   height: 60px;
   width: 100%;
-  background-color: #ccc;
+  /*background-color: #ccc;*/
   padding: 10px;
-  padding-top: 8px;
+  padding-top: 15px;
   padding-bottom: 8px;
   margin-top: 10px;
   bottom: 0px;

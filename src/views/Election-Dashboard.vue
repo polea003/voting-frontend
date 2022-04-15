@@ -132,4 +132,5 @@ export default {
     --tw-shadow: 0 25px 50px 10px rgba(251, 191, 36, 0.95);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 </style>
