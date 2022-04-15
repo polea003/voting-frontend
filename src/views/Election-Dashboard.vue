@@ -3,7 +3,7 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-extrabold m-5">Election Dashboard</h1>
+    <h1 class="text-5xl font-extrabold p-5">Election Dashboard</h1>
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
         <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>

@@ -126,37 +126,26 @@ export default {
 </script>
 
 <style>
-/*div.wallpaper {
-  background: url("./assets/miami-sights-data.jpg") no-repeat fixed;
-  /*-webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;*/
-/* background-size: 100%;
-  opacity: 100%
-}*/
-
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   padding-bottom: 50px;
-  width: 100%; /***********************************Could NOT figure out how to make it dynamic adjust for mobile******************************************/
-  /*background-color: rgb(8, 30, 63, 1);*/
-  /* color: #eff303; */
-  /* color: #15e1f0;  */
-  /*background-size: contain, cover;*/
+  width: 100%; 
   color: var(--text-primary-color);
-  background: var(--background-color-primary);
+  background: var(--background-color-primary) no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: 100%;
+  background-size: cover;
+  
 }
 
 /* Define styles for the default root window element */
 :root {
-  --background-color-primary: rgb(255, 255, 255, 1);
+  --background-color-secondary: url("./assets/FIU_background_picture.jpg");
+  --background-color-primary:rgb(250, 250, 250);
   --text-primary-color: rgb(8, 30, 63, 1);
   -webkit-text-stroke-color: rgba(182,134,44,1);
   --border-color: rgba(209, 213, 219,1);
@@ -178,17 +167,26 @@ export default {
 }
 /* Define styles for the root window with dark - mode preference */
 :root.dark-theme {
-  --background-color-primary: url("./assets/stars.jpg");
-  --text-primary-color: rgb(255, 255, 255, 1);
+  --background-color-secondary: url("./assets/stars.jpg");
+  --background-color-primary: rgb(2, 10, 23);
+  --text-primary-color: rgb(250, 250, 250, 1);
   -webkit-text-stroke-color: rgba(0, 255, 255, 1);
   --border-color: rgba(182,134,44,1);
   --border-color-input: rgba(255,204,0,1);
-  --background: radial-gradient(circle, rgba(255,204,0,1) 0%, rgba(204,0,102,1) 100%);
+  --background: radial-gradient(circle, rgba(204,0,102,1)0%, rgba(255,204,0,1)  100%);
 
 }
 #Election{
   border-color: var(--border-color) !important;
   background: var(--background) !important;
+}
+.election-Dashboard{
+  background: var(--background-color-secondary) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
 }
 .canCard{ 
   border-color: var(--border-color) !important;

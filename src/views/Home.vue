@@ -1,7 +1,7 @@
 <template>
-  <div class="election-Dashboard h-fit">
+  <div class="h-fit">
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-extrabold m-5">Home Page</h1>
+    <h1 class="text-5xl font-extrabold p-5">Home Page</h1>
     <!-- Welcome Message -->
     <h3 class="text-3xl font-bold m-6">Welcome to Panther Votes!</h3>
     <!-- Action Message -->

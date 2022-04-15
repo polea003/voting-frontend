@@ -4,28 +4,14 @@
       <div class="text-xl font-bold my-5">HKN</div>
     </div>
     <div class="flex justify-center">
-      <div
-        class="
-          w-64
-          border-2 border-green-500
-          rounded
-          text-center
-          font-bold
-          py-2
-          mb-4
-          cursor-pointer
-        "
-      >
+      <div class="w-64 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer">
         <div class="flex h-full justify-center">
-          <router-link :to="{ name: 'NewElection', params: { club: Name } }"
-            >New Election</router-link
+          <router-link :to="{ name: 'NewElection', params: { club: Name } }">New Election</router-link
           >
         </div>
       </div>
     </div>
     <div class="home">
-      <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-      <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
       <div class="w-full h-full">
         <div class="flex flex-col">
           <div class="text-xl font-bold">Active Elections</div>

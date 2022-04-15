@@ -1,7 +1,7 @@
 <template>
    <div class="flex flex-wrap justify-center">
         <div class="flex flex-wrap justify-center">
-            <h1 class="text-5xl font-extrabold m-5">How It Works</h1>
+            <h1 class="text-5xl font-extrabold p-5">How It Works</h1>
         </div>
         <div class="flex flex-wrap justify-center">
         <div class="p-3 w-72 h-72 border-gray-300 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">

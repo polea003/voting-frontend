@@ -1,11 +1,13 @@
 <template>
-  <div class="register mt-5 text-2xl font-bold">
-    <h1 class="text-5xl font-extrabold m-5">Sign Up </h1>
-    <img
-      id="profile-img"
-      :src="imageSrc"
-      class="profile-img-card"
-    />
+  <div class="register text-2xl font-bold">
+    <h1 class="text-5xl font-extrabold p-5">Sign Up </h1>
+    <div class = "p-2">
+      <img
+        id="profile-img"
+        :src="imageSrc"
+        class="profile-img-card"
+      />
+    </div>
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
         <div class="form-group mb-6">

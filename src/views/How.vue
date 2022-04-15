@@ -2,7 +2,7 @@
 <template>
   <div class="how">
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-extrabold m-5">How It Works</h1>
+    <h1 class="text-5xl font-extrabold p-5">How It Works</h1>
     <!--<div class='flex flex-col mx-64'>
       <div class="text-xl font-bold my-5">Secured by Blockchain.</div>
       <div class="text-xl font-bold my-5">Protected with Biometrics.</div>

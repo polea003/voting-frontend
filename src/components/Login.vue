@@ -1,20 +1,47 @@
 <template>
-  <div class="col-md-12 flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-      <h1 class="text-5xl font-extrabold mb-3">Login Page</h1>
+  <div
+    class="
+      col-md-12
+      flex flex-col
+      justify-center
+      items-center
+      
+      text-2xl
+      font-bold
+    "
+  >
+    <h1 class="text-5xl font-extrabold p-5">Login Page</h1>
     <div class="card card-container">
-    
       <Form @submit="handleLogin" :validation-schema="schema">
-        <div class=" py-6 form-group">
-          <label for="email" class="flex flex-wrap justify-center font-bold px-6 mb-2">Email</label>
-          <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control border-2 standard rounded px-2" />
+        <div class="py-6 form-group">
+          <label
+            for="email"
+            class="flex flex-wrap justify-center font-bold px-6 mb-2"
+            >Email</label
+          >
+          <Field
+            name="email"
+            type="text"
+            placeholder="JohnDoe@fiu.edu"
+            class="form-control border-2 standard rounded px-2"
+          />
           <div>
-            <ErrorMessage name="email" class="error-feedback " />
+            <ErrorMessage name="email" class="error-feedback" />
           </div>
         </div>
         <div class="form-group">
-          <label for="password" class="flex flex-wrap justify-center font-bold px-5 mb-2">Password</label>
+          <label
+            for="password"
+            class="flex flex-wrap justify-center font-bold px-5 mb-2"
+            >Password</label
+          >
           <div>
-            <Field name="password" type="password" placeholder="Password123" class="form-control border-2 standard rounded px-2" />
+            <Field
+              name="password"
+              type="password"
+              placeholder="Password123"
+              class="form-control border-2 standard rounded px-2"
+            />
           </div>
           <ErrorMessage name="password" class="error-feedback" />
         </div>
@@ -22,34 +49,34 @@
         <div class="form-group">
           <div class="flex justify-center pt-4">
             <div class="flex h-full justify-center">
-            <button 
-              type="submit"
-              class="
-                flex
-                items-center
-                justify-center
-                font-bold
-                text-white
-                text-3xl
-                w-72
-                h-16
-                m-6
-                mt-8
-                cursor-pointer
-                rounded-full
-                border-8 border-inherit
-                bg-gradient-to-r
-                from-blue-600
-                to-blue-900
-                hover:from-yellow-300 hover:to-yellow-600
-                hover:border-black 
-                hover:text-black
-              "
-            >
-              Login
-            </button>
+              <button
+                type="submit"
+                class="
+                  flex
+                  items-center
+                  justify-center
+                  font-bold
+                  text-white text-3xl
+                  w-72
+                  h-16
+                  m-6
+                  mt-8
+                  cursor-pointer
+                  rounded-full
+                  border-8 border-inherit
+                  bg-gradient-to-r
+                  from-blue-600
+                  to-blue-900
+                  hover:from-yellow-300
+                  hover:to-yellow-600
+                  hover:border-black
+                  hover:text-black
+                "
+              >
+                Login
+              </button>
+            </div>
           </div>
-        </div>
         </div>
         <!-- End of Login Button -->
         <div class="form-group">
@@ -60,52 +87,53 @@
       </Form>
     </div>
     <div class="py-5">
-        <div class="flex flex-wrap justify-center">
-          <div
-            class="
-              bg-blue-600
-              text-white
-              border-8
-              border-blue-500
-              hover:border-yellow-300
-              hover:text-yellow-300 
-              rounded-full
-              font-bold
-              text-sm
-              py-3
-              px-4
-              flex
-              justify-start
-              items-center
-              cursor-pointer
-              w-64
-              h-14
-              mb-4
-              mx-2
-            "
+      <div class="flex flex-wrap justify-center">
+        <div
+          class="
+            bg-blue-600
+            text-white
+            border-8 border-blue-500
+            hover:border-yellow-300 hover:text-yellow-300
+            rounded-full
+            font-bold
+            text-sm
+            py-3
+            px-4
+            flex
+            justify-start
+            items-center
+            cursor-pointer
+            w-64
+            h-14
+            mb-4
+            mx-2
+          "
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="fill-current mr-3 w-6 h-5"
+            xmlns="http://www.w3.org/2000/svg"
           >
-          
-            <svg
-              viewBox="0 0 24 24"
-              class="fill-current mr-3 w-6 h-5"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"
-              />
-            </svg>
-             <div class="col-sm-4">
-              <div class="card">
-                <div class="card-body">
-                  <a class="btn btn-block btn-social btn-google" href="http://localhost:5000/api/oauth/auth/google" role="button">
-                    <i class="fab fa-google"></i>
-                    Sign In with Google
-                  </a>
-                </div>
+            <path
+              d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z"
+            />
+          </svg>
+          <div class="col-sm-4">
+            <div class="card">
+              <div class="card-body">
+                <a
+                  class="btn btn-block btn-social btn-google"
+                  href="http://localhost:5000/api/oauth/auth/google"
+                  role="button"
+                >
+                  <i class="fab fa-google"></i>
+                  Sign In with Google
+                </a>
               </div>
             </div>
           </div>
-          <!--
+        </div>
+        <!--
           <div
             class="
               bg-gray-900
@@ -174,8 +202,8 @@
             <span class="pl-3">Sign up with Facebook</span>
           </div>
           -->
-        </div>
       </div>
+    </div>
   </div>
 </template>
 <script>
@@ -202,12 +230,11 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-      
     },
   },
   created() {
     if (this.loggedIn) {
-     // this.$router.push("/profile");
+      // this.$router.push("/profile");
     }
   },
   methods: {
@@ -215,7 +242,6 @@ export default {
       this.loading = true;
       this.$store.dispatch("auth/login", user).then(
         () => {
-
           this.$router.push("/Face");
         },
         (error) => {
@@ -234,10 +260,10 @@ export default {
 </script>
 
 <style scoped>
-.error-feedback{
-  color:#E60000;
+.error-feedback {
+  color: #e60000;
 }
-div.form-control{
+div.form-control {
   width: 60px;
   height: 10px;
 }
