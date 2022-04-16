@@ -496,7 +496,7 @@ export default {
   /*background: rgb(204,0,102);*/
   /*-moz-animation: ;background: radial-gradient(circle, rgba(204,0,102,1) 0%, rgba(255,204,0,1) 100%);
   border-color: rgba(182,134,44,1);*/
-  border-width: 8px;
+  border-width: 10px;
 }
 #Election:hover{
   border-color: rgba(255,204,0,1) !important;

@@ -151,6 +151,7 @@ export default {
   --text-primary-color: rgb(8, 30, 63, 1);
   -webkit-text-stroke-color: rgba(182,134,44,1);
   --border-color: rgba(209, 213, 219,1);
+  --border-color-button: rgba(0, 0, 0, 1);
   --border-color-input: rgba(8, 30, 63, 1);
   --background: linear-gradient(
     50deg,
@@ -174,6 +175,8 @@ export default {
   --text-primary-color: rgb(250, 250, 250, 1);
   -webkit-text-stroke-color: rgba(0, 255, 255, 1);
   --border-color: rgba(182,134,44,1);
+  --border-color-button: rgb(255, 230, 131);
+  --text-secondary-button: rgb(70, 52, 17);
   --border-color-input: rgba(255,204,0,1);
   --background: radial-gradient(circle, rgba(204,0,102,1)0%, rgba(255,204,0,1)  100%);
 
@@ -190,6 +193,14 @@ export default {
   background-size: cover;
 
 }*/
+
+.PVbutton:hover{
+  border-color: var(--border-color-button) !important;
+  color: var(--text-secondary-button)!important;
+  /*-webkit-text-fill-color: var(--border-color-button) !important;
+  -webkit-text-stroke-width: 1px !important;
+  -webkit-text-stroke-color: var(--border-color-button) !important;*/
+}
 .canCard{ 
   border-color: var(--border-color) !important;
   background: var(--background) !important;

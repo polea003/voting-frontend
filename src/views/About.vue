@@ -5,27 +5,27 @@
         </div>
         <div class="flex flex-wrap justify-center">
         <div class="p-3 w-72 h-72 bg-white border-gray-300 hover:border-yellow-400 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-            <div class = "font-bold text-lg">Tyler Jas Salzberg 
+            <div class = "font-bold text-lg text-black">Tyler Jas Salzberg 
               <img class =" object-cover w-48" :src="require(`../assets/Tyler.png`)">
             </div>
         </div>
            <div class="p-3 w-72 h-72 bg-white border-gray-300 hover:border-yellow-400 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-              <div class = "font-bold text-lg"> Karl Urban
+              <div class = "font-bold text-lg text-black"> Karl Urban
               <img class =" object-cover w-48" :src="require(`../assets/Karl.jpg`)">
           </div>
           </div>
            <div class="p-3 w-72 h-72 bg-white border-gray-300 hover:border-yellow-400 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-              <div class = "font-bold text-lg"> Luis Hernandez
+              <div class = "font-bold text-lg text-black"> Luis Hernandez
               <img class =" object-cover w-48" :src="require(`../assets/Luis.jpeg`)">
           </div>
           </div>
            <div class="p-3 w-72 h-72 bg-white border-gray-300 hover:border-yellow-400 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-              <div class = "font-bold text-lg"> Patrick O'Leary
+              <div class = "font-bold text-lg text-black"> Patrick O'Leary
               <img class =" object-cover w-48" :src="require(`../assets/Pat.png`)">
           </div>
           </div>
            <div class="p-3 w-72 h-72 bg-white border-gray-300 hover:border-yellow-400 border-4 rounded-3xl m-5 shadow hover:shadow-2xl cursor-pointer flex flex-col justify-center items-center">
-              <div class = "font-bold text-lg"> Isabela Fernandez
+              <div class = "font-bold text-lg text-black"> Isabela Fernandez
               <img class =" object-cover w-48" :src="require(`../assets/Isa.jpeg`)">
           </div>
           </div>

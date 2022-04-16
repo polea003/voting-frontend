@@ -5,7 +5,6 @@
       flex flex-col
       justify-center
       items-center
-      
       text-2xl
       font-bold
     "
@@ -52,6 +51,7 @@
               <button
                 type="submit"
                 class="
+                PVbutton
                   flex
                   items-center
                   justify-center
@@ -86,7 +86,7 @@
         </div>
       </Form>
     </div>
-    <div class="py-5">
+    <!--<div class="py-5">
       <div class="flex flex-wrap justify-center">
         <div
           class="
@@ -133,7 +133,7 @@
             </div>
           </div>
         </div>
-        <!--
+        
           <div
             class="
               bg-gray-900
@@ -201,9 +201,9 @@
             <span class="border-l border-indigo-500 h-6 w-1 block mr-1"></span>
             <span class="pl-3">Sign up with Facebook</span>
           </div>
-          -->
+          
       </div>
-    </div>
+    </div>-->
   </div>
 </template>
 <script>

@@ -49,7 +49,7 @@
           <div class="flex flex-row justify-center">
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-2">
+                <div class="mb-6 mx-1">
                   <div>
                     <label for="FirstName" class="font-bold">First Name</label>
                   </div>
@@ -57,7 +57,7 @@
                     name="FirstName"
                     type="text"
                     v-model="FirstName.value"
-                    class="form-control border-2 border-blue-900 rounded w-42"
+                    class="form-control border-2 border-blue-900 rounded w-56"
                   />
                   <div>
                     <ErrorMessage name="FirstName" class="error-feedback" />
@@ -68,7 +68,7 @@
 
             <Form :validation-schema="schema">
               <div v-if="!successful">
-                <div class="mb-6 mx-2">
+                <div class="mb-6 mx-1">
                   <div>
                     <label for="LastName" class="font-bold">Last Name</label>
                   </div>
@@ -76,7 +76,7 @@
                     name="LastName"
                     type="text"
                     v-model="LastName[index].value"
-                    class="form-control border-2 border-blue-900 rounded w-42"
+                    class="form-control border-2 border-blue-900 rounded w-56"
                   />
                   <div>
                     <ErrorMessage name="LastName" class="error-feedback" />
@@ -480,6 +480,7 @@ export default {
 <style scoped>
 .error-feedback {
   color: red;
+  font-size: 15px;
 }
 .form-control {
   width: 150px;

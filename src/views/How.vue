@@ -15,10 +15,16 @@
         This requires you to enter a name, FIU email address, password of at least seven characters, 
         and a clear picture of your face.
       </p>
+      <div class="py-4">
+          <img :src="require(`../assets/how/signUp.png`)"  class="howImgs3 rounded-2xl border-4 border-gray-300"/>
+      </div>
       <p> 
         Now that you have signed up you will need to <b>Login</b> at the login page. 
         You will enter the emailed and password you used to sign up. 
       </p>
+      <div class="py-4">
+          <img :src="require(`../assets/how/login.png`)"  class="howImgs3 rounded-2xl border-4 border-gray-300"/>
+      </div>
       <p>
         Once you click the Login button, you will be taken to the face biometrics verification page. 
         This will automatically turn on your camera if permission is given. 
@@ -143,6 +149,13 @@ h2{
   margin-left: auto;
   margin-right: auto;
   width: 350px;
+  height: auto;
+}
+.howImgs3{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
   height: auto;
 }
 </style>

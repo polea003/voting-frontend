@@ -1,13 +1,13 @@
 <template>
   <div class="register text-2xl font-bold">
     <h1 class="text-5xl font-extrabold p-5">Sign Up </h1>
-    <div class = "p-2">
+    <!--<div class = "p-2">
       <img
         id="profile-img"
         :src="imageSrc"
         class="profile-img-card"
       />
-    </div>
+    </div>-->
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
         <div class="form-group mb-6">
@@ -53,6 +53,7 @@
             <div class="flex h-full justify-center">
               <button
                 class="
+                PVbutton
                   flex
                   items-center
                   justify-center
@@ -202,7 +203,7 @@ export default {
 </script>
 
 <style scoped>
-img {
+img.profile-img-card {
   padding-top: 6px;
   padding-bottom: 20px;
   display: block;

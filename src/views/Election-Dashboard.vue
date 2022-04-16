@@ -9,6 +9,7 @@
         <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
         <div v-if="clubName"
             class="
+            PVbutton
               flex
               text-white
               font-xl

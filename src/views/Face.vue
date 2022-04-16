@@ -2,7 +2,7 @@
 
   <main ontouchstart="" class="md:text-xl lg:text-2xl">
     <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
-    <h1 class="text-5xl font-bold mb-6 text-center">Facial Recognition</h1>
+    <h1 class="text-5xl font-extrabold p-5 text-center">Facial Biometrics</h1>
     <div v-if="currentUser" class="navbar-nav mx-auto mb-2"> <span class="text-3xl">Hi {{ currentUser.name }}!</span> </div>
     <!-- Intro -->
     <!-- ---------- -->
@@ -10,37 +10,39 @@
     <section id="intro"  v-if="!stream" class="flex flex-col inset-0 px-4 pb-4 z-20">
       <article class="flex flex-1 flex-col items-center justify-center">
         <div v-if="currentUser">
-          <img v-show="imgurl" :src="imgurl" class="mx-auto my-4 w-96 h-auto">
+          <img v-show="imgurl" :src="imgurl" class="mx-auto my-4 w-96 h-auto rounded-xl">
         </div>
         <div v-else>
           <img src="../assets/headshot.png" alt="CodePen" class="mt-8 h-32 md:h-40 lg:h-64 mb-4 w-32 md:w-40 lg:w-64">
         </div>
 
-        <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">In order to vote, please click the "Allow Access" button below to enable your webcam for facial validation.</p>
+        <p class="leading-relaxed md:max-w-screen-sm lg:max-w-screen-md text-center">
+        To confirm your identity, please click the "Allow Access" button below to enable your webcam 
+        for facial validation.</p>
         <button @click="startCamera" 
-                class="
-                px-4 
-                py-2
-                flex
-                items-center
-                justify-center
-                font-bold
-                text-white
-                text-3xl
-                w-72
-                h-16
-                m-6
-                mt-8
-                cursor-pointer
-                rounded-full
-                border-8 border-inherit
-                bg-gradient-to-r
-                from-blue-400
-                to-blue-800
-                hover:from-yellow-300 hover:to-yellow-600
-                hover:border-black 
-                hover:text-black"
-                >Allow Access
+          class="
+          px-4 
+          py-2
+          flex
+          items-center
+          justify-center
+          font-bold
+          text-white
+          text-3xl
+          w-72
+          h-16
+          m-6
+          mt-8
+          cursor-pointer
+          rounded-full
+          border-8 border-inherit
+          bg-gradient-to-r
+          from-blue-400
+          to-blue-800
+          hover:from-yellow-300 hover:to-yellow-600
+          hover:border-black 
+          hover:text-black"
+          >Allow Access
         </button>
       </article>
     </section>
@@ -60,12 +62,13 @@
       <article>
         <img :src="photo.toDataURL('image/jpeg')" alt="Photo" class="h-64 w-64">
       </article>
-      
+      <!--
       <footer>
         <button @click="downloadPhoto">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="h-10 md:h-12 lg:h-16 w-10 lg:w-12 md:w-16"><path d="M0 0h24v24H0V0z" fill="none"/><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg>
         </button>
       </footer>
+      -->
     </section>
     
     <!-- Video -->
