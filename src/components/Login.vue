@@ -1,55 +1,84 @@
 <template>
-  <div class="col-md-12 flex flex-col justify-center items-center mt-5 text-2xl font-bold">
-      <h1 class="text-5xl mb-3">Login Page</h1>
+  <div
+    class="
+      col-md-12
+      flex flex-col
+      justify-center
+      items-center
+      text-2xl
+      font-bold
+    "
+  >
+    <h1 class="text-5xl font-extrabold p-5">Login Page</h1>
     <div class="card card-container">
-    
       <Form @submit="handleLogin" :validation-schema="schema">
-        <div class=" py-6 form-group">
-          <label for="email" class="flex flex-wrap justify-center font-bold px-6 mb-2">Email</label>
-          <Field name="email" type="text" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-800 rounded px-2" />
+        <div class="py-6 form-group">
+          <label
+            for="email"
+            class="flex flex-wrap justify-center font-bold px-6 mb-2"
+            >Email</label
+          >
+          <Field
+            name="email"
+            type="text"
+            placeholder="JohnDoe@fiu.edu"
+            class="form-control border-2 standard rounded px-2"
+          />
           <div>
-            <ErrorMessage name="email" class="error-feedback " />
+            <ErrorMessage name="email" class="error-feedback" />
           </div>
         </div>
         <div class="form-group">
-          <label for="password" class="flex flex-wrap justify-center font-bold px-5 mb-2">Password</label>
+          <label
+            for="password"
+            class="flex flex-wrap justify-center font-bold px-5 mb-2"
+            >Password</label
+          >
           <div>
-            <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-800 rounded px-2" />
+            <Field
+              name="password"
+              type="password"
+              placeholder="Password123"
+              class="form-control border-2 standard rounded px-2"
+            />
           </div>
           <ErrorMessage name="password" class="error-feedback" />
         </div>
+        <!-- Login Button -->
         <div class="form-group">
           <div class="flex justify-center pt-4">
             <div class="flex h-full justify-center">
-            <button 
-              type="submit"
-              class="
-                flex
-                items-center
-                justify-center
-                font-bold
-                text-white
-                text-3xl
-                w-72
-                h-16
-                m-6
-                mt-8
-                cursor-pointer
-                rounded-full
-                border-8 border-inherit
-                bg-gradient-to-r
-                from-blue-400
-                to-blue-800
-                hover:from-yellow-300 hover:to-yellow-600
-                hover:border-black 
-                hover:text-black
-              "
-            >
-              Login
-            </button>
+              <button
+                type="submit"
+                class="
+                PVbutton
+                  flex
+                  items-center
+                  justify-center
+                  font-bold
+                  text-white text-3xl
+                  w-72
+                  h-16
+                  m-6
+                  mt-8
+                  cursor-pointer
+                  rounded-full
+                  border-8 border-inherit
+                  bg-gradient-to-r
+                  from-blue-600
+                  to-blue-900
+                  hover:from-yellow-300
+                  hover:to-yellow-600
+                  hover:border-black
+                  hover:text-black
+                "
+              >
+                Login
+              </button>
+            </div>
           </div>
         </div>
-        </div>
+        <!-- End of Login Button -->
         <div class="form-group">
           <div v-if="message" class="alert alert-danger" role="alert">
             {{ message }}
@@ -57,28 +86,33 @@
         </div>
       </Form>
     </div>
-    <div class="py-5">
-        <div class="flex flex-wrap justify-center">
-          <div
-            class="
-              bg-blue-600
-              text-white
-              hover:text-yellow-300 hover:shadow-lg
-              shadow
-              font-bold
-              text-sm
-              py-3
-              px-4
-              rounded
-              flex
-              justify-start
-              items-center
-              cursor-pointer
-              w-64
-              h-14
-              my-2
-              mx-2
-            "
+    <!--<div class="py-5">
+      <div class="flex flex-wrap justify-center">
+        <div
+          class="
+            bg-blue-600
+            text-white
+            border-8 border-blue-500
+            hover:border-yellow-300 hover:text-yellow-300
+            rounded-full
+            font-bold
+            text-sm
+            py-3
+            px-4
+            flex
+            justify-start
+            items-center
+            cursor-pointer
+            w-64
+            h-14
+            mb-4
+            mx-2
+          "
+        >
+          <svg
+            viewBox="0 0 24 24"
+            class="fill-current mr-3 w-6 h-5"
+            xmlns="http://www.w3.org/2000/svg"
           >
           
             <svg
@@ -101,7 +135,8 @@
       </div>
     </div>
           </div>
-
+        </div>
+        
           <div
             class="
               bg-gray-900
@@ -169,8 +204,9 @@
             <span class="border-l border-indigo-500 h-6 w-1 block mr-1"></span>
             <span class="pl-3">Sign up with Facebook</span>
           </div>
-        </div>
+          
       </div>
+    </div>-->
   </div>
 </template>
 <script>
@@ -197,12 +233,11 @@ export default {
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-      
     },
   },
   created() {
     if (this.loggedIn) {
-     // this.$router.push("/profile");
+      // this.$router.push("/profile");
     }
   },
   methods: {
@@ -210,7 +245,6 @@ export default {
       this.loading = true;
       this.$store.dispatch("auth/login", user).then(
         () => {
-
           this.$router.push("/Face");
         },
         (error) => {
@@ -227,11 +261,12 @@ export default {
   },
 };
 </script>
+
 <style scoped>
-.error-feedback{
-  color:red;
+.error-feedback {
+  color: #e60000;
 }
-div.form-control{
+div.form-control {
   width: 60px;
   height: 10px;
 }

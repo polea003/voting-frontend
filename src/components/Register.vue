@@ -1,37 +1,38 @@
 <template>
-  <div class="register mt-5 text-2xl font-bold">
-    <h1 class="text-5xl font-bold m-5">Sign Up </h1>
-    <img
-      id="profile-img"
-      :src="imageSrc"
-      class="profile-img-card"
-    />
+  <div class="register text-2xl font-bold">
+    <h1 class="text-5xl font-extrabold p-5">Sign Up </h1>
+    <!--<div class = "p-2">
+      <img
+        id="profile-img"
+        :src="imageSrc"
+        class="profile-img-card"
+      />
+    </div>-->
     <Form @submit="handleRegister" :validation-schema="schema">
       <div v-if="!successful">
-        
         <div class="form-group mb-6">
           <div>
-          <label for="username" class="font-bold">Name</label>
+            <label for="username" class="font-bold">Name</label>
           </div>
-          <Field name="username" type="text" placeholder="NameName" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="username" type="text" placeholder="NameName" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="username" class="error-feedback" />
           </div>
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="email" class="font-bold">Email</label>
+            <label for="email" class="font-bold">Email</label>
           </div>
-          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="email" type="email" placeholder="JohnDoe@fiu.edu" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="email" class="error-feedback" />
           </div>
         </div>
         <div class="form-group mb-6">
           <div>
-          <label for="password" class="font-bold">Password</label>
+            <label for="password" class="font-bold">Password</label>
           </div>
-          <Field name="password" type="password" placeholder="Password123" class="form-control border-2 border-blue-800 rounded px-2" />
+          <Field name="password" type="password" placeholder="Password1234" class="form-control standard border-2 rounded px-2" />
           <div>
             <ErrorMessage name="password" class="error-feedback" />
           </div>
@@ -39,21 +40,20 @@
 
         <div class="flex flex-wrap justify-center mb-6 mt-6">
           <div class="custom-file flex flex-col mb-3">
-            <label for="file" class="custom-file-label font-bold">Choose Profile Picture</label>
-            <input type="file" name="pic" id="upload" class="file-look" ref="input">
+            <label for="file" class="custom-file-label font-bold mb-2">Choose Profile Picture</label>
+            <input as="input" type="file" name="pic" id="upload" class="file-look" ref="input" accept="image/*" >
           </div>
            <div>
-            <ErrorMessage name="file" class="error-feedback" />
+            <ErrorMessage name="pic" class="error-feedback" />
           </div> 
         </div>
-
-
 
         <div class="form-group">
           <div class="flex justify-center">
             <div class="flex h-full justify-center">
               <button
                 class="
+                PVbutton
                   flex
                   items-center
                   justify-center
@@ -62,12 +62,13 @@
                   w-64
                   h-16
                   m-4
+                  mb-6
                   cursor-pointer
                   rounded-full
                   border-8 border-inherit
                   bg-gradient-to-r
-                  from-blue-400
-                  to-blue-800
+                  from-blue-600
+                  to-blue-900
                   hover:from-yellow-300
                   hover:to-yellow-600
                   hover:border-black
@@ -95,6 +96,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import PictureService from "../services/Picture.Service"
 import { Form, Field, ErrorMessage } from "vee-validate";
@@ -128,7 +130,7 @@ export default {
         .required("Password is required!")
         .min(6, "Must be at least 6 characters!")
         .max(40, "Must be maximum 40 characters!"),
-        /* pic: yup.mixed().required("Profile picture is required!").test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
+       /* pic: yup.mixed().required("Profile picture is required!").test("type", "Only the following formats are accepted: .jpeg, .jpg, .bmp, .pdf and .doc", (value) => {
           if(value){
         return value && (
             value[0].type === "image/jpeg" ||
@@ -171,9 +173,9 @@ export default {
       this.loading = true;
       this.$store.dispatch("auth/register", user).then(
         async (data) => {
-          console.log(data)
-          console.log(this.schema.fields.pic)
-    //console.log(this.$refs.input.files[0]
+         // console.log("data" + data)
+        //console.log(this.schema.fields.pic)
+         // console.log("ref" + this.$refs.input)
 
           const myRenamedFile = new File([this.$refs.input.files[0]], data._id, { type: this.$refs.input.files[0].type  }); 
           let formData = new FormData()
@@ -201,16 +203,18 @@ export default {
 </script>
 
 <style scoped>
-img {
+img.profile-img-card {
   padding-top: 6px;
   padding-bottom: 20px;
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 11%;
+  width: 250px;
+  height: auto;
+  
 }
 .error-feedback{
-  color:red;
+  color:#E60000;
 }
 div.form-control{
   width: 60px;

@@ -3,37 +3,42 @@
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
     <!-- <HelloWorld msg="Welcome to Your Vue.js App test"/> -->
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-bold text-gray-500 m-5">Election Dashboard</h1>
+    <h1 class="text-5xl font-extrabold p-5">Election Dashboard</h1>
     <div class="w-full h-full">
       <div class="flex flex-col items-center">
-        <div v-if="clubName" class="text-3xl font-bold mt-2">{{clubName}}</div>
+        <div v-if="clubName" class="text-5xl font-sans font-bold my-2">{{clubName}}</div>
         <div v-if="clubName"
             class="
+            PVbutton
               flex
               text-white
+              font-xl
               items-center
               justify-center
-              w-64
+              w-72
               h-16
               m-4
+              mb-6
               bg-gradient-to-r
-              from-blue-400
-              to-blue-800
+              from-blue-600
+              to-blue-900
               hover:from-yellow-300 hover:to-yellow-600
+              hover:text-black
+              hover:border-black
               font-bold
               cursor-pointer
               rounded-full
-              border-8 border-inherit
+              border-8 border-gray-200
             "
           >
-            <div class="font-bold text-xl">
+            <div class="font-bold text-2xl">
               <router-link :to="{ name: 'NewElection', params: { club: clubName } }"
                 >New Election</router-link
               >
             </div>
           </div>
           
-        <select v-model="electionFilter" class="form-select form-control border-2 border-blue-800 w-72 h-10 px-2 rounded font-semibold text-center text-xl">
+        <select v-model="electionFilter" class="form-select form-control standard border-2 w-64 h-10 px-2 mb-4 rounded font-semibold text-center text-xl">
             <option value="active">Active Elections</option>
             <option value="upcoming">Upcoming Elections</option>
             <option value="past">Past Elections</option>
@@ -128,4 +133,5 @@ export default {
     --tw-shadow: 0 25px 50px 10px rgba(251, 191, 36, 0.95);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
+
 </style>

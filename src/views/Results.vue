@@ -2,7 +2,7 @@
 <template>
   <div class="voting-History">
     <!-- Local Title Header-->
-    <h1 class="text-5xl font-bold m-5">Voting History</h1>
+    <h1 class="text-5xl font-extrabold m-5">Voting History</h1>
 
     <div class='flex flex-col mx-64'>
 

@@ -4,7 +4,7 @@
 
   <div class="about">
     <div class='flex flex-col mx-64'>
-      <div class="text-xl font-bold my-5">Panther MotorSports</div>       
+      <div class="text-xl font-bold my-5">SAE</div>       
 
     </div>
       <div class="flex justify-center">
@@ -45,7 +45,7 @@ import ElectionComponent from '@/components/ElectionComponent.vue'
 import ElectionService from '../services/ElectionService'
 
 export default {
-  name: 'Motor',
+  name: 'SAE',
   components: {
     ElectionComponent
   },
@@ -53,7 +53,7 @@ export default {
     return {
       elections: undefined,
       error: undefined,
-      Name: 'Motor' 
+      Name: 'SAE' 
     
      
     }

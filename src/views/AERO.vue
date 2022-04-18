@@ -5,12 +5,11 @@
   <div class="about">
     <div class='flex flex-col mx-64'>
       <div class="text-xl font-bold my-5">AERO</div>       
-
+      <img  class = "w-72 h-72" :src="require(`../assets/AERO.png`)">
     </div>
       <div class="flex justify-center">
      <div class='w-64 border-2 border-green-500 rounded text-center font-bold py-2 mb-4 cursor-pointer'>
           <div class="flex h-full justify-center">
-            
             <router-link :to="{ name: 'NewElection', params: {club: Name}}"
               >New Election</router-link>
               
