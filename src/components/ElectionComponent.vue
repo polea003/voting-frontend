@@ -77,7 +77,8 @@ NEED MOBILE VERSION-->
             </div>
             <div v-else>
               <div class="flex justify-center m-b">
-                <img :src="require(`../assets/FIU_Panthers_logo.png`)"/>
+                <!--<img :src="require(`../assets/FIU_Panthers_logo.png`)"/>-->
+                <img :src="require(`../assets/ricky.png`)"/>
               </div>
             </div>  
             <!-- Both whitespace and word breaks need to be taken care of-->  
