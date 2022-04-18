@@ -135,7 +135,7 @@ export default {
   height: 100%;
   width: 100%; 
   color: var(--text-primary-color);
-  background: var(--background-color-primary) ;
+  background: var(--background-color-primary);
   
   /*-webkit-background-size: cover;
   -moz-background-size: cover;
@@ -193,7 +193,9 @@ export default {
   background-size: cover;
 
 }*/
-
+.backgroundcolor{
+  background: var(--background-color-primary);
+}
 .PVbutton:hover{
   border-color: var(--border-color-button) !important;
   color: var(--text-secondary-button)!important;

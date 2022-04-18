@@ -1,6 +1,6 @@
 <template>
 
-  <main ontouchstart="" class="md:text-xl lg:text-2xl">
+  <main ontouchstart="" class=" backgroundcolor md:text-xl lg:text-2xl">
     <img  id='img1' class="invisible" :src="imgurl" crossorigin='anonymous'/>
     <h1 class="text-5xl font-extrabold p-5 text-center">Facial Biometrics</h1>
     <div v-if="currentUser" class="navbar-nav mx-auto mb-2"> <span class="text-3xl">Hi {{ currentUser.name }}!</span> </div>
@@ -52,12 +52,12 @@
     <!-- Download -->
     <!-- ---------- -->
     <!-- Allow the user to preview and download the captured photo or return to camera. -->
-    <section id="download" v-if="photo" class="bg-white flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
-      <header>
+    <section id="download" v-if="photo" class="flex flex-col inset-0 items-center justify-between px-4 py-8 z-30">
+      <!--<header>
         <button @click="photo = null">
           <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24" class="h-10 md:h-12 lg:h-16 w-10 lg:w-12 md:w-16"><path d="M0 0h24v24H0z" fill="none"/><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
-      </header>
+      </header>-->
       
       <article>
         <img :src="photo.toDataURL('image/jpeg')" alt="Photo" class="h-64 w-64">

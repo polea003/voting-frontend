@@ -5,7 +5,7 @@
     <!-- Welcome Message -->
     <h3 class="text-3xl font-bold m-6">Welcome to Panther Votes!</h3>
     <!-- Action Message -->
-    <p class="text-2xl pb-4">
+    <p class="text-2xl font-bold pb-4">
       Please 'Login' to vote.<br>If this is your first time here<br>please visit 'How It Works'
     </p>
     <!-- Login Button -->

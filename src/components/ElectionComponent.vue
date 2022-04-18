@@ -68,13 +68,18 @@ NEED MOBILE VERSION-->
               <h1 class="text-3xl mb-4">Candidate Profile</h1>
             </div>-->
             <div class="flex flex-col justify-center">
-              <!--<h2 class="text-2xl mt-2">Name</h2>-->
-              <!-- Profile[index].name.value-->
             <h2 class="text-3xl text-gray-600 font-extrabold mb-2 truncate"> {{Profile.name}}</h2>
             </div>
-            <div class="flex justify-center m-b">
-              <img :src="require(`../assets/pantherPawHand.png`)"/>
+            <div v-if="fake">
+              <div class="flex justify-center m-b">
+                <img :src="require(`../assets/pantherPawHand.png`)"/>
+              </div>
             </div>
+            <div v-else>
+              <div class="flex justify-center m-b">
+                <img :src="require(`../assets/FIU_Panthers_logo.png`)"/>
+              </div>
+            </div>  
             <!-- Both whitespace and word breaks need to be taken care of-->  
             <p class="whitespace-normal break-words text-black">
               {{Profile.description}}
@@ -120,7 +125,7 @@ NEED MOBILE VERSION-->
                 border-4 border-black
                 text-base
               "
-              :class="{'from-blue-600 to-blue-900 pt-1' :  loadingDatabaseVotes, 'from-green-600 to-green-900 border-yelow-500 border-gray-500 pt-1': !loadingDatabaseVotes}"
+              :class="{'from-blue-600 to-blue-900 pt-1 border-blue-900' :  loadingDatabaseVotes, 'from-green-600 to-green-900 border-yelow-500 border-gray-500 pt-1': !loadingDatabaseVotes}"
               >{{loadingDatabaseVotes ? 'Processing' : 'Complete'}}
               
             </div>
@@ -393,6 +398,7 @@ export default {
   data() {
     return {
       // elections: [],
+      fakeFlag: false,
       error: "",
       text: "",
       DivNumber: 4,
@@ -561,7 +567,7 @@ table tr td {
   color:rgba(4, 6, 56)
 }*/
 img{
-  width:80px;
+  width:auto;
   height:80px;
   margin-left: 15px;
   margin-right: 15px;
