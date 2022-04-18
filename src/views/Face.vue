@@ -212,9 +212,10 @@ export default {
      if(results.length > 0 && results[0].label != "unknown"){
         console.log(results[0].label)
         this.$router.push("/election-Dashboard");}
-     else
+     else {
         this.$store.dispatch('auth/logout');
         this.$router.push("/login");
+     }
     },
      
 
