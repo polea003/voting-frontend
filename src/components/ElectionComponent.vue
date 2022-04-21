@@ -272,8 +272,9 @@ NEED MOBILE VERSION-->
     
     <!-- DELETE Election BUTTON -->
     
-    <div v-if="admin">
       <div v-if="currentUser">
+      <div v-if="admin"> 
+      
       <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="currentUser ? deleteElection(election._id) : {}"
