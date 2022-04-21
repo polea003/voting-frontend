@@ -271,8 +271,9 @@ NEED MOBILE VERSION-->
     </table>
     
     <!-- DELETE Election BUTTON -->
-    <div v-if="currentUser">
-    <div v-if="currentUser.role == 'Admin'">
+    
+    <div v-if="admin">
+      <div v-if="currentUser">
       <div class=" border-8 m-2 rounded-md border-transparent">
         <button
           @click="currentUser ? deleteElection(election._id) : {}"
@@ -411,6 +412,14 @@ export default {
     };
   },
   methods: {
+    admin(){
+      
+      if(this.currentUser.role == 'Admin')
+      return true;
+      else
+      return false;
+      
+    },
     async deleteElection(id) {
       await ElectionService.deletePost(id);
       this.$emit("update");
