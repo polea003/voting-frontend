@@ -185,7 +185,7 @@
 </template>
 
 
-<style>
+<style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;900&display=swap');
 *{
     padding: 0;
@@ -193,7 +193,9 @@
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
 }
-
+.content{
+  margin-left: 20px;
+}
 .recent-work {
   display: flex;
   padding: 30px;
@@ -244,5 +246,4 @@ p{
   text-align: left;
 }
 </style>
-message.txt
-8 KB
+
